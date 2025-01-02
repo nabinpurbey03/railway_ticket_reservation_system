@@ -5,7 +5,7 @@
 
 #navbar{
   /* Fallback color for browsers without image support */
-  background-color: rgba(38, 79, 139, 0.8);
+  background-color: rgba(23, 37, 84, 0.8);
 }
 
 #nav-ele {
@@ -27,4 +27,17 @@
   opacity: 0.2; /* Reduce opacity */
   z-index: -1; /* Place the background behind the content */
 }
+
+.tab{
+  width: 50%;
+  padding: 5px 0 5px 0;
+  border-radius: 15px;
+  cursor: pointer;
+  color: black;
+}
+
+#sign-in{
+  visibility: hidden;
+}
+
 

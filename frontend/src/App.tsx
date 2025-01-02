@@ -1,12 +1,13 @@
 import './App.css'
-import Navbar from "./components/Navbar.tsx";
+import RegistrationPage from "@/components/RegistrationPage.tsx";
+// import Navbar from "./components/Navbar.tsx";
 // import Home from "./components/Home.tsx";
 
 function App() {
-
   return (
     <>
-        <Navbar />
+        <RegistrationPage />
+        {/*<Navbar />*/}
         {/*<Home />*/}
     </>
   )
