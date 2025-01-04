@@ -4,7 +4,7 @@ import SignUpPage from "@/components/SignUpPage.tsx";
 
 const RegistrationPage = () => {
 
-    const [tab, setTab] = useState(1);
+    const [tab, setTab] = useState(2);
 
     function updateTab(pos: number): void {
         setTab(pos);
@@ -36,6 +36,7 @@ const RegistrationPage = () => {
                         />
                     </div>
                 </div>
+
                 <div className="w-full bg-black"></div>
                 <div id="reg-sec">
                     <div className="flex flex-row justify-around items-center font-bold pt-2 pb-5 px-5">
@@ -50,11 +51,13 @@ const RegistrationPage = () => {
                         >Create an Account
                         </div>
                     </div>
-                    <div className={"font-bold text-black w-3/5 ml-[20%] px-5"}>
+                    <div className={
+                        tab === 1 ? "font-bold text-black w-3/5 ml-[20%] px-5"
+                            : "font-bold text-black"
+                    }>
                         {tab === 1 ? <SignInPage/> : <SignUpPage/>}
                     </div>
                 </div>
-
             </div>
         </div>
     )

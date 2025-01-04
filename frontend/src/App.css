@@ -5,7 +5,7 @@
 
 #navbar{
   /* Fallback color for browsers without image support */
-  background-color: rgba(23, 37, 84, 0.8);
+  background-color: rgba(23, 37, 84, 0.7);
 }
 
 #nav-ele {
@@ -24,7 +24,7 @@
   background-size: contain; /* Make the image cover the navbar */
   background-position: center; /* Center the image */
   background-repeat: no-repeat; /* Prevent repeating */
-  opacity: 0.2; /* Reduce opacity */
+  opacity: 0.3; /* Reduce opacity */
   z-index: -1; /* Place the background behind the content */
 }
 
@@ -34,10 +34,6 @@
   border-radius: 15px;
   cursor: pointer;
   color: black;
-}
-
-#sign-in{
-  visibility: hidden;
 }
 
 
