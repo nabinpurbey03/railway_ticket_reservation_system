@@ -4,7 +4,7 @@ import SignUpPage from "@/components/SignUpPage.tsx";
 
 const RegistrationPage = () => {
 
-    const [tab, setTab] = useState(2);
+    const [tab, setTab] = useState(1);
 
     function updateTab(pos: number): void {
         setTab(pos);
@@ -39,7 +39,7 @@ const RegistrationPage = () => {
 
                 <div className="w-full bg-black"></div>
                 <div id="reg-sec">
-                    <div className="flex flex-row justify-around items-center font-bold pt-2 pb-5 px-5">
+                    <div className="flex flex-row justify-around items-center font-bold pt-2 pb-2 px-5">
                         <div
                             className={tab === 1 ? "bg-blue-300 tab" : "tab"}
                             onClick={() => updateTab(1)}

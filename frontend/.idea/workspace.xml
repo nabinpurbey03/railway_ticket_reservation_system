@@ -5,12 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a6a0bc47-991f-4bd0-ba42-afd9e10cba0b" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/nepal_location.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/Validator.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/RegistrationPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/RegistrationPage.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/SignInPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/SignInPage.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/SignUpPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/SignUpPage.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -30,22 +28,23 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;E:/project_2024/railway_ticket_reservation_system/frontend/public&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;ts.external.directory.path&quot;: &quot;E:\\project_2024\\railway_ticket_reservation_system\\frontend\\node_modules\\typescript\\lib&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "main",
+    "ignore.virus.scanning.warn.message": "true",
+    "last_opened_file_path": "E:/project_2024/railway_ticket_reservation_system/frontend/public",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "editor.preferences.appearance",
+    "ts.external.directory.path": "E:\\project_2024\\railway_ticket_reservation_system\\frontend\\node_modules\\typescript\\lib",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="E:\project_2024\railway_ticket_reservation_system\frontend\public" />
@@ -83,6 +82,8 @@
       <workItem from="1735910237496" duration="5632000" />
       <workItem from="1735929796839" duration="2976000" />
       <workItem from="1735963197918" duration="4735000" />
+      <workItem from="1735972266475" duration="5428000" />
+      <workItem from="1736008336078" duration="5654000" />
     </task>
     <servers />
   </component>
