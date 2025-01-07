@@ -1,19 +1,10 @@
-import {useState} from "react";
 import SignInPage from "@/components/SignInPage.tsx";
-import SignUpPage from "@/components/SignUpPage.tsx";
 
 const RegistrationPage = () => {
 
-    const [tab, setTab] = useState(1);
-
-    function updateTab(pos: number): void {
-        setTab(pos);
-    }
-
     return (
         <div className="w-screen h-screen flex items-center justify-center">
-            <div className="w-2/5 bg-white rounded-lg ">
-
+            <div className="w-2/5 bg-white rounded-lg pb-5">
                 <div className="flex rounded-t-lg flex-row bg-blue-950 justify-between h-[150px] p-4 pb-10">
                     <div>
                         <img
@@ -36,27 +27,11 @@ const RegistrationPage = () => {
                         />
                     </div>
                 </div>
-
-                <div className="w-full bg-black"></div>
-                <div id="reg-sec">
-                    <div className="flex flex-row justify-around items-center font-bold pt-2 pb-2 px-5">
-                        <div
-                            className={tab === 1 ? "bg-blue-300 tab" : "tab"}
-                            onClick={() => updateTab(1)}
-                        >Sign In
-                        </div>
-                        <div
-                            className={tab === 2 ? "bg-blue-300 tab" : "tab"}
-                            onClick={() => updateTab(2)}
-                        >Create an Account
-                        </div>
-                    </div>
-                    <div className={
-                        tab === 1 ? "font-bold text-black w-3/5 ml-[20%] px-5"
-                            : "font-bold text-black"
-                    }>
-                        {tab === 1 ? <SignInPage/> : <SignUpPage/>}
-                    </div>
+                <div
+                    className="text-black text-4xl font-bold bg-blue-300 underline py-3 s-bg"
+                >Sign In Here</div>
+                <div className="mx-36">
+                    <SignInPage />
                 </div>
             </div>
         </div>

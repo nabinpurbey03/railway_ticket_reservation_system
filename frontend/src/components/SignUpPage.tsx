@@ -48,7 +48,7 @@ const SignUpPage = () => {
 
     return (
         <div className="font-bold text-black w-full bg-gray-200">
-            <div className="flex bg-gray-300">Personal Details</div>
+            <div className="flex bg-gray-300 pl-2">Personal Details</div>
             <div>
                 {/* Name Fields */}
                 <div className="flex flex-row justify-between px-1">

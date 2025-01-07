@@ -43,8 +43,8 @@ const SignInPage = () => {
 
 
     return (
-        <form onClick={(e) => e.preventDefault()}>
-            <div className="py-2">
+        <form onClick={(e) => e.preventDefault()} className="font-bold text-black">
+            <div className="py-5">
                 <Label htmlFor="email" className="font-bold pb-2 flex">Username</Label>
                 <Input
                     type="email"
@@ -53,7 +53,7 @@ const SignInPage = () => {
                 />
                 <p className="text-red-700" id="ue"></p>
             </div>
-            <div className="py-2">
+            <div className="pb-5 pt-2">
                 <Label htmlFor="password" className="font-bold pb-2 flex">Password</Label>
                 <Input
                     type={showPassword ? "text" : "password"}
@@ -70,7 +70,10 @@ const SignInPage = () => {
                     {showPassword ? "Hide" : "Show"}
                 </button>
             </div>
-            <Button className="pb-2 flex bg-blue-600 mb-3" onClick={validation}>Submit</Button>
+            <Button className="pb-2 w-full bg-blue-600 mb-3 pt-3" onClick={validation}>Sign In</Button>
+            <div className="flex font-light">Not have an account? &nbsp;
+                <span>Register &#10097;</span>
+            </div>
         </form>
     )
 }
