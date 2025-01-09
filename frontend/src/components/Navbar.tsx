@@ -1,14 +1,21 @@
-import User from "./User.tsx";
+import React from "react";
+import User from "./User";
 
-function Navbar() {
+interface NavbarProps {
+    showReg: () => void; // Type for the showReg prop
+}
+
+const Navbar: React.FC<NavbarProps> = ({showReg}) => {
     const date: Date = new Date();
     const today: string = date.toDateString();
-    const time: string = date.toLocaleTimeString('en-US');
+    const time: string = date.toLocaleTimeString("en-US");
+
     return (
-        <div id='navbar' className="flex w-full h-[15vh] px-5">
+        <div id="navbar" className="flex w-full h-[15vh] px-5">
+            {/* Left Section */}
             <div className="basis-2/5 py-2 flex flex-row">
                 <img
-                    alt='Emblem_of_Nepal'
+                    alt="Emblem_of_Nepal"
                     src="/assets/images/emblem_of_nepal.svg"
                     className="object-contain h-full cursor-pointer"
                 />
@@ -19,13 +26,15 @@ function Navbar() {
                     <p className="font-bold">Bishalnagar, Kathmandu</p>
                 </div>
             </div>
-            <div id='nav-ele' className="basis-3/5 flex flex-row">
+
+            {/* Right Section */}
+            <div id="nav-ele" className="basis-3/5 flex flex-row">
                 <div className="basis-3/5">
-                    <User />
+                    <User showReg={showReg}/>
                 </div>
-                <div className=" basis-2/5 flex flex-row justify-evenly items-center">
+                <div className="basis-2/5 flex flex-row justify-evenly items-center">
                     <img
-                        alt='Waving Nepal Flag'
+                        alt="Waving Nepal Flag"
                         src="/assets/images/nepal_flag.gif"
                         className="object-fill h-full"
                     />
@@ -34,10 +43,9 @@ function Navbar() {
                         <p>{time}</p>
                     </div>
                 </div>
-
             </div>
         </div>
-    )
-}
+    );
+};
 
 export default Navbar;

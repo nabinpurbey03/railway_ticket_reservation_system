@@ -1,16 +1,13 @@
 import './App.css'
-import RegistrationPage from "@/components/RegistrationPage.tsx";
-// import Navbar from "./components/Navbar.tsx";
-// import Home from "./components/Home.tsx";
+import Home from "./components/Home.tsx";
+import React from "react";
 
-function App() {
-  return (
-    <>
-        <RegistrationPage />
-        {/*<Navbar />*/}
-        {/*<Home />*/}
-    </>
-  )
+function App(): React.ReactElement {
+    return (
+        <>
+            <Home/>
+        </>
+    )
 }
 
 export default App

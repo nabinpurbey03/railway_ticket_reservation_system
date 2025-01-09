@@ -1,35 +1,36 @@
 #root {
-  margin: 0 auto;
-  text-align: center;
+    margin: 0 auto;
+    text-align: center;
 }
 
-#navbar{
-  /* Fallback color for browsers without image support */
-  background-color: rgba(23, 37, 84, 0.7);
+#navbar {
+    /* Fallback color for browsers without image support */
+    background-color: rgba(23, 37, 84, 0.7);
 }
 
 #nav-ele {
-  position: relative;
-  overflow: hidden; /* Ensures the pseudo-element doesn't overflow */
+    position: relative;
+    overflow: hidden; /* Ensures the pseudo-element doesn't overflow */
 }
 
 #nav-ele::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-image: url('/assets/images/bg_janaki_mandir.png'); /* Replace with your image */
-  background-size: contain; /* Make the image cover the navbar */
-  background-position: center; /* Center the image */
-  background-repeat: no-repeat; /* Prevent repeating */
-  opacity: 0.3; /* Reduce opacity */
-  z-index: -1; /* Place the background behind the content */
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('/assets/images/bg_janaki_mandir.png'); /* Replace with your image */
+    background-size: contain; /* Make the image cover the navbar */
+    background-position: center; /* Center the image */
+    background-repeat: no-repeat; /* Prevent repeating */
+    opacity: 0.3; /* Reduce opacity */
+    z-index: -1; /* Place the background behind the content */
 }
+
 .s-bg {
-  background: rgb(255,255,255);
-  background: linear-gradient(0deg, rgba(255,255,255,1) 0%, rgba(51,45,253,0.9248949579831933) 100%);
+    background: rgb(255, 255, 255);
+    background: linear-gradient(0deg, rgba(255, 255, 255, 1) 0%, rgba(51, 45, 253, 0.9248949579831933) 100%);
 }
 
 
