@@ -1,7 +1,6 @@
 import React from "react";
 import SignInPage from "@/components/SignInPage";
 import {Button} from "@/components/ui/Button";
-import "animate.css"
 
 interface RegistrationPageProps {
     closeReg: () => void; // Type for the closeReg function prop
@@ -36,8 +35,8 @@ const RegistrationPage: React.FC<RegistrationPageProps> = ({closeReg}) => {
                     </div>
                 </div>
                 {/* Title */}
-                <div className="text-black text-4xl font-bold bg-blue-300 underline py-3">
-                    Sign In Here
+                <div className="text-black text-4xl font-bold bg-blue-300 py-3">
+                    Log In
                 </div>
                 {/* Sign In Form */}
                 <div className="mx-36">
@@ -46,7 +45,7 @@ const RegistrationPage: React.FC<RegistrationPageProps> = ({closeReg}) => {
             </div>
             {/* Close Button */}
             <Button
-                className="absolute text-gray-600 right-2 top-2 font-bold text-4xl rounded bg-gray-300 hover:bg-blue-300"
+                className="absolute text-gray-600 right-2 top-2 font-bold text-4xl rounded bg-gray-500 hover:bg-gray-400"
                 onClick={closeReg}
             >
                 &#x2716;

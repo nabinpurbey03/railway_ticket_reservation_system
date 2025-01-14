@@ -1,14 +1,15 @@
-const signInValidator = (username: string, password: string) => {
-    const valid = {email: false, password: false};
-    const userRegex = /^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/;
-    const pwdRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,15}$/;
-    if (username.match(userRegex)) {
-        valid.email = true;
+const validate = (cred: string, element: Element | null, errorMessage: string, userRegex: RegExp) : void => {
+    // Helper function to update error messages
+    const updateError = (element: Element | null , message: string) => {
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        // @ts-expect-error
+        element.innerHTML = message || ""; // Clear message if none provided
+    };
+    if (cred.match(userRegex)) {
+        updateError(element, "");
+    }else {
+        updateError(element, errorMessage);
     }
-    if (password.match(pwdRegex)) {
-        valid.password = true;
-    }
-    return valid;
 }
 
-export default signInValidator;
+export {validate};
