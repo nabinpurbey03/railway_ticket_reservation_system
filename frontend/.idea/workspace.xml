@@ -5,19 +5,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a6a0bc47-991f-4bd0-ba42-afd9e10cba0b" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/components/forms/GeneralInput.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/forms/PasswordInput.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/forms/UsernameInput.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/forms/AddressInput.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/forms/CardInput.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/forms/Divider.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/forms/local_levels_nepal_eng.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/RegistrationPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/RegistrationPage.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/SignInPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/SignInPage.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/SignUpPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/SignUpPage.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Validator.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Validator.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/main.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/forms/GeneralInput.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/forms/GeneralInput.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/forms/UsernameInput.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/forms/UsernameInput.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/nepal_location.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/nepal_location.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -50,7 +47,7 @@
     &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
     &quot;git-widget-placeholder&quot;: &quot;main&quot;,
     &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;E:/project_2024/railway_ticket_reservation_system/frontend/public&quot;,
+    &quot;last_opened_file_path&quot;: &quot;E:/project_2024/railway_ticket_reservation_system/frontend/src/components/forms&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
@@ -63,10 +60,11 @@
 }</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="E:\project_2024\railway_ticket_reservation_system\frontend\src\components\forms" />
+      <recent name="E:\project_2024\railway_ticket_reservation_system\frontend\src\lib" />
       <recent name="E:\project_2024\railway_ticket_reservation_system\frontend\public" />
       <recent name="E:\project_2024\railway_ticket_reservation_system\frontend\src\components" />
       <recent name="E:\project_2024\railway_ticket_reservation_system\frontend\public\assets\images" />
-      <recent name="E:\project_2024\railway_ticket_reservation_system\frontend\src\assets\images" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="E:\project_2024\railway_ticket_reservation_system\frontend\src\components" />
@@ -112,6 +110,16 @@
       <workItem from="1736823377226" duration="866000" />
       <workItem from="1736824255719" duration="5309000" />
       <workItem from="1736841065452" duration="1603000" />
+      <workItem from="1736857487003" duration="8107000" />
+      <workItem from="1736874029620" duration="252000" />
+      <workItem from="1736940918823" duration="818000" />
+      <workItem from="1737121875151" duration="9401000" />
+      <workItem from="1737168442495" duration="4268000" />
+      <workItem from="1737191854277" duration="4099000" />
+      <workItem from="1737215960982" duration="3090000" />
+      <workItem from="1737252750665" duration="1289000" />
+      <workItem from="1737291626673" duration="171000" />
+      <workItem from="1737291963966" duration="2858000" />
     </task>
     <servers />
   </component>
