@@ -1,7 +1,8 @@
 import {Label} from "@/components/ui/label.tsx";
 import {Input} from "@/components/ui/Input.tsx";
 import React, {ChangeEvent, ReactElement} from "react";
-import {validate} from "@/components/Validator.tsx";
+import {validate} from "@/components/forms/Validator.ts";
+import GLOBALS from "@/components/globals.ts";
 
 interface UserProps {
     label: string;
@@ -13,7 +14,9 @@ const UsernameInput: React.FC<UserProps> = ({label}: UserProps): ReactElement =>
         const emailErrorElement: Element | null = document.querySelector("#ue");
         const userRegex = /^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/;
         const message = "Invalid email address"
-        validate(username, emailErrorElement, message, userRegex)
+        if (validate(username, emailErrorElement, message, userRegex)){
+            GLOBALS.email  = username;
+        }
     }
 
     return (

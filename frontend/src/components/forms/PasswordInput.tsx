@@ -1,12 +1,13 @@
-import { Label } from "@/components/ui/label.tsx";
-import { Input } from "@/components/ui/Input.tsx";
-import React, { ChangeEvent, useState } from "react";
-import { validate } from "@/components/Validator.tsx";
+import {Label} from "@/components/ui/label.tsx";
+import {Input} from "@/components/ui/Input.tsx";
+import React, {ChangeEvent, ReactElement, useState} from "react";
+import {validate} from "@/components/forms/Validator.ts";
+import GLOBALS from "@/components/globals.ts";
 
-const PasswordInput: React.FC = () => {
+const PasswordInput: React.FC = (): ReactElement => {
     const [showPassword, setShowPassword] = useState(false);
 
-    const togglePasswordVisibility = () => {
+    const togglePasswordVisibility = (): void => {
         setShowPassword(!showPassword);
     };
 
@@ -14,7 +15,9 @@ const PasswordInput: React.FC = () => {
         const pwdErrorElement: Element | null = document.querySelector("#pe");
         const pwdRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,15}$/;
         const message = "Invalid password";
-        validate(pwd, pwdErrorElement, message, pwdRegex);
+        if (validate(pwd, pwdErrorElement, message, pwdRegex)) {
+            GLOBALS.password = pwd;
+        }
     }
 
     return (

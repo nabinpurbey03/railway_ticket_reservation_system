@@ -7,9 +7,15 @@ import {
 } from "@/components/ui/input-otp"
 import UsernameInput from "@/components/forms/UsernameInput.tsx";
 import PasswordInput from "@/components/forms/PasswordInput.tsx";
+import GLOBALS from "@/components/globals.ts";
 
 const SignInPage: React.FC = (): ReactElement => {
     const [tab, setTab] = useState(1);
+
+    function verifyEmail(){
+        console.log(GLOBALS.email);
+    }
+
     return (
         tab === 1 ? <form onClick={(e): void => e.preventDefault()} className="font-bold text-black">
                 <UsernameInput label="Username"/>
@@ -25,7 +31,7 @@ const SignInPage: React.FC = (): ReactElement => {
             : tab === 2
                 ? <div className="text-black font-bold">
                     <UsernameInput label="Email"/>
-                    <Button className="bg-blue-700">Verify</Button>
+                    <Button className="bg-blue-700" onClick={verifyEmail}>Verify</Button>
                 </div>
                 : <div className="py-5 text-black font-bold">
                     <div className="flex justify-center">

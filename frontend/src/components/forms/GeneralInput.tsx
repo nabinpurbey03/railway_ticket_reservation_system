@@ -1,7 +1,7 @@
 import {Input} from "@/components/ui/Input.tsx";
 import {Label} from "@/components/ui/label.tsx";
 import React, {ChangeEvent, ReactElement} from "react";
-import {validate} from "@/components/Validator.tsx";
+import {validate} from "@/components/forms/Validator.ts";
 
 interface GeneralInputProps {
     id: string; // Input id and htmlFor value

@@ -8,8 +8,9 @@ import {Input} from "@/components/ui/Input.tsx";
 import CardInput from "@/components/forms/CardInput.tsx";
 import Divider from "@/components/forms/Divider.tsx";
 import {Button} from "@/components/ui/Button.tsx";
+import React, {ReactElement} from "react";
 
-const SignUpPage = () => {
+const SignUpPage: React.FC = ():ReactElement => {
 
     return (
         <div>

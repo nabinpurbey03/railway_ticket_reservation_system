@@ -5,16 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a6a0bc47-991f-4bd0-ba42-afd9e10cba0b" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/components/forms/AddressInput.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/forms/CardInput.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/forms/Divider.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/forms/local_levels_nepal_eng.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/SignInPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/SignInPage.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/SignUpPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/SignUpPage.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Validator.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/forms/Validator.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/forms/GeneralInput.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/forms/GeneralInput.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/forms/PasswordInput.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/forms/PasswordInput.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/forms/UsernameInput.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/forms/UsernameInput.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/nepal_location.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/nepal_location.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/globals.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/globals.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -67,6 +65,7 @@
       <recent name="E:\project_2024\railway_ticket_reservation_system\frontend\public\assets\images" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="E:\project_2024\railway_ticket_reservation_system\frontend\src\components\forms" />
       <recent name="E:\project_2024\railway_ticket_reservation_system\frontend\src\components" />
       <recent name="E:\project_2024\railway_ticket_reservation_system\frontend\src" />
       <recent name="E:\project_2024\railway_ticket_reservation_system\frontend\public\assets" />
@@ -119,7 +118,7 @@
       <workItem from="1737215960982" duration="3090000" />
       <workItem from="1737252750665" duration="1289000" />
       <workItem from="1737291626673" duration="171000" />
-      <workItem from="1737291963966" duration="2858000" />
+      <workItem from="1737291963966" duration="5636000" />
     </task>
     <servers />
   </component>
