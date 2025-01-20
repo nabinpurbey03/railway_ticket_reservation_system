@@ -7,12 +7,8 @@
     <list default="true" id="a6a0bc47-991f-4bd0-ba42-afd9e10cba0b" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/SignInPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/SignInPage.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/SignUpPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/SignUpPage.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Validator.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/forms/Validator.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/forms/GeneralInput.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/forms/GeneralInput.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/forms/PasswordInput.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/forms/PasswordInput.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/forms/UsernameInput.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/forms/UsernameInput.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/globals.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/globals.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -75,7 +71,7 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-js-predefined-d6986cc7102b-deb605915726-JavaScript-WS-243.22562.222" />
+        <option value="bundled-js-predefined-d6986cc7102b-822845ee3bb5-JavaScript-WS-243.23654.120" />
       </set>
     </attachedChunks>
   </component>
@@ -118,7 +114,10 @@
       <workItem from="1737215960982" duration="3090000" />
       <workItem from="1737252750665" duration="1289000" />
       <workItem from="1737291626673" duration="171000" />
-      <workItem from="1737291963966" duration="5636000" />
+      <workItem from="1737291963966" duration="5854000" />
+      <workItem from="1737308345644" duration="1260000" />
+      <workItem from="1737343011524" duration="2315000" />
+      <workItem from="1737349323845" duration="512000" />
     </task>
     <servers />
   </component>

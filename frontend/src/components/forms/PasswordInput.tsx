@@ -17,6 +17,8 @@ const PasswordInput: React.FC = (): ReactElement => {
         const message = "Invalid password";
         if (validate(pwd, pwdErrorElement, message, pwdRegex)) {
             GLOBALS.password = pwd;
+        }else {
+            GLOBALS.password = "";
         }
     }
 

@@ -14,8 +14,10 @@ const UsernameInput: React.FC<UserProps> = ({label}: UserProps): ReactElement =>
         const emailErrorElement: Element | null = document.querySelector("#ue");
         const userRegex = /^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/;
         const message = "Invalid email address"
-        if (validate(username, emailErrorElement, message, userRegex)){
-            GLOBALS.email  = username;
+        if (validate(username, emailErrorElement, message, userRegex)) {
+            GLOBALS.email = username;
+        } else {
+            GLOBALS.email = "";
         }
     }
 
