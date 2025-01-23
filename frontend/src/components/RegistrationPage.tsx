@@ -24,7 +24,7 @@ const RegistrationPage: React.FC<RegistrationPageProps> = ({closeReg}) => {
                         <p className="font-bold">Government of Nepal</p>
                         <p className="font-bold">Ministry of Physical Infrastructure and Transport</p>
                         <p className="font-bold text-3xl">Department of Railways</p>
-                        <p className="font-bold">Bishalnagar, Kathmandu</p>
+                        <p className="font-bold">Singha Durbar, Kathmandu</p>
                     </div>
                     <div>
                         <img

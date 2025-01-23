@@ -8,12 +8,16 @@ import {
 import UsernameInput from "@/components/forms/UsernameInput.tsx";
 import PasswordInput from "@/components/forms/PasswordInput.tsx";
 import GLOBALS from "@/components/globals.ts";
+import axios from 'axios';
 
 const SignInPage: React.FC = (): ReactElement => {
     const [tab, setTab] = useState(1);
     function verifyEmail(){
         console.log(GLOBALS.email);
         console.log(GLOBALS.password);
+        axios.get('http://localhost:8000/api')
+            .then(response => console.log(response.data["message"]))
+            .catch(error => console.error(error));
     }
 
     return (

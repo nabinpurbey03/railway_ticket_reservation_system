@@ -1,17 +1,16 @@
-import React from "react";
-import User from "./User";
+import React, {ReactElement} from "react";
+import DateTime from "@/components/DateTime.tsx";
+import {Avatar, AvatarFallback, AvatarImage} from "@/components/ui/avatar"
 
-interface NavbarProps {
-    showReg: () => void; // Type for the showReg prop
+interface navbarProps {
+    showReg(): void
 }
 
-const Navbar: React.FC<NavbarProps> = ({showReg}) => {
-    const date: Date = new Date();
-    const today: string = date.toDateString();
-    const time: string = date.toLocaleTimeString("en-US");
+const Navbar: React.FC<navbarProps> = ({showReg}): ReactElement => {
+
 
     return (
-        <div id="navbar" className="flex w-full h-[15vh] px-5">
+        <main id="navbar" className="flex w-full h-[15vh] px-5">
             {/* Left Section */}
             <div className="basis-2/5 py-2 flex flex-row">
                 <img
@@ -23,28 +22,29 @@ const Navbar: React.FC<NavbarProps> = ({showReg}) => {
                     <p className="font-bold">Government of Nepal</p>
                     <p className="font-bold">Ministry of Physical Infrastructure and Transport</p>
                     <p className="font-bold text-3xl">Department of Railways</p>
-                    <p className="font-bold">Bishalnagar, Kathmandu</p>
+                    <p className="font-bold">Singha Durbar, Kathmandu</p>
                 </div>
             </div>
 
             {/* Right Section */}
-            <div id="nav-ele" className="basis-3/5 flex flex-row">
-                <div className="basis-3/5">
-                    <User showReg={showReg}/>
-                </div>
-                <div className="basis-2/5 flex flex-row justify-evenly items-center">
+            <div id="nav-ele" className="basis-3/5 flex flex-row justify-end">
+                <div className="flex flex-row justify-evenly items-center mx-3 ">
                     <img
                         alt="Waving Nepal Flag"
                         src="/assets/images/nepal_flag.gif"
-                        className="object-fill h-full"
+                        className="object-fill h-full py-4"
                     />
-                    <div className="font-bold">
-                        <p>{today}</p>
-                        <p>{time}</p>
-                    </div>
+                    <DateTime/>
                 </div>
+                <div className="flex items-center justify-center mx-3">
+                    <Avatar className="bg-white cursor-pointer" onClick={showReg}>
+                        <AvatarImage src="/assets/images/user_avatar.png"/>
+                        <AvatarFallback>Nabin Purbey</AvatarFallback>
+                    </Avatar>
+                </div>
+
             </div>
-        </div>
+        </main>
     );
 };
 
