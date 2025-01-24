@@ -8,7 +8,7 @@ import {
 } from "@/components/ui/select"
 import GeneralInput from "@/components/forms/GeneralInput.tsx";
 import {Label} from "@/components/ui/label.tsx";
-import {Input} from "@/components/ui/Input.tsx";
+import {Input} from "@/components/ui/input.tsx";
 
 
 type AddressInputProps = {

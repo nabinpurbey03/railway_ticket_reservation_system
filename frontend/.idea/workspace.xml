@@ -5,18 +5,28 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a6a0bc47-991f-4bd0-ba42-afd9e10cba0b" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/components/DateTime.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../backend/src/user.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/api.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/auth/login-form.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/auth/register-form.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/schema/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/Emailer.py" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/src/emailer.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../backend/database.py" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/database.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/requirements.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Home.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Home.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Navbar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Navbar.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/RegistrationPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/RegistrationPage.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/SignInPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/SignInPage.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/User.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/ui/Input.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ui/Input.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/SignUpPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/SignUpPage.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/forms/AddressInput.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/forms/AddressInput.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/forms/GeneralInput.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/forms/GeneralInput.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/forms/PasswordInput.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/forms/PasswordInput.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/forms/UsernameInput.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/forms/UsernameInput.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/ui/Button.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ui/button.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/ui/Input.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ui/input.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -49,23 +59,23 @@
     &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
     &quot;git-widget-placeholder&quot;: &quot;main&quot;,
     &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;E:/project_2024/railway_ticket_reservation_system/frontend/src/components/forms&quot;,
+    &quot;last_opened_file_path&quot;: &quot;E:/project_2024/railway_ticket_reservation_system/frontend/src/components&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;editor.preferences.appearance&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settingsdialog.IDE.editor.postfix.templates&quot;,
     &quot;ts.external.directory.path&quot;: &quot;E:\\project_2024\\railway_ticket_reservation_system\\frontend\\node_modules\\typescript\\lib&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="E:\project_2024\railway_ticket_reservation_system\frontend\src\components" />
       <recent name="E:\project_2024\railway_ticket_reservation_system\frontend\src\components\forms" />
       <recent name="E:\project_2024\railway_ticket_reservation_system\frontend\src\lib" />
       <recent name="E:\project_2024\railway_ticket_reservation_system\frontend\public" />
-      <recent name="E:\project_2024\railway_ticket_reservation_system\frontend\src\components" />
       <recent name="E:\project_2024\railway_ticket_reservation_system\frontend\public\assets\images" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
@@ -131,7 +141,10 @@
       <workItem from="1737481478633" duration="1373000" />
       <workItem from="1737515150953" duration="1253000" />
       <workItem from="1737562578987" duration="1243000" />
-      <workItem from="1737599843708" duration="4877000" />
+      <workItem from="1737599843708" duration="6007000" />
+      <workItem from="1737620725620" duration="2998000" />
+      <workItem from="1737695090962" duration="11575000" />
+      <workItem from="1737714169729" duration="533000" />
     </task>
     <servers />
   </component>

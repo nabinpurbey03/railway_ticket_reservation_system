@@ -1,5 +1,5 @@
 import {Label} from "@/components/ui/label.tsx";
-import {Input} from "@/components/ui/Input.tsx";
+import {Input} from "@/components/ui/input.tsx";
 import React, {ChangeEvent, ReactElement} from "react";
 import {validate} from "@/components/forms/Validator.ts";
 import GLOBALS from "@/components/globals.ts";

@@ -1,6 +1,6 @@
 import React from "react";
 import SignInPage from "@/components/SignInPage";
-import {Button} from "@/components/ui/Button";
+import {Button} from "@/components/ui/button.tsx";
 
 interface RegistrationPageProps {
     closeReg: () => void; // Type for the closeReg function prop
@@ -35,8 +35,8 @@ const RegistrationPage: React.FC<RegistrationPageProps> = ({closeReg}) => {
                     </div>
                 </div>
                 {/* Title */}
-                <div className="text-black text-4xl font-bold bg-blue-300 py-3">
-                    Log In
+                <div className="text-3xl font-bold bg-gradient-to-tl bg-blue-950 py-3">
+                    Log In For Your Account
                 </div>
                 {/* Sign In Form */}
                 <div className="mx-36">

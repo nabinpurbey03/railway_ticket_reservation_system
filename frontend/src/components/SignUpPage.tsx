@@ -4,10 +4,10 @@ import AddressInput from "@/components/forms/AddressInput.tsx";
 import nepal from "@/components/forms/local_levels_nepal_eng.json"
 import UsernameInput from "@/components/forms/UsernameInput.tsx";
 import {Label} from "@/components/ui/label.tsx";
-import {Input} from "@/components/ui/Input.tsx";
+import {Input} from "@/components/ui/input.tsx";
 import CardInput from "@/components/forms/CardInput.tsx";
 import Divider from "@/components/forms/Divider.tsx";
-import {Button} from "@/components/ui/Button.tsx";
+import {Button} from "@/components/ui/button.tsx";
 import React, {ReactElement} from "react";
 
 const SignUpPage: React.FC = ():ReactElement => {

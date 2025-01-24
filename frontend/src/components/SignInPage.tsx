@@ -1,4 +1,4 @@
-import {Button} from "@/components/ui/Button.tsx";
+import {Button} from "@/components/ui/button.tsx";
 import React, {ReactElement, useState} from "react";
 import {
     InputOTP,
@@ -6,32 +6,16 @@ import {
     InputOTPSlot,
 } from "@/components/ui/input-otp"
 import UsernameInput from "@/components/forms/UsernameInput.tsx";
-import PasswordInput from "@/components/forms/PasswordInput.tsx";
-import GLOBALS from "@/components/globals.ts";
-import axios from 'axios';
+import LoginForm from "@/components/auth/login-form.tsx";
 
 const SignInPage: React.FC = (): ReactElement => {
     const [tab, setTab] = useState(1);
-    function verifyEmail(){
-        console.log(GLOBALS.email);
-        console.log(GLOBALS.password);
-        axios.get('http://localhost:8000/api')
-            .then(response => console.log(response.data["message"]))
-            .catch(error => console.error(error));
-    }
+
+    // const form = useForm()
 
     return (
-        tab === 1 ? <div
-                className="font-bold text-black">
-                <UsernameInput label="Username"/>
-                <PasswordInput/>
-                <Button className="pb-2 w-full bg-blue-600 mb-3 pt-3" onClick={verifyEmail}>Sign In</Button>
-                <div className="flex font-light">Not have an account? &nbsp;
-                    <p
-                        className="cursor-pointer text-blue-700 hover:underline hover:text-blue-400"
-                        onClick={(): void => setTab(2)}
-                    >Register &#10097;</p>
-                </div>
+        tab === 1 ? <div className="text-black">
+                <LoginForm />
             </div>
             : tab === 2
                 ? <div className="text-black font-bold">

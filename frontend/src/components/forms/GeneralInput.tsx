@@ -1,4 +1,4 @@
-import {Input} from "@/components/ui/Input.tsx";
+import {Input} from "@/components/ui/input.tsx";
 import {Label} from "@/components/ui/label.tsx";
 import React, {ChangeEvent, ReactElement} from "react";
 import {validate} from "@/components/forms/Validator.ts";
