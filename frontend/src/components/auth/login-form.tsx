@@ -18,9 +18,12 @@ import React, {ReactElement, useState} from "react";
 import {Eye, EyeOff} from "lucide-react";
 import axios from "axios";
 import bcrypt from "bcryptjs";
+import { Toaster } from "@/components/ui/toaster"
+import { useToast } from "@/hooks/use-toast"
 
 
 const LoginForm: React.FC = (): ReactElement => {
+    const { toast } = useToast()
     const form = useForm({
         resolver: zodResolver(LoginSchema),
         defaultValues: {
@@ -43,7 +46,18 @@ const LoginForm: React.FC = (): ReactElement => {
                 password: hashedPassword,
             };
             const response = await axios.post(import.meta.env.VITE_API_URL + "/api/login", payload);
-            console.log("Login successful:", response.data);
+            if(response.data.status){
+                toast({
+                    title: response.data.message,
+                    // description: response.data.message,
+                })
+            }else {
+                toast({
+                    title: response.data.message,
+                    // description: "Please enter a valid email",
+                    variant: "destructive"
+                })
+            }
         } catch (error) {
             console.error("Login failed:", error);
         }
@@ -52,6 +66,7 @@ const LoginForm: React.FC = (): ReactElement => {
 
     return (
         <Form {...form}>
+            <Toaster />
             <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
                 <div className="space-y-4">
                     <FormField

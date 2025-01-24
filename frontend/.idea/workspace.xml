@@ -5,28 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a6a0bc47-991f-4bd0-ba42-afd9e10cba0b" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/../backend/src/user.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/api.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/auth/login-form.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/auth/register-form.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/schema/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backend/Emailer.py" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/src/emailer.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../backend/database.py" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/database.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backend/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backend/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/requirements.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/RegistrationPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/RegistrationPage.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/SignInPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/SignInPage.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/SignUpPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/SignUpPage.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/forms/AddressInput.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/forms/AddressInput.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/forms/GeneralInput.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/forms/GeneralInput.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/forms/PasswordInput.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/forms/PasswordInput.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/forms/UsernameInput.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/forms/UsernameInput.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/ui/Button.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ui/button.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/ui/Input.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ui/input.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/auth/login-form.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/auth/login-form.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/ui/toast.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ui/toast.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -144,7 +126,7 @@
       <workItem from="1737599843708" duration="6007000" />
       <workItem from="1737620725620" duration="2998000" />
       <workItem from="1737695090962" duration="11575000" />
-      <workItem from="1737714169729" duration="533000" />
+      <workItem from="1737714169729" duration="2374000" />
     </task>
     <servers />
   </component>
