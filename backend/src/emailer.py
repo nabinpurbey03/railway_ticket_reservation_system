@@ -6,11 +6,19 @@ from email.mime.multipart import MIMEMultipart
 import random as rnd
 
 
+otp_store = {'email': "", 'otp': 0}
+
+
+def otp_verification(otp: int):
+    if otp_store['otp'] == otp:
+        return {"status": True, "message": "OTP verified"}
+    else:
+        return {"status": False, "message": "OTP verification failed"}
+
+
 class Emailer:
     def __init__(self, recipient_email: str):
-        self.recipient_email = recipient_email
-        self.sender_email = None
-        self.sender_password = None
+        self.recipient_email: str = recipient_email
         self.smtp_server = "smtp.gmail.com"
         self.smtp_port = 587
 
@@ -24,8 +32,12 @@ class Emailer:
         if not self.sender_email or not self.sender_password:
             return {"status": False, "message": "Email credentials not found in environment variables"}
 
-        otp = generate_otp()
+        otp = rnd.randint(100000, 999999)
+        otp_store['otp'] = otp
+        otp_store['email'] = str(self.recipient_email)
         html_body = html_email_body(otp)
+        print(otp_store['otp'])
+        print(otp_store['email'])
 
         # Create the email message
         message = MIMEMultipart("alternative")
@@ -39,17 +51,12 @@ class Emailer:
             with smtplib.SMTP(self.smtp_server, self.smtp_port) as server:
                 server.starttls()
                 server.login(self.sender_email, self.sender_password)
-                server.sendmail(self.sender_email, self.recipient_email, message.as_string())
-            return {"status": True, "otp": otp}
+                server.sendmail(self.sender_email, str(self.recipient_email), message.as_string())
+            return {"status": True, "message": "OTP has been sent to your email."}
         except smtplib.SMTPAuthenticationError:
             return {"status": False, "message": "Email Authentication Error"}
         except Exception as e:
             return {"status": False, "message": f"An error occurred: {e}"}
-
-
-def generate_otp():
-    """Generate a 6-digit OTP."""
-    return rnd.randint(100000, 999999)
 
 
 def html_email_body(otp: int) -> str:
