@@ -2,6 +2,7 @@ import SimpleImageSlider from "react-simple-image-slider";
 import Navbar from "@/components/Navbar.tsx";
 import RegistrationPage from "@/components/RegistrationPage.tsx";
 import {ReactElement, useState} from "react";
+import {Toaster} from "@/components/ui/toaster.tsx";
 export default function Home(): ReactElement {
 
     const [reg, setReg] = useState(false);
@@ -18,6 +19,7 @@ export default function Home(): ReactElement {
 
     return (
         <div className="relative z-10">
+            <Toaster />
             <Navbar showReg={regPageHandler}/>
                 <SimpleImageSlider
                     width="100%"

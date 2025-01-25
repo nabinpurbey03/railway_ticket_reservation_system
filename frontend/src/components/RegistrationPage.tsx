@@ -40,7 +40,7 @@ const RegistrationPage: React.FC<RegistrationPageProps> = ({closeReg}) => {
                 </div>
                 {/* Sign In Form */}
                 <div className="mx-36">
-                    <SignInPage/>
+                    <SignInPage closeRegisterModal={closeReg}/>
                 </div>
             </div>
             {/* Close Button */}
