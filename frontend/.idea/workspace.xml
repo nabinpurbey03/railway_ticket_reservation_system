@@ -5,23 +5,20 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a6a0bc47-991f-4bd0-ba42-afd9e10cba0b" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/../backend/models.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/auth/email-registration.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/auth/otp-from.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/auth/password-confirmation.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backend/database.py" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/database.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/database.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../backend/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/main.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../backend/src/emailer.py" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/src/emailer.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../backend/src/user.py" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/src/user.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/Home.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Home.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/RegistrationPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/RegistrationPage.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/SignInPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/SignInPage.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Navbar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Navbar.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/auth/email-registration.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/auth/email-registration.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/auth/login-form.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/auth/login-form.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/auth/register-form.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/auth/register-form.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/globals.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/globals.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/schema/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/schema/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/ui/form.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ui/form.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/forms/PasswordInput.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/cookies/handle_cookie.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/cookies/handle_cookie.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -144,7 +141,9 @@
       <workItem from="1737733952408" duration="4682000" />
       <workItem from="1737777086257" duration="7530000" />
       <workItem from="1737786695187" duration="4630000" />
-      <workItem from="1737791570137" duration="4016000" />
+      <workItem from="1737791570137" duration="8334000" />
+      <workItem from="1737808669261" duration="5456000" />
+      <workItem from="1737815900759" duration="5765000" />
     </task>
     <servers />
   </component>

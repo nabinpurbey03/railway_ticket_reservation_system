@@ -20,6 +20,7 @@ import axios from "axios";
 import bcrypt from "bcryptjs";
 import {Toaster} from "@/components/ui/toaster"
 import {useToast} from "@/hooks/use-toast"
+import {setUserCookies} from "@/cookies/handle_cookie.ts";
 
 interface Props {
     closeRegisterModal(): void;
@@ -54,8 +55,20 @@ const LoginForm: React.FC<Props> = ({closeRegisterModal}): ReactElement => {
                     toast({
                         title: "Login successful",
                     })
+                    const response = await axios.get(import.meta.env.VITE_API_URL + "/api/user/" + data.email);
+                    if (response.data.status) {
+                        const user = {
+                            id: response.data.user_id.toString(),
+                            firstname: 'John',
+                            lastname: 'Doe',
+                            role: response.data.role,
+                            is_active: response.data.is_active,
+                        };
+                        setUserCookies(user);
+                    }
+
                     closeRegisterModal();
-                }else {
+                } else {
                     toast({
                         title: "Login Unsuccessful",
                         description: "Incorrect password.",

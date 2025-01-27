@@ -3,7 +3,12 @@ import Navbar from "@/components/Navbar.tsx";
 import RegistrationPage from "@/components/RegistrationPage.tsx";
 import {ReactElement, useState} from "react";
 import {Toaster} from "@/components/ui/toaster.tsx";
+import Cookies from "js-cookie";
+
 export default function Home(): ReactElement {
+
+    const firstname: string | undefined = Cookies.get("firstname");
+
 
     const [reg, setReg] = useState(false);
 
@@ -19,21 +24,22 @@ export default function Home(): ReactElement {
 
     return (
         <div className="relative z-10">
-            <Toaster />
+            <Toaster/>
             <Navbar showReg={regPageHandler}/>
-                <SimpleImageSlider
-                    width="100%"
-                    height="85vh"
-                    images={images}
-                    showBullets={false}
-                    showNavs={false}
-                    autoPlay={false}
-                />
+            <SimpleImageSlider
+                width="100%"
+                height="85vh"
+                images={images}
+                showBullets={false}
+                showNavs={false}
+                autoPlay={false}
+            />
             <div className="absolute w-full top-0 z-0">
                 {
-                    reg ? <RegistrationPage closeReg={regPageHandler}/> : null
+                    reg && !firstname ? <RegistrationPage closeReg={regPageHandler}/> : null
                 }
             </div>
+
         </div>
     )
 }

@@ -1,6 +1,15 @@
 import React, {ReactElement} from "react";
 import DateTime from "@/components/DateTime.tsx";
-import {Avatar, AvatarFallback, AvatarImage} from "@/components/ui/avatar"
+import {Avatar, AvatarImage} from "@/components/ui/avatar"
+import Cookies from "js-cookie";
+import {
+    DropdownMenu,
+    DropdownMenuContent, DropdownMenuItem,
+    DropdownMenuLabel,
+    DropdownMenuSeparator,
+    DropdownMenuTrigger
+} from "@/components/ui/dropdown-menu.tsx";
+import {destroyCookies} from "@/cookies/handle_cookie.ts";
 
 interface navbarProps {
     showReg(): void
@@ -8,6 +17,7 @@ interface navbarProps {
 
 const Navbar: React.FC<navbarProps> = ({showReg}): ReactElement => {
 
+    const firstname: string | undefined = Cookies.get("firstname");
 
     return (
         <main id="navbar" className="flex w-full h-[15vh] px-5">
@@ -37,10 +47,31 @@ const Navbar: React.FC<navbarProps> = ({showReg}): ReactElement => {
                     <DateTime/>
                 </div>
                 <div className="flex items-center justify-center mx-3">
-                    <Avatar className="bg-white cursor-pointer" onClick={showReg}>
-                        <AvatarImage src="/assets/images/user_avatar.png"/>
-                        <AvatarFallback>Nabin Purbey</AvatarFallback>
-                    </Avatar>
+                    {firstname ? <DropdownMenu>
+                            <DropdownMenuTrigger>
+                                <Avatar className="bg-white cursor-pointer" onClick={showReg}>
+                                    <AvatarImage src="/assets/images/user_avatar.png"/>
+                                    {/*<AvatarFallback>Nabin Purbey</AvatarFallback>*/}
+                                </Avatar>
+                            </DropdownMenuTrigger>
+                            <DropdownMenuContent>
+                                <DropdownMenuLabel>My Account</DropdownMenuLabel>
+                                <DropdownMenuSeparator/>
+                                <DropdownMenuItem className="text-green-700">Profile <span>&#10026;</span></DropdownMenuItem>
+                                <DropdownMenuSeparator/>
+                                <DropdownMenuItem
+                                    className="text-red-700"
+                                    onClick={destroyCookies}
+                                >
+                                    <span className="inline-block transform scale-x-[-1]">&#10162;</span>
+                                    Logout
+                                </DropdownMenuItem>
+                            </DropdownMenuContent>
+                        </DropdownMenu>
+                        : <Avatar className="bg-white cursor-pointer" onClick={showReg}>
+                            <AvatarImage src="/assets/images/user_avatar.png"/>
+                        </Avatar>
+                    }
                 </div>
 
             </div>

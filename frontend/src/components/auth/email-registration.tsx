@@ -53,7 +53,7 @@ const EmailRegistrationForm: React.FC<Props> = ({updateTab}): ReactElement => {
     return (
         <Form {...form}>
             <Toaster/>
-            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6 text-black">
                 <FormField
                     control={form.control}
                     name="email"
