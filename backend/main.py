@@ -41,3 +41,8 @@ async def add_user(request: AddUserRequest):
     user = User()
     return user.insert_user(otp_store['email'], request.password)
 
+@app.get("/api/user/{email}")
+async def get_user(email: str):
+    user = User()
+    return user.get_user_details(email)
+

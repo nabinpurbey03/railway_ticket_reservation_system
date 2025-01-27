@@ -5,6 +5,7 @@ from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 import random as rnd
 
+from src.user import User
 
 otp_store = {'email': "", 'otp': 0}
 
@@ -28,6 +29,10 @@ class Emailer:
         self.sender_password = os.getenv("EMAIL_PASSWORD")
 
     def send_email(self):
+        user = User()
+        if user.check_for_email(self.recipient_email):
+            return {"status": False, "message": "User already registered"}
+
         """Send an email with OTP verification."""
         if not self.sender_email or not self.sender_password:
             return {"status": False, "message": "Email credentials not found in environment variables"}
