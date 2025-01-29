@@ -1,42 +1,31 @@
-import React, { useState } from "react";
-import { z } from "zod";
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Select, SelectTrigger, SelectContent, SelectItem, SelectValue } from "@/components/ui/select";
-import { Label } from "@/components/ui/label";
-import { Card, CardContent } from "@/components/ui/card";
+import React, {useState} from "react";
+import {z} from "zod";
+import {useForm} from "react-hook-form";
+import {zodResolver} from "@hookform/resolvers/zod";
+import {Button} from "@/components/ui/button";
+import {Input} from "@/components/ui/input";
+import {Select, SelectTrigger, SelectContent, SelectItem, SelectValue} from "@/components/ui/select";
+import {Label} from "@/components/ui/label";
+import {Card, CardContent} from "@/components/ui/card";
+import {PersonalDetailSchema} from "@/components/schema";
+import {Separator} from "@/components/ui/separator.tsx";
 
-const formSchema = z.object({
-    firstName: z.string().nonempty("First name is required"),
-    middleName: z.string().optional(),
-    lastName: z.string().nonempty("Last name is required"),
-    profileImage: z.any(),
-    dateOfBirth: z.string().nonempty("Date of birth is required"),
-    gender: z.enum(["male", "female", "other"], { required_error: "Gender is required" }),
-    cardType: z.enum(["Citizenship", "Passport", "National Identity Card"], { required_error: "Card type is required" }),
-    citizenshipFront: z.any().optional(),
-    citizenshipBack: z.any().optional(),
-    cardImage: z.any().optional(),
-});
-
-type FormData = z.infer<typeof formSchema>;
+type FormData = z.infer<typeof PersonalDetailSchema>;
 
 const PersonalDetailsForm: React.FC = () => {
-    const [profileImage, setProfileImage] = useState("https://via.placeholder.com/150");
-    const [citizenshipFront, setCitizenshipFront] = useState("https://via.placeholder.com/150");
-    const [citizenshipBack, setCitizenshipBack] = useState("https://via.placeholder.com/150");
-    const [cardImage, setCardImage] = useState("https://via.placeholder.com/150");
+    const [profileImage, setProfileImage] = useState("assets/images/user_avatar1.png");
+    const [citizenshipFront, setCitizenshipFront] = useState("assets/images/card.jpg");
+    const [citizenshipBack, setCitizenshipBack] = useState("assets/images/card.jpg");
+    const [cardImage, setCardImage] = useState("assets/images/card.jpg");
 
     const {
         register,
         handleSubmit,
         watch,
         setValue,
-        formState: { errors },
+        formState: {errors},
     } = useForm<FormData>({
-        resolver: zodResolver(formSchema),
+        resolver: zodResolver(PersonalDetailSchema),
     });
 
     const cardType = watch("cardType");
@@ -53,58 +42,64 @@ const PersonalDetailsForm: React.FC = () => {
     };
 
     return (
-        <Card className="p-6 max-w-2xl mx-auto">
+        <Card className="p-6 mx-auto">
             <CardContent>
                 <form onSubmit={handleSubmit(onSubmit)}>
                     <div className="grid gap-4">
-                        {/* First Name */}
-                        <div>
-                            <Label>First Name</Label>
-                            <Input {...register("firstName")} placeholder="First Name" />
-                            {errors.firstName && <p className="text-red-500 text-sm">{errors.firstName.message}</p>}
-                        </div>
+                        <div className="flex justify-between">
+                            {/* First Name */}
+                            <div>
+                                <Label>First Name</Label>
+                                <Input {...register("firstName")} placeholder="First Name"/>
+                                {errors.firstName && <p className="text-red-500 text-sm">{errors.firstName.message}</p>}
+                            </div>
 
-                        {/* Middle Name */}
-                        <div>
-                            <Label>Middle Name</Label>
-                            <Input {...register("middleName")} placeholder="Middle Name" />
-                        </div>
+                            {/* Middle Name */}
+                            <div>
+                                <Label>Middle Name</Label>
+                                <Input {...register("middleName")} placeholder="Middle Name"/>
+                            </div>
 
-                        {/* Last Name */}
-                        <div>
-                            <Label>Last Name</Label>
-                            <Input {...register("lastName")} placeholder="Last Name" />
-                            {errors.lastName && <p className="text-red-500 text-sm">{errors.lastName.message}</p>}
+                            {/* Last Name */}
+                            <div>
+                                <Label>Last Name</Label>
+                                <Input {...register("lastName")} placeholder="Last Name"/>
+                                {errors.lastName && <p className="text-red-500 text-sm">{errors.lastName.message}</p>}
+                            </div>
                         </div>
-
-                        {/* Profile Image */}
-                        <div>
-                            <Label>Profile Image</Label>
-                            <div className="flex items-center gap-4">
-                                <img src={profileImage} alt="Profile" className="w-20 h-20 object-cover rounded-full" />
-                                <Input
-                                    type="file"
-                                    accept="image/*"
-                                    onChange={(e) => handleImageUpload(e, setProfileImage)}
-                                />
+                        <Separator className="border-"/>
+                        <div className="flex justify-evenly">
+                            {/* Profile Image */}
+                            <div>
+                                <Label>Profile Image</Label>
+                                <div className="flex">
+                                    <img src={profileImage} alt="Profile"
+                                         className="w-20 h-20 object-cover rounded-full"/>
+                                    <Input
+                                        type="file"
+                                        accept="image/*"
+                                        onChange={(e) => handleImageUpload(e, setProfileImage)}
+                                    />
+                                </div>
+                                {/* Date of Birth */}
+                            </div>
+                            <div>
+                                <Label>Date of Birth</Label>
+                                <Input type="date" {...register("dateOfBirth")} />
+                                {errors.dateOfBirth &&
+                                    <p className="text-red-500 text-sm">{errors.dateOfBirth.message}</p>}
                             </div>
                         </div>
 
-                        {/* Date of Birth */}
-                        <div>
-                            <Label>Date of Birth</Label>
-                            <Input type="date" {...register("dateOfBirth")} />
-                            {errors.dateOfBirth && <p className="text-red-500 text-sm">{errors.dateOfBirth.message}</p>}
-                        </div>
 
                         {/* Gender */}
                         <div>
                             <Label>Gender</Label>
                             <Select
-                                onValueChange={(value) => setValue("gender", value, { shouldValidate: true })}
+                                onValueChange={(value) => setValue("gender", value, {shouldValidate: true})}
                             >
                                 <SelectTrigger>
-                                    <SelectValue placeholder="Select Gender" />
+                                    <SelectValue placeholder="Select Gender"/>
                                 </SelectTrigger>
                                 <SelectContent>
                                     <SelectItem value="male">Male</SelectItem>
@@ -119,10 +114,10 @@ const PersonalDetailsForm: React.FC = () => {
                         <div>
                             <Label>Card Type</Label>
                             <Select
-                                onValueChange={(value) => setValue("cardType", value, { shouldValidate: true })}
+                                onValueChange={(value) => setValue("cardType", value, {shouldValidate: true})}
                             >
                                 <SelectTrigger>
-                                    <SelectValue placeholder="Select Card Type" />
+                                    <SelectValue placeholder="Select Card Type"/>
                                 </SelectTrigger>
                                 <SelectContent>
                                     <SelectItem value="Citizenship">Citizenship</SelectItem>
@@ -170,8 +165,8 @@ const PersonalDetailsForm: React.FC = () => {
 
                         {(cardType === "Passport" || cardType === "National Identity Card") && (
                             <div>
-                                <Label>Card Image (Back)</Label>
-                                <img src={cardImage} alt="Card" className="w-20 h-20 object-cover rounded" />
+                                <Label>Card Image (Front)</Label>
+                                <img src={cardImage} alt="Card" className="w-20 h-20 object-cover rounded"/>
                                 <Input
                                     type="file"
                                     accept="image/*"
@@ -181,7 +176,7 @@ const PersonalDetailsForm: React.FC = () => {
                         )}
 
                         {/* Submit Button */}
-                        <Button type="submit" className="w-full mt-4">
+                        <Button type="submit" className="w-1/5 mt-4" variant="constructive">
                             Submit
                         </Button>
                     </div>

@@ -35,5 +35,17 @@ export const PasswordConfirmationSchema = z.object({
         .regex(/[a-z]/, { message: "Password must contain at least one lowercase letter" })
         .regex(/[0-9]/, { message: "Password must contain at least one number" })
         .regex(/[^A-Za-z0-9]/, { message: "Password must contain at least one special character" })
-
 })
+
+export const PersonalDetailSchema = z.object({
+    firstName: z.string().nonempty("First name is required"),
+    middleName: z.string().optional(),
+    lastName: z.string().nonempty("Last name is required"),
+    profileImage: z.any(),
+    dateOfBirth: z.string().nonempty("Date of birth is required"),
+    gender: z.enum(["male", "female", "other"], { required_error: "Gender is required" }),
+    cardType: z.enum(["Citizenship", "Passport", "National Identity Card"], { required_error: "Card type is required" }),
+    citizenshipFront: z.any().optional(),
+    citizenshipBack: z.any().optional(),
+    cardImage: z.any().optional(),
+});

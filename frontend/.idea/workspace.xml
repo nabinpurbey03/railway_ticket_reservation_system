@@ -5,20 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a6a0bc47-991f-4bd0-ba42-afd9e10cba0b" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/../backend/database.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backend/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backend/src/emailer.py" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/src/emailer.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backend/src/user.py" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/src/user.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Home.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Home.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Navbar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Navbar.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/auth/email-registration.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/auth/email-registration.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/auth/login-form.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/auth/login-form.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/forms/PasswordInput.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/cookies/handle_cookie.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/cookies/handle_cookie.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/SignUpPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/SignUpPage.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/forms/PersonalDetailForm.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/forms/PersonalDetailForm.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/schema/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/schema/index.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -45,30 +37,30 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;E:/project_2024/railway_ticket_reservation_system/frontend/src/components&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settingsdialog.IDE.editor.postfix.templates&quot;,
-    &quot;ts.external.directory.path&quot;: &quot;E:\\project_2024\\railway_ticket_reservation_system\\frontend\\node_modules\\typescript\\lib&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "main",
+    "ignore.virus.scanning.warn.message": "true",
+    "last_opened_file_path": "E:/project_2024/railway_ticket_reservation_system/frontend/public/assets/images",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "reference.settingsdialog.IDE.editor.postfix.templates",
+    "ts.external.directory.path": "E:\\project_2024\\railway_ticket_reservation_system\\frontend\\node_modules\\typescript\\lib",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="E:\project_2024\railway_ticket_reservation_system\frontend\src\components" />
+      <recent name="E:\project_2024\railway_ticket_reservation_system\frontend\public\assets\images" />
       <recent name="E:\project_2024\railway_ticket_reservation_system\frontend\src\components\forms" />
+      <recent name="E:\project_2024\railway_ticket_reservation_system\frontend\src\components" />
       <recent name="E:\project_2024\railway_ticket_reservation_system\frontend\src\lib" />
       <recent name="E:\project_2024\railway_ticket_reservation_system\frontend\public" />
-      <recent name="E:\project_2024\railway_ticket_reservation_system\frontend\public\assets\images" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="E:\project_2024\railway_ticket_reservation_system\frontend\src\components\forms" />
@@ -81,7 +73,7 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-js-predefined-d6986cc7102b-822845ee3bb5-JavaScript-WS-243.23654.120" />
+        <option value="bundled-js-predefined-d6986cc7102b-822845ee3bb5-JavaScript-WS-243.23654.157" />
       </set>
     </attachedChunks>
   </component>
@@ -144,6 +136,15 @@
       <workItem from="1737791570137" duration="8334000" />
       <workItem from="1737808669261" duration="5456000" />
       <workItem from="1737815900759" duration="5765000" />
+      <workItem from="1738001024065" duration="347000" />
+      <workItem from="1738030118365" duration="387000" />
+      <workItem from="1738031054160" duration="37000" />
+      <workItem from="1738031157974" duration="1866000" />
+      <workItem from="1738035999711" duration="1421000" />
+      <workItem from="1738078460515" duration="1457000" />
+      <workItem from="1738080204598" duration="7703000" />
+      <workItem from="1738089257100" duration="60000" />
+      <workItem from="1738121610385" duration="3326000" />
     </task>
     <servers />
   </component>
