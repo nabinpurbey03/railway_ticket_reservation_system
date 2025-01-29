@@ -10,13 +10,13 @@ const SignUpPage: React.FC = ():ReactElement => {
             <Navbar showReg={function (): void {
                 throw new Error("Function not implemented.");
             }}/>
-            <div className="bg-black text-black flex items-center justify-center font-bold">
+            <div className="bg-black text-black flex items-center justify-center">
                 <div className="w-4/5 bg-gray-600 px-5 shadow-2xl">
-                    <div className="flex justify-between">
-                        <div>Personal Details</div>
-                        <div>Address</div>
-                        <div>Preview</div>
-                    </div>
+                    {/*<div className="flex justify-between">*/}
+                    {/*    <div>Personal Details</div>*/}
+                    {/*    <div>Address</div>*/}
+                    {/*    <div>Preview</div>*/}
+                    {/*</div>*/}
                     <PersonalDetailForm2 />
                 </div>
             </div>

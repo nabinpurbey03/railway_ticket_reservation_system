@@ -6,11 +6,12 @@
   <component name="ChangeListManager">
     <list default="true" id="a6a0bc47-991f-4bd0-ba42-afd9e10cba0b" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/RegistrationPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/RegistrationPage.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/SignUpPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/SignUpPage.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/forms/PersonalDetailForm.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/forms/PersonalDetailForm.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/forms/districts.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/forms/districts.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/schema/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/schema/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/ui/label.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ui/label.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -37,23 +38,23 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "main",
-    "ignore.virus.scanning.warn.message": "true",
-    "last_opened_file_path": "E:/project_2024/railway_ticket_reservation_system/frontend/public/assets/images",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "reference.settingsdialog.IDE.editor.postfix.templates",
-    "ts.external.directory.path": "E:\\project_2024\\railway_ticket_reservation_system\\frontend\\node_modules\\typescript\\lib",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;E:/project_2024/railway_ticket_reservation_system/frontend/public/assets/images&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settingsdialog.IDE.editor.postfix.templates&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;E:\\project_2024\\railway_ticket_reservation_system\\frontend\\node_modules\\typescript\\lib&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="E:\project_2024\railway_ticket_reservation_system\frontend\public\assets\images" />
@@ -145,6 +146,11 @@
       <workItem from="1738080204598" duration="7703000" />
       <workItem from="1738089257100" duration="60000" />
       <workItem from="1738121610385" duration="3326000" />
+      <workItem from="1738125251677" duration="4434000" />
+      <workItem from="1738132731906" duration="3491000" />
+      <workItem from="1738142951185" duration="1716000" />
+      <workItem from="1738146314663" duration="10799000" />
+      <workItem from="1738163975930" duration="2707000" />
     </task>
     <servers />
   </component>
