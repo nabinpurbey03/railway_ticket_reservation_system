@@ -1,9 +1,13 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, HTTPException, Form, UploadFile, File, Request
 from fastapi.middleware.cors import CORSMiddleware
 
 from models import LoginRequest, Register, OTPVerificationRequest, AddUserRequest
+from src.card import Card
 from src.emailer import Emailer, otp_store, otp_verification
+from src.personal_detail import PersonalDetail
 from src.user import User
+from datetime import datetime
+
 
 app = FastAPI()
 app.add_middleware(
@@ -13,6 +17,23 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"]
 )
+
+
+
+
+async def save_uploaded_file(uploaded_file, path: str):
+    if uploaded_file:
+        timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")  # Format: YYYYMMDD_HHMMSS
+        file_extension = uploaded_file.filename.split('.')[-1]  # Extract file extension
+        file_name = f"{timestamp}.{file_extension}"  # Construct new filename
+        file_path = f"uploads/images/{path}/{file_name}"  # Ensure path is used correctly
+
+        with open(file_path, "wb") as buffer:
+            buffer.write(await uploaded_file.read())
+
+        return file_path
+    return None
+
 
 
 @app.get("/api")
@@ -31,6 +52,7 @@ async def send_otp(register: Register):
     e = Emailer(register.email)
     return e.send_email()
 
+
 @app.post("/api/verify-otp")
 async def verify_otp(request: OTPVerificationRequest):
     return otp_verification(int(request.otp))
@@ -41,8 +63,42 @@ async def add_user(request: AddUserRequest):
     user = User()
     return user.insert_user(otp_store['email'], request.password)
 
+
 @app.get("/api/user/{email}")
 async def get_user(email: str):
     user = User()
     return user.get_user_details(email)
+
+
+# Endpoint to handle form submission
+@app.post("/api/add-pd")
+async def add_personal_details(
+        firstName: str = Form(...),
+        middleName: str = Form(""),
+        lastName: str = Form(...),
+        dateOfBirth: str = Form(...),
+        gender: str = Form(...),
+        cardType: str = Form(...),
+        cardNumber: str = Form(...),
+        issuingDistrict: str = Form(...),
+        profileImage: UploadFile = File(None),
+        citizenshipFront: UploadFile = File(None),
+        citizenshipBack: UploadFile = File(None),
+        cardImage: UploadFile = File(None)
+):
+    profile_image_path = await save_uploaded_file(profileImage, "profile_image")
+    citizenship_front_path = await save_uploaded_file(citizenshipFront, "citizenship_front")
+    citizenship_back_path = await save_uploaded_file(citizenshipBack, "citizenship_back")
+    card_image_path = await save_uploaded_file(cardImage, "card_image")
+
+    p_detail = (2, firstName, middleName, lastName, gender, dateOfBirth, profile_image_path)
+    card_detail = (
+    2, cardType, cardNumber, issuingDistrict, citizenship_front_path or card_image_path, citizenship_back_path)
+    p = PersonalDetail()
+    c = Card()
+    if p.insert_personal_detail(p_detail)['status'] and c.insert_card_details(card_detail)['status']:
+        return {"status": True, "message": "The personal detail was added successfully!"}
+    else:
+        return {"status": False, "message": "FAILURE"}
+
 
