@@ -35,7 +35,6 @@ class PersonalDetail:
             with self.__conn.cursor() as cur:
                 cur.execute(sql, (int(user_id),))
                 result = cur.fetchone()
-                print(user_id)
                 if result:
                     return {
                         "status": True,
@@ -48,7 +47,6 @@ class PersonalDetail:
 
         except psycopg2.Error as e:
             # Log the error for debugging (you can use a logging library like `logging`)
-            print(f"Database error: {e}")
             self.__conn.rollback()
             return {"status": False, "message": f"Database error: {e}"}
 
@@ -62,5 +60,5 @@ class PersonalDetail:
 
 
 # detail = (1, "Nabin", None, "Purbey", "M", "2020/02/20", "uploads/images/profile_back")
-p = PersonalDetail()
-print(p.get_personal_detail("2"))
+# p = PersonalDetail()
+# print(p.get_personal_detail("2"))
