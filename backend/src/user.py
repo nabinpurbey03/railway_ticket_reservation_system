@@ -45,5 +45,19 @@ class User:
         self.__conn.close()
         return {"status": True, "user_id": result[0], "role": result[1], "is_active": result[2]}
 
+    def activate_user(self, user_id: int) -> bool:
+        try:
+            sql: str = 'UPDATE "user" SET "is_active" = TRUE WHERE "user_id" = %s'
+            self.__cur.execute(sql, (user_id,))
+            self.__conn.commit()
+            return True
+        except psycopg2.Error as e:
+            self.__conn.rollback()
+            return False
+        finally:
+            self.__cur.close()
+            self.__conn.close()
+
+
 # u = User()
 # print(u.verify_user("jane.smith@example.com"))

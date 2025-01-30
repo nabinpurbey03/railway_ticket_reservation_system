@@ -9,7 +9,7 @@ class Card:
         self.__conn = psycopg2.connect(os.getenv("DATABASE_URL"))
         self.__cur = self.__conn.cursor()
 
-    def insert_card_details(self, card_details) -> dict[str, str]:
+    def insert_card_details(self, card_details) -> bool:
         try:
             sql: str = '''
                 INSERT INTO id_card (user_id, type, number, issuing_district, front_image, back_image)
@@ -17,10 +17,10 @@ class Card:
             '''
             self.__cur.execute(sql, card_details)
             self.__conn.commit()
-            return {"status": True, "message": "success"}
-        except Exception as e:
+            return True
+        except psycopg2.errors as e:
             self.__conn.rollback()  # Rollback if any error occurs
-            return {"status": False, "message": str(e)}
+            return e
         finally:
             self.__cur.close()
             self.__conn.close()

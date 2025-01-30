@@ -1,13 +1,15 @@
+from urllib import request
+
 from fastapi import FastAPI, HTTPException, Form, UploadFile, File
 from fastapi.middleware.cors import CORSMiddleware
 
-from models import LoginRequest, Register, OTPVerificationRequest, AddUserRequest
+from models import LoginRequest, Register, OTPVerificationRequest, AddUserRequest, AddressRequest
+from src.address import Address
 from src.card import Card
 from src.emailer import Emailer, otp_store, otp_verification
 from src.personal_detail import PersonalDetail
 from src.user import User
 from datetime import datetime
-
 
 app = FastAPI()
 app.add_middleware(
@@ -17,8 +19,6 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"]
 )
-
-
 
 
 async def save_uploaded_file(uploaded_file, path: str):
@@ -33,7 +33,6 @@ async def save_uploaded_file(uploaded_file, path: str):
 
         return file_path
     return None
-
 
 
 @app.get("/api")
@@ -69,6 +68,11 @@ async def get_user(email: str):
     user = User()
     return user.get_user_details(email)
 
+@app.get("/api/get-profile/{user_id}")
+async def get_user_profile(user_id: str):
+    p = PersonalDetail()
+    return p.get_personal_detail(user_id)
+
 
 # Endpoint to handle form submission
 @app.post("/api/add-pd")
@@ -93,11 +97,21 @@ async def add_personal_details(
 
     p_detail = (2, firstName, middleName, lastName, gender, dateOfBirth, profile_image_path)
     card_detail = (
-    2, cardType, cardNumber, issuingDistrict, citizenship_front_path or card_image_path, citizenship_back_path)
+        2, cardType, cardNumber, issuingDistrict, citizenship_front_path or card_image_path, citizenship_back_path)
     p = PersonalDetail()
     c = Card()
-    if p.insert_personal_detail(p_detail)['status'] and c.insert_card_details(card_detail)['status']:
+    if p.insert_personal_detail(p_detail) and c.insert_card_details(card_detail):
         return {"status": True, "message": "The personal detail was added successfully!"}
+    else:
+        return {"status": False, "message": "FAILURE"}
+
+
+@app.post("/api/add-address")
+async def add_address(req: AddressRequest):
+    data = (int(req.user_id), req.province, req.district, req.municipality, int(req.ward), req.tole, req.house_number)
+    address = Address()
+    if address.insert_address(data):
+        return {"status": True, "message": "The address was added successfully!", "desc": "The user has been activated"}
     else:
         return {"status": False, "message": "FAILURE"}
 

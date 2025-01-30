@@ -15,3 +15,13 @@ class OTPVerificationRequest(BaseModel):
 
 class AddUserRequest(BaseModel):
     password: str
+
+class AddressRequest(BaseModel):
+    user_id: str
+    province: str
+    district: str
+    municipality: str
+    ward: str
+    tole: str
+    house_number: str
+
