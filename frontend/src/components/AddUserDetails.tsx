@@ -4,7 +4,7 @@ import AddressInput from "@/components/forms/AddressInput.tsx";
 import nepal from "@/components/forms/local_levels_nepal_eng.json";
 import PersonalDetailForm from "@/components/forms/PersonalDetailForm.tsx";
 
-const SignUpPage: React.FC = (): ReactElement => {
+const AddUserDetails: React.FC = (): ReactElement => {
 
     const [tab, setTab] = useState(true);
 
@@ -22,4 +22,4 @@ const SignUpPage: React.FC = (): ReactElement => {
     );
 };
 
-export default SignUpPage;
+export default AddUserDetails;

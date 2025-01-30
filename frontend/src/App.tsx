@@ -2,15 +2,24 @@ import './App.css'
 import Home from "./components/Home.tsx";
 import React from "react";
 import {BrowserRouter, Route, Routes} from "react-router";
-import SignUpPage from "@/components/SignUpPage.tsx";
+import AddUserDetails from "@/components/AddUserDetails.tsx";
+// import Cookies from "js-cookie";
+// import {Navigate} from "react-router-dom";
 
 function App(): React.ReactElement {
+
+    // const active = Cookies.get("is_active");
+
     return (
         <>
             <BrowserRouter>
                 <Routes>
-                    <Route path="/" element={<Home />} />
-                    <Route path="/sign-up" element={<SignUpPage />} />
+                    <Route path="/" element={<Home/>}/>
+                    {/*<Route*/}
+                    {/*    path="/add-user-details"*/}
+                    {/*    element={!active ? <AddUserDetails/> : <Navigate to="/" replace/>}*/}
+                    {/*/>*/}
+                    <Route path="/add-user-details" element={<AddUserDetails/>}/>
                 </Routes>
             </BrowserRouter>
         </>

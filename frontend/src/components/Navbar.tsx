@@ -10,6 +10,7 @@ import {
     DropdownMenuTrigger
 } from "@/components/ui/dropdown-menu.tsx";
 import {destroyCookies} from "@/cookies/handle_cookie.ts";
+import {Link} from "react-router-dom";
 
 interface navbarProps {
     showReg(): void
@@ -17,7 +18,9 @@ interface navbarProps {
 
 const Navbar: React.FC<navbarProps> = ({showReg}): ReactElement => {
 
-    const firstname: string | undefined = Cookies.get("firstname");
+    const active = Cookies.get("is_active");
+    console.log("From Navbar " + active);
+    const firstname: string | undefined = Cookies.get("first_name");
 
     return (
         <main id="navbar" className="flex w-full h-[15vh] px-5">
@@ -47,7 +50,7 @@ const Navbar: React.FC<navbarProps> = ({showReg}): ReactElement => {
                     <DateTime/>
                 </div>
                 <div className="flex items-center justify-center mx-3">
-                    {firstname ? <DropdownMenu>
+                    {firstname && active ? <DropdownMenu>
                             <DropdownMenuTrigger>
                                 <Avatar className="bg-white cursor-pointer" onClick={showReg}>
                                     <AvatarImage src="/assets/images/user_avatar.png"/>
@@ -57,7 +60,9 @@ const Navbar: React.FC<navbarProps> = ({showReg}): ReactElement => {
                             <DropdownMenuContent>
                                 <DropdownMenuLabel>My Account</DropdownMenuLabel>
                                 <DropdownMenuSeparator/>
-                                <DropdownMenuItem className="text-green-700">Profile <span>&#10026;</span></DropdownMenuItem>
+                                <DropdownMenuItem className="text-green-700">
+                                    <Link to={active ? "/" : "/add-user-details"}>Profile</Link>
+                                    <span>&#10026;</span></DropdownMenuItem>
                                 <DropdownMenuSeparator/>
                                 <DropdownMenuItem
                                     className="text-red-700"

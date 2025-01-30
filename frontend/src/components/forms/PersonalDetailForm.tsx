@@ -1,23 +1,27 @@
-import React, { ReactElement, useState } from "react";
-import { z } from "zod";
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Select, SelectTrigger, SelectContent, SelectItem, SelectValue } from "@/components/ui/select";
-import { Label } from "@/components/ui/label";
-import { Card, CardContent } from "@/components/ui/card";
-import { PersonalDetailSchema } from "@/components/schema";
-import { Separator } from "@/components/ui/separator.tsx";
+import React, {ReactElement, useState} from "react";
+import {z} from "zod";
+import {useForm} from "react-hook-form";
+import {zodResolver} from "@hookform/resolvers/zod";
+import {Button} from "@/components/ui/button";
+import {Input} from "@/components/ui/input";
+import {Select, SelectTrigger, SelectContent, SelectItem, SelectValue} from "@/components/ui/select";
+import {Label} from "@/components/ui/label";
+import {Card, CardContent} from "@/components/ui/card";
+import {PersonalDetailSchema} from "@/components/schema";
+import {Separator} from "@/components/ui/separator.tsx";
 import axios from "axios";
-import { Toaster } from "@/components/ui/toaster.tsx";
-import { useToast } from "@/hooks/use-toast.ts";
-import { districts } from "@/components/forms/districts.ts";
+import {Toaster} from "@/components/ui/toaster.tsx";
+import {useToast} from "@/hooks/use-toast.ts";
+import {districts} from "@/components/forms/districts.ts";
 
 type FormData = z.infer<typeof PersonalDetailSchema>;
 
-const PersonalDetailsForm: React.FC = (): ReactElement => {
-    const { toast } = useToast();
+interface Props{
+    changeTab(): void;
+}
+
+const PersonalDetailsForm: React.FC<Props> = ({changeTab}): ReactElement => {
+    const {toast} = useToast();
     const [profileImage, setProfileImage] = useState<File | null>(null);
     const [citizenshipFront, setCitizenshipFront] = useState<File | null>(null);
     const [citizenshipBack, setCitizenshipBack] = useState<File | null>(null);
@@ -48,7 +52,7 @@ const PersonalDetailsForm: React.FC = (): ReactElement => {
         handleSubmit,
         watch,
         setValue,
-        formState: { errors },
+        formState: {errors},
     } = useForm<FormData>({
         resolver: zodResolver(PersonalDetailSchema),
     });
@@ -56,6 +60,15 @@ const PersonalDetailsForm: React.FC = (): ReactElement => {
     const cardType = watch("cardType");
 
     const onSubmit = async (data: FormData) => {
+        if (age! < 18) {
+            toast({
+                title: "Cannot Activate Account",
+                description: "To activate Account you must me 18 years old",
+                variant: "destructive"
+            });
+            return;
+        }
+
         const formData = new FormData();
 
         formData.append("firstName", data.firstName);
@@ -92,6 +105,7 @@ const PersonalDetailsForm: React.FC = (): ReactElement => {
                 toast({
                     title: response.data.message,
                 });
+                changeTab();
             } else {
                 toast({
                     title: response.data.message,
@@ -115,34 +129,35 @@ const PersonalDetailsForm: React.FC = (): ReactElement => {
     };
 
     return (
-        <Card className="p-6 mx-auto">
-            <Toaster />
+        <Card className="p-6 mx-auto h-[80vh]">
+            <Toaster/>
             <CardContent>
+                <section className="font-bold text-cyan-800 bg-gray-200 rounded p-1 mb-3 text-2xl">General Details</section>
                 <form onSubmit={handleSubmit(onSubmit)}>
-                    <div className="grid gap-4">
-                        <div className="flex justify-between">
+                    <div className="grid gap-6">
+                        <div className="grid grid-cols-3 gap-4">
                             {/* First Name */}
                             <div>
                                 <Label>First Name</Label>
-                                <Input {...register("firstName")} placeholder="First Name" />
+                                <Input {...register("firstName")} placeholder="First Name"/>
                                 {errors.firstName && <p className="text-red-500 text-sm">{errors.firstName.message}</p>}
                             </div>
 
                             {/* Middle Name */}
                             <div>
                                 <Label>Middle Name</Label>
-                                <Input {...register("middleName")} placeholder="Middle Name" />
+                                <Input {...register("middleName")} placeholder="Middle Name"/>
                             </div>
 
                             {/* Last Name */}
                             <div>
                                 <Label>Last Name</Label>
-                                <Input {...register("lastName")} placeholder="Last Name" />
+                                <Input {...register("lastName")} placeholder="Last Name"/>
                                 {errors.lastName && <p className="text-red-500 text-sm">{errors.lastName.message}</p>}
                             </div>
                         </div>
-                        <Separator className="border-2" />
-                        <div className="flex justify-between">
+                        <Separator className="border-2"/>
+                        <div className="grid grid-cols-4 gap-4">
                             {/* Profile Image */}
                             <div>
                                 <Label>Profile Image</Label>
@@ -168,7 +183,8 @@ const PersonalDetailsForm: React.FC = (): ReactElement => {
                                     {...register("dateOfBirth")}
                                     onChange={(e) => updateAge(e)}
                                 />
-                                {errors.dateOfBirth && <p className="text-red-500 text-sm">{errors.dateOfBirth.message}</p>}
+                                {errors.dateOfBirth &&
+                                    <p className="text-red-500 text-sm">{errors.dateOfBirth.message}</p>}
                             </div>
                             <div>
                                 <p className="border px-5 py-2 rounded-lg mt-5">Age = {age ?? "N/A"}</p>
@@ -177,10 +193,10 @@ const PersonalDetailsForm: React.FC = (): ReactElement => {
                             <div>
                                 <Label>Gender</Label>
                                 <Select
-                                    onValueChange={(value) => setValue("gender", value, { shouldValidate: true })}
+                                    onValueChange={(value) => setValue("gender", value, {shouldValidate: true})}
                                 >
                                     <SelectTrigger>
-                                        <SelectValue placeholder="Select Gender" />
+                                        <SelectValue placeholder="Select Gender"/>
                                     </SelectTrigger>
                                     <SelectContent>
                                         <SelectItem value="M">Male</SelectItem>
@@ -192,16 +208,16 @@ const PersonalDetailsForm: React.FC = (): ReactElement => {
                             </div>
                         </div>
 
-                        <Separator className="border-2" />
-                        <div className="flex justify-between">
+                        <Separator className="border-2"/>
+                        <div className="grid grid-cols-3 gap-4">
                             {/* Card Type */}
                             <div>
                                 <Label>Card Type</Label>
                                 <Select
-                                    onValueChange={(value) => setValue("cardType", value, { shouldValidate: true })}
+                                    onValueChange={(value) => setValue("cardType", value, {shouldValidate: true})}
                                 >
                                     <SelectTrigger>
-                                        <SelectValue placeholder="Select Card Type" />
+                                        <SelectValue placeholder="Select Card Type"/>
                                     </SelectTrigger>
                                     <SelectContent>
                                         <SelectItem value="Citizenship">Citizenship</SelectItem>
@@ -213,17 +229,18 @@ const PersonalDetailsForm: React.FC = (): ReactElement => {
                             </div>
                             <div>
                                 <Label>Card Number</Label>
-                                <Input {...register("cardNumber")} placeholder="Card Number" />
-                                {errors.cardNumber && <p className="text-red-500 text-sm">{errors.cardNumber.message}</p>}
+                                <Input {...register("cardNumber")} placeholder="Card Number"/>
+                                {errors.cardNumber &&
+                                    <p className="text-red-500 text-sm">{errors.cardNumber.message}</p>}
                             </div>
                             {/* Issued District */}
                             <div>
                                 <Label>Issued District</Label>
                                 <Select
-                                    onValueChange={(value) => setValue("issuedDistrict", value, { shouldValidate: true })}
+                                    onValueChange={(value) => setValue("issuedDistrict", value, {shouldValidate: true})}
                                 >
                                     <SelectTrigger>
-                                        <SelectValue placeholder="Select District" />
+                                        <SelectValue placeholder="Select District"/>
                                     </SelectTrigger>
                                     <SelectContent>
                                         {districts.map((district: string, index: number): ReactElement => (
@@ -289,12 +306,10 @@ const PersonalDetailsForm: React.FC = (): ReactElement => {
                                 />
                             </div>
                         )}
-
-                        {/* Submit Button */}
-                        <Button type="submit" className="w-1/5 mt-4" variant="constructive">
-                            Submit
-                        </Button>
                     </div>
+                    <Button type="submit" className="w-1/5 mt-4" variant={"constructive"}>
+                        Save
+                    </Button>
                 </form>
             </CardContent>
         </Card>
