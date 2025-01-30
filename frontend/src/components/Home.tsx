@@ -7,7 +7,7 @@ import Cookies from "js-cookie";
 
 export default function Home(): ReactElement {
 
-    const firstname: string | undefined = Cookies.get("firstname");
+    const loggedIn = Cookies.get("loggedIn") === "true";
 
 
     const [reg, setReg] = useState(false);
@@ -36,7 +36,7 @@ export default function Home(): ReactElement {
             />
             <div className="absolute w-full top-0 z-0">
                 {
-                    reg && !firstname ? <RegistrationPage closeReg={regPageHandler}/> : null
+                    reg && !loggedIn ? <RegistrationPage closeReg={regPageHandler}/> : null
                 }
             </div>
 

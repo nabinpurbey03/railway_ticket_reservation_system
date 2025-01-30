@@ -18,9 +18,8 @@ interface navbarProps {
 
 const Navbar: React.FC<navbarProps> = ({showReg}): ReactElement => {
 
-    const active = Cookies.get("is_active");
-    console.log("From Navbar " + active);
-    const firstname: string | undefined = Cookies.get("first_name");
+    const active = Cookies.get("is_active") === "true";
+    const loggedIn = Cookies.get("loggedIn") === "true";
 
     return (
         <main id="navbar" className="flex w-full h-[15vh] px-5">
@@ -50,7 +49,7 @@ const Navbar: React.FC<navbarProps> = ({showReg}): ReactElement => {
                     <DateTime/>
                 </div>
                 <div className="flex items-center justify-center mx-3">
-                    {firstname && active ? <DropdownMenu>
+                    {loggedIn || (loggedIn && !active)? <DropdownMenu>
                             <DropdownMenuTrigger>
                                 <Avatar className="bg-white cursor-pointer" onClick={showReg}>
                                     <AvatarImage src="/assets/images/user_avatar.png"/>

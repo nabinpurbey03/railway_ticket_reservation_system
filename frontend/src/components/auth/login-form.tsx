@@ -21,7 +21,6 @@ import bcrypt from "bcryptjs";
 import {Toaster} from "@/components/ui/toaster"
 import {useToast} from "@/hooks/use-toast"
 import {setNameCookies, setUserCookies} from "@/cookies/handle_cookie.ts";
-import Cookies from "js-cookie";
 
 interface Props {
     closeRegisterModal(): void;
@@ -61,25 +60,21 @@ const LoginForm: React.FC<Props> = ({closeRegisterModal}): ReactElement => {
                         const user = {
                             id: response.data.user_id.toString(),
                             role: response.data.role,
-                            is_active: response.data.is_active
+                            is_active: response.data.is_active,
+                            loggedIn: true,
                         };
                         setUserCookies(user)
-                        console.log(Cookies.get("id"))
-                        console.log(Cookies.get("role"))
-                        console.log(Cookies.get("is_active"))
 
                         if (response.data.is_active) {
                             const response1 = await axios.get(import.meta.env.VITE_API_URL + "/api/get-profile/" + response.data.user_id.toString());
-                            console.log(response1.data)
+
                             const names = {
                                 first_name: response1.data.first_name,
                                 last_name: response1.data.last_name,
                                 image_url: response1.data.image_url
                             }
                             setNameCookies(names)
-                            console.log(Cookies.get("first_name"));
-                            console.log(Cookies.get("last_name"));
-                            console.log(Cookies.get("image_url"));
+
                         }
                     }
                     closeRegisterModal();

@@ -6,6 +6,7 @@ interface UserCookies {
     id: string;
     role: string;
     is_active: boolean;
+    loggedIn: boolean;
 }
 
 export const setUserCookies = (user: UserCookies): void => {
@@ -13,6 +14,7 @@ export const setUserCookies = (user: UserCookies): void => {
     Cookies.set('id', user.id, { expires: expirationTime });
     Cookies.set('role', user.role, { expires: expirationTime });
     Cookies.set('is_active', user.is_active.toString(), { expires: expirationTime });
+    Cookies.set('loggedIn', user.loggedIn.toString(), { expires: expirationTime });
 };
 
 interface NameCookies {
@@ -25,6 +27,7 @@ export const setNameCookies = (nameCookies: NameCookies): void => {
     Cookies.set('first_name', nameCookies.first_name, { expires: expirationTime });
     Cookies.set('last_name', nameCookies.last_name, { expires: expirationTime });
     Cookies.set('image_url', nameCookies.image_url, { expires: expirationTime });
+    Cookies.set('is_active', true.toString(), { expires: expirationTime });
 }
 
 export const destroyCookies = (): void => {
@@ -34,6 +37,7 @@ export const destroyCookies = (): void => {
     Cookies.remove('role');
     Cookies.remove('is_active');
     Cookies.remove('image_url');
-    window.location.reload();
+    Cookies.remove('loggedIn');
+    window.location.href = '/';
 }
 
