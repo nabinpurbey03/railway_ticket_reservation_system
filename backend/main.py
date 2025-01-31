@@ -1,4 +1,4 @@
-from urllib import request
+from fastapi.staticfiles import StaticFiles
 
 from fastapi import FastAPI, HTTPException, Form, UploadFile, File
 from fastapi.middleware.cors import CORSMiddleware
@@ -20,13 +20,13 @@ app.add_middleware(
     allow_headers=["*"]
 )
 
-
+app.mount("/uploads", StaticFiles(directory="uploads"), name="uploads")
 async def save_uploaded_file(uploaded_file, path: str):
     if uploaded_file:
         timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")  # Format: YYYYMMDD_HHMMSS
         file_extension = uploaded_file.filename.split('.')[-1]  # Extract file extension
         file_name = f"{timestamp}.{file_extension}"  # Construct new filename
-        file_path = f"uploads/images/{path}/{file_name}"  # Ensure path is used correctly
+        file_path = f"/uploads/images/{path}/{file_name}"  # Ensure path is used correctly
 
         with open(file_path, "wb") as buffer:
             buffer.write(await uploaded_file.read())
