@@ -6,12 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="a6a0bc47-991f-4bd0-ba42-afd9e10cba0b" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Home.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Home.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Navbar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Navbar.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/auth/login-form.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/auth/login-form.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/forms/AddressInput.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/forms/AddressInput.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/cookies/handle_cookie.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/cookies/handle_cookie.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -154,7 +149,8 @@
       <workItem from="1738208030066" duration="8170000" />
       <workItem from="1738221210546" duration="15534000" />
       <workItem from="1738245126759" duration="3702000" />
-      <workItem from="1738249090500" duration="670000" />
+      <workItem from="1738249090500" duration="864000" />
+      <workItem from="1738294286202" duration="330000" />
     </task>
     <servers />
   </component>

@@ -117,7 +117,7 @@ const LoginForm: React.FC<Props> = ({closeRegisterModal}): ReactElement => {
                                     <Input
                                         {...field}
                                         type="email"
-                                        placeholder="johndoe@gmail.com"
+                                        placeholder="example@provider.com"
                                     />
                                 </FormControl>
                                 <FormMessage/>
@@ -135,7 +135,7 @@ const LoginForm: React.FC<Props> = ({closeRegisterModal}): ReactElement => {
                                         <Input
                                             {...field}
                                             type={showPassword ? 'text' : 'password'}
-                                            placeholder="******"
+                                            placeholder="********"
                                             className="pr-10"
                                         />
                                         <button
