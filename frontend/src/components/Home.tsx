@@ -8,7 +8,6 @@ import Cookies from "js-cookie";
 export default function Home(): ReactElement {
 
     const loggedIn = Cookies.get("loggedIn") === "true";
-
     const [reg, setReg] = useState(false);
 
     const regPageHandler = (): void => {

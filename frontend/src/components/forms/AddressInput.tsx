@@ -25,7 +25,7 @@ import {Button} from "@/components/ui/button.tsx";
 import axios from "axios";
 import {toast} from "@/hooks/use-toast.ts";
 import Cookies from "js-cookie";
-import {setNameCookies} from "@/cookies/handle_cookie.ts";
+import {set_name_cookies} from "@/components/helper.ts";
 
 type AddressInputProps = {
     data: Record<string, Record<string, Record<string, string[]>>>;
@@ -77,15 +77,7 @@ const AddressInput: React.FC<AddressInputProps> = ({data}): ReactElement => {
                 toast({
                     title: response.data.message,
                 })
-                const response1 = await axios.get(import.meta.env.VITE_API_URL + "/api/get-profile/" + payload.user_id?.toString());
-
-                const names = {
-                    first_name: response1.data.first_name,
-                    last_name: response1.data.last_name,
-                    image_url: response1.data.image_url
-                }
-                setNameCookies(names)
-                window.location.href = "/";
+                await set_name_cookies({res: response});
             } else {
                 toast({
                     title: response.data.message,

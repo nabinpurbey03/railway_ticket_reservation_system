@@ -13,6 +13,7 @@ import axios from "axios";
 import {Toaster} from "@/components/ui/toaster.tsx";
 import {useToast} from "@/hooks/use-toast.ts";
 import {districts} from "@/components/forms/districts.ts";
+import Cookies from "js-cookie";
 
 type FormData = z.infer<typeof PersonalDetailSchema>;
 
@@ -71,6 +72,7 @@ const PersonalDetailsForm: React.FC<Props> = ({changeTab}): ReactElement => {
 
         const formData = new FormData();
 
+        formData.append("user_id", Cookies.get("id") || "0");
         formData.append("firstName", data.firstName);
         formData.append("middleName", data.middleName || "");
         formData.append("lastName", data.lastName);

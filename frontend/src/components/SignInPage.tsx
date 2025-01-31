@@ -21,8 +21,8 @@ const SignInPage: React.FC<Props> = ({closeRegisterModal}): ReactElement => {
         case 1:
             return <div className="text-black">
                 <LoginForm closeRegisterModal={closeRegisterModal} nextTab={forgotPassword}/>
-                <section className="mt-5">Don't have an Account? <Button variant={"link"}
-                                                                         onClick={() => setTab(2)}>Register &#10095;</Button>
+                <section className="mt-5">Don't have an Account?
+                    <Button variant={"link"} onClick={() => setTab(2)}>Register &#10095;</Button>
                 </section>
             </div>;
         case 2:

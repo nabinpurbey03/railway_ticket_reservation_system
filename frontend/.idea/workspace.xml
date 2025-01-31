@@ -5,15 +5,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a6a0bc47-991f-4bd0-ba42-afd9e10cba0b" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/components/helper.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../backend/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/main.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/Home.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Home.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Navbar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Navbar.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/RegistrationPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/RegistrationPage.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/SignInPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/SignInPage.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/auth/email-registration.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/auth/email-registration.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/auth/login-form.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/auth/login-form.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/auth/password-confirmation.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/auth/password-confirmation.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/globals.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/globals.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/forms/AddressInput.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/forms/AddressInput.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/forms/PersonalDetailForm.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/forms/PersonalDetailForm.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -23,8 +26,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="TypeScript File" />
         <option value="TypeScript JSX File" />
+        <option value="TypeScript File" />
       </list>
     </option>
   </component>
@@ -159,7 +162,7 @@
       <workItem from="1738249090500" duration="864000" />
       <workItem from="1738294286202" duration="3499000" />
       <workItem from="1738299470833" duration="187000" />
-      <workItem from="1738324773807" duration="9058000" />
+      <workItem from="1738324773807" duration="21365000" />
     </task>
     <servers />
   </component>
