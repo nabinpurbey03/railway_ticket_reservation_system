@@ -71,7 +71,7 @@ const LoginForm: React.FC<Props> = ({closeRegisterModal}): ReactElement => {
                             const names = {
                                 first_name: response1.data.first_name,
                                 last_name: response1.data.last_name,
-                                image_url: import.meta.env.VITE_API_URL + "/" + response1.data.image_url
+                                image_url: import.meta.env.VITE_API_URL + response1.data.image_url
                             }
                             setNameCookies(names)
 
