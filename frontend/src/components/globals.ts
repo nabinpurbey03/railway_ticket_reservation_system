@@ -1,5 +1,5 @@
 const GLOBALS = {
-    "otp": "",
+    forgotPassword: false,
 };
 
 export default GLOBALS;

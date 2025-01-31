@@ -10,7 +10,7 @@ const RegistrationPage: React.FC<RegistrationPageProps> = ({closeReg}) => {
     return (
         <div className="w-screen h-screen flex items-center justify-center bg-black bg-opacity-60">
             {/* Main Card */}
-            <div className="w-2/5 bg-white rounded-lg pb-5 shadow-lg h-[525px]">
+            <div className="w-2/5 bg-white rounded-lg pb-5 shadow-lg h-[535px]">
                 {/* Header Section */}
                 <div className="flex rounded-t-lg bg-blue-900 flex-row justify-between h-[150px] p-4 pb-10">
                     <div>

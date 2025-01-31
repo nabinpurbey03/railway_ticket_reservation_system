@@ -11,6 +11,7 @@ import {z} from "zod";
 import {toast} from "@/hooks/use-toast.ts";
 import axios from "axios";
 import bcrypt from "bcryptjs";
+import GLOBALS from "@/components/globals.ts";
 
 
 interface Props {
@@ -38,6 +39,7 @@ const PasswordConfirmationForm: React.FC<Props> = ({updateTab}): ReactElement =>
                 const hashedPassword: string = await bcrypt.hash(data.password, 12);
                 const payload = {
                     password: hashedPassword,
+                    fp: GLOBALS.forgotPassword
                 };
                 const response = await axios.post(import.meta.env.VITE_API_URL + "/api/add-user", payload);
                 if (response.data.status) {

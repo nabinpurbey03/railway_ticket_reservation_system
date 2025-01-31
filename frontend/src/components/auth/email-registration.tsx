@@ -9,12 +9,14 @@ import {z} from "zod";
 import {toast} from "@/hooks/use-toast.ts";
 import {Toaster} from "@/components/ui/toaster.tsx";
 import axios from "axios";
+import GLOBALS from "@/components/globals.ts";
 
 interface Props {
-    updateTab(): void;
+    nextTab(): void;
+    prevTab(): void;
 }
 
-const EmailRegistrationForm: React.FC<Props> = ({updateTab}): ReactElement => {
+const EmailRegistrationForm: React.FC<Props> = ({nextTab, prevTab}): ReactElement => {
 
     const form = useForm({
         resolver: zodResolver(RegisterSchema),
@@ -26,14 +28,16 @@ const EmailRegistrationForm: React.FC<Props> = ({updateTab}): ReactElement => {
     const onSubmit = async (data: z.infer<typeof RegisterSchema>) => {
         try {
             const payload = {
-                email: data.email
+                email: data.email,
+                fp: GLOBALS.forgotPassword,
             }
+
             const response = await axios.post(import.meta.env.VITE_API_URL + "/api/send-otp", payload);
             if (response.data.status) {
                 toast({
                     title: response.data.message,
                 })
-                updateTab()
+                nextTab()
             } else {
                 toast({
                     title: response.data.message,
@@ -64,7 +68,7 @@ const EmailRegistrationForm: React.FC<Props> = ({updateTab}): ReactElement => {
                                 <Input
                                     {...field}
                                     type="email"
-                                    placeholder="johndoe@gmail.com"
+                                    placeholder="example@provider.com"
                                 />
                             </FormControl>
                             <FormMessage/>
@@ -75,6 +79,11 @@ const EmailRegistrationForm: React.FC<Props> = ({updateTab}): ReactElement => {
                     Send OTP
                 </Button>
             </form>
+            <Button
+                variant="link"
+                className="flex text-sm text-gray-500 hover:text-black"
+                onClick={() => prevTab()}
+            >&#10094; Back</Button>
         </Form>
     )
 };

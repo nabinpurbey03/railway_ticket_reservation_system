@@ -21,12 +21,15 @@ import bcrypt from "bcryptjs";
 import {Toaster} from "@/components/ui/toaster"
 import {useToast} from "@/hooks/use-toast"
 import {setNameCookies, setUserCookies} from "@/cookies/handle_cookie.ts";
+import GLOBALS from "@/components/globals.ts";
 
 interface Props {
     closeRegisterModal(): void;
+    nextTab(): void;
 }
 
-const LoginForm: React.FC<Props> = ({closeRegisterModal}): ReactElement => {
+const LoginForm: React.FC<Props> = ({closeRegisterModal, nextTab}): ReactElement => {
+    if(GLOBALS.forgotPassword) GLOBALS.forgotPassword = false;
     const {toast} = useToast()
     const form = useForm({
         resolver: zodResolver(LoginSchema),
@@ -138,6 +141,7 @@ const LoginForm: React.FC<Props> = ({closeRegisterModal}): ReactElement => {
                                             placeholder="********"
                                             className="pr-10"
                                         />
+
                                         <button
                                             type="button"
                                             onClick={togglePasswordVisibility}
@@ -156,6 +160,10 @@ const LoginForm: React.FC<Props> = ({closeRegisterModal}): ReactElement => {
                         )}
                     />
                 </div>
+                <span
+                    className="text-sm ml-0 pr-52 pl-0 hover:underline cursor-pointer text-gray-700"
+                    onClick={nextTab}
+                >Forgot Password</span>
                 <Button type="submit" className="w-full" variant={"constructive"}>
                     Login
                 </Button>
