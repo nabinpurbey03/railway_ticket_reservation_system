@@ -23,17 +23,17 @@ app.add_middleware(
 app.mount("/uploads", StaticFiles(directory="uploads"), name="uploads")
 
 
-async def save_uploaded_file(uploaded_file, path: str, name: str):
+async def save_uploaded_file(uploaded_file, path: str, name: str) -> str | None:
     if uploaded_file:
         timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")  # Format: YYYYMMDD_HHMMSS
         file_extension = uploaded_file.filename.split('.')[-1]
         file_name = f"{name}_{timestamp}.{file_extension}"
-        file_path = f"/uploads/images/{path}/{file_name}"
+        file_path = f"uploads/images/{path}/{file_name}"
 
         with open(file_path, "wb") as buffer:
             buffer.write(await uploaded_file.read())
 
-        return file_path
+        return "/" + file_path
     return None
 
 
@@ -76,6 +76,7 @@ async def get_user(email: str):
 
 @app.get("/api/get-profile/{user_id}")
 async def get_user_profile(user_id: str):
+    print(user_id)
     p = PersonalDetail()
     return p.get_personal_detail(user_id)
 
@@ -83,8 +84,9 @@ async def get_user_profile(user_id: str):
 # Endpoint to handle form submission
 @app.post("/api/add-pd")
 async def add_personal_details(
+        user_id: str = Form(...),
         firstName: str = Form(...),
-        middleName: str = Form(""),
+        middleName: str = Form(...),
         lastName: str = Form(...),
         dateOfBirth: str = Form(...),
         gender: str = Form(...),
@@ -102,9 +104,10 @@ async def add_personal_details(
     citizenship_back_path = await save_uploaded_file(citizenshipBack, "citizenship_back", full_name)
     card_image_path = await save_uploaded_file(cardImage, "card_image", full_name)
 
-    p_detail = (2, firstName, middleName, lastName, gender, dateOfBirth, profile_image_path)
+    p_detail = (int(user_id), firstName, middleName, lastName, gender, dateOfBirth, profile_image_path)
     card_detail = (
-        2, cardType, cardNumber, issuingDistrict, citizenship_front_path or card_image_path, citizenship_back_path)
+        int(user_id), cardType, cardNumber, issuingDistrict, citizenship_front_path or card_image_path,
+        citizenship_back_path)
     p = PersonalDetail()
     c = Card()
     if p.insert_personal_detail(p_detail) and c.insert_card_details(card_detail):
