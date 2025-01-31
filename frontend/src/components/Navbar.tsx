@@ -20,6 +20,7 @@ const Navbar: React.FC<navbarProps> = ({showReg}): ReactElement => {
 
     const active = Cookies.get("is_active") === "true";
     const loggedIn = Cookies.get("loggedIn") === "true";
+    const image_url = Cookies.get("image_url");
 
     return (
         <main id="navbar" className="flex w-full h-[15vh] px-5">
@@ -52,7 +53,7 @@ const Navbar: React.FC<navbarProps> = ({showReg}): ReactElement => {
                     {loggedIn || (loggedIn && !active)? <DropdownMenu>
                             <DropdownMenuTrigger>
                                 <Avatar className="bg-white cursor-pointer" onClick={showReg}>
-                                    <AvatarImage src="/assets/images/user_avatar.png"/>
+                                    <AvatarImage src={active? image_url :"/assets/images/user_avatar.png"}/>
                                     {/*<AvatarFallback>Nabin Purbey</AvatarFallback>*/}
                                 </Avatar>
                             </DropdownMenuTrigger>

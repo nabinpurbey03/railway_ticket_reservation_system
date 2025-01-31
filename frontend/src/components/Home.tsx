@@ -8,7 +8,8 @@ import Cookies from "js-cookie";
 export default function Home(): ReactElement {
 
     const loggedIn = Cookies.get("loggedIn") === "true";
-
+    const image_url = Cookies.get("image_url");
+    console.log(image_url);
 
     const [reg, setReg] = useState(false);
 
