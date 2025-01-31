@@ -11,14 +11,16 @@ class User:
         self.__cur = self.__conn.cursor()
 
     def verify_user(self, email: str) -> dict[str, str]:
-        if not self.check_for_email(email):
-            return {"status": False, "message": "Invalid email"}
-
-        self.__cur.execute('SELECT "password" FROM "user" WHERE "email" = %s', (email,))
-        result = self.__cur.fetchone()
-        self.__cur.close()
-        self.__conn.close()
-        return {"status": True, "password": result[0]}
+        try:
+            self.__cur.execute('SELECT "password" FROM "user" WHERE "email" = %s', (email,))
+            result = self.__cur.fetchone()
+            return {"status": True, "password": result[0]}
+        except psycopg2.Error as e:
+            self.__conn.rollback()
+            return {"status": False, "message": str(e)}
+        finally:
+            self.__cur.close()
+            self.__conn.close()
 
     def check_for_email(self, email: str) -> bool:
         self.__cur.execute('SELECT COUNT(*) FROM "user" WHERE "email" = %s', (email,))
@@ -58,6 +60,18 @@ class User:
             self.__cur.close()
             self.__conn.close()
 
+    def update_password(self, email: str, password: str) -> dict[str, str]:
+        try:
+            sql: str = 'UPDATE "user" SET "password" = %s WHERE "email" = %s'
+            self.__cur.execute(sql, (password, email))
+            self.__conn.commit()
+            return {"status": True, "message": "Password Updated"}
+        except psycopg2.Error as e:
+            self.__conn.rollback()
+            return {"status": False, "message": str(e)}
+        finally:
+            self.__cur.close()
+            self.__conn.close()
 
 # u = User()
 # print(u.verify_user("jane.smith@example.com"))

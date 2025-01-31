@@ -21,12 +21,14 @@ app.add_middleware(
 )
 
 app.mount("/uploads", StaticFiles(directory="uploads"), name="uploads")
-async def save_uploaded_file(uploaded_file, path: str):
+
+
+async def save_uploaded_file(uploaded_file, path: str, name: str):
     if uploaded_file:
         timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")  # Format: YYYYMMDD_HHMMSS
-        file_extension = uploaded_file.filename.split('.')[-1]  # Extract file extension
-        file_name = f"{timestamp}.{file_extension}"  # Construct new filename
-        file_path = f"/uploads/images/{path}/{file_name}"  # Ensure path is used correctly
+        file_extension = uploaded_file.filename.split('.')[-1]
+        file_name = f"{name}_{timestamp}.{file_extension}"
+        file_path = f"/uploads/images/{path}/{file_name}"
 
         with open(file_path, "wb") as buffer:
             buffer.write(await uploaded_file.read())
@@ -48,7 +50,7 @@ async def login(login_request: LoginRequest):
 
 @app.post("/api/send-otp")
 async def send_otp(register: Register):
-    e = Emailer(register.email)
+    e = Emailer(register.email, register.fp)
     return e.send_email()
 
 
@@ -60,13 +62,17 @@ async def verify_otp(request: OTPVerificationRequest):
 @app.post("/api/add-user")
 async def add_user(request: AddUserRequest):
     user = User()
-    return user.insert_user(otp_store['email'], request.password)
+    if not request.fp:
+        return user.insert_user(otp_store['email'], request.password)
+    else:
+        return user.update_password(otp_store['email'], request.password)
 
 
 @app.get("/api/user/{email}")
 async def get_user(email: str):
     user = User()
     return user.get_user_details(email)
+
 
 @app.get("/api/get-profile/{user_id}")
 async def get_user_profile(user_id: str):
@@ -90,10 +96,11 @@ async def add_personal_details(
         citizenshipBack: UploadFile = File(None),
         cardImage: UploadFile = File(None)
 ):
-    profile_image_path = await save_uploaded_file(profileImage, "profile_image")
-    citizenship_front_path = await save_uploaded_file(citizenshipFront, "citizenship_front")
-    citizenship_back_path = await save_uploaded_file(citizenshipBack, "citizenship_back")
-    card_image_path = await save_uploaded_file(cardImage, "card_image")
+    full_name: str = f"{firstName}_{lastName}"
+    profile_image_path = await save_uploaded_file(profileImage, "profile_image", full_name)
+    citizenship_front_path = await save_uploaded_file(citizenshipFront, "citizenship_front", full_name)
+    citizenship_back_path = await save_uploaded_file(citizenshipBack, "citizenship_back", full_name)
+    card_image_path = await save_uploaded_file(cardImage, "card_image", full_name)
 
     p_detail = (2, firstName, middleName, lastName, gender, dateOfBirth, profile_image_path)
     card_detail = (
@@ -114,5 +121,3 @@ async def add_address(req: AddressRequest):
         return {"status": True, "message": "The address was added successfully!", "desc": "The user has been activated"}
     else:
         return {"status": False, "message": "FAILURE"}
-
-

@@ -18,8 +18,9 @@ def otp_verification(otp: int):
 
 
 class Emailer:
-    def __init__(self, recipient_email: str):
-        self.recipient_email: str = recipient_email
+    def __init__(self, recipient_email: str, forgot_password: bool):
+        self.__recipient_email: str = recipient_email
+        self.__forgot_password: bool = forgot_password
         self.smtp_server = "smtp.gmail.com"
         self.smtp_port = 587
 
@@ -30,8 +31,13 @@ class Emailer:
 
     def send_email(self):
         user = User()
-        if user.check_for_email(self.recipient_email):
-            return {"status": False, "message": "User already registered"}
+        if not self.__forgot_password:
+            if user.check_for_email(self.__recipient_email):
+                return {"status": False, "message": "User Already Registered"}
+
+        if self.__forgot_password:
+            if not user.check_for_email(self.__recipient_email):
+                return {"status": False, "message": "User Not Registered"}
 
         """Send an email with OTP verification."""
         if not self.sender_email or not self.sender_password:
@@ -39,7 +45,7 @@ class Emailer:
 
         otp = rnd.randint(100000, 999999)
         otp_store['otp'] = otp
-        otp_store['email'] = str(self.recipient_email)
+        otp_store['email'] = str(self.__recipient_email)
         html_body = html_email_body(otp)
         print(otp_store['otp'])
         print(otp_store['email'])
@@ -47,7 +53,7 @@ class Emailer:
         # Create the email message
         message = MIMEMultipart("alternative")
         message["From"] = self.sender_email
-        message["To"] = self.recipient_email
+        message["To"] = self.__recipient_email
         message["Subject"] = "Railway Ticket Reservation OTP Verification"
         message.attach(MIMEText(html_body, "html"))
 
@@ -56,7 +62,7 @@ class Emailer:
             with smtplib.SMTP(self.smtp_server, self.smtp_port) as server:
                 server.starttls()
                 server.login(self.sender_email, self.sender_password)
-                server.sendmail(self.sender_email, str(self.recipient_email), message.as_string())
+                server.sendmail(self.sender_email, str(self.__recipient_email), message.as_string())
             return {"status": True, "message": "OTP has been sent to your email."}
         except smtplib.SMTPAuthenticationError:
             return {"status": False, "message": "Email Authentication Error"}

@@ -9,12 +9,14 @@ class LoginRequest(BaseModel):
 
 class Register(BaseModel):
     email: str
+    fp: bool
 
 class OTPVerificationRequest(BaseModel):
     otp: str
 
 class AddUserRequest(BaseModel):
     password: str
+    fp: bool
 
 class AddressRequest(BaseModel):
     user_id: str
