@@ -108,7 +108,7 @@ const AddressInput: React.FC<AddressInputProps> = ({data}): ReactElement => {
                                 <Controller
                                     control={form.control}
                                     name="province"
-                                    render={({field}) => (
+                                    render={({field, fieldState: {error}}) => (
                                         <FormItem>
                                             <FormLabel>Province</FormLabel>
                                             <FormControl>
@@ -134,6 +134,7 @@ const AddressInput: React.FC<AddressInputProps> = ({data}): ReactElement => {
                                                     </SelectContent>
                                                 </Select>
                                             </FormControl>
+                                            {error && <FormMessage>{error.message}</FormMessage>}
                                             <FormMessage/>
                                         </FormItem>
                                     )}
@@ -143,7 +144,7 @@ const AddressInput: React.FC<AddressInputProps> = ({data}): ReactElement => {
                                 <Controller
                                     control={form.control}
                                     name="district"
-                                    render={({field}) => (
+                                    render={({field, fieldState: {error}}) => (
                                         <FormItem>
                                             <FormLabel>District</FormLabel>
                                             <FormControl>
@@ -169,6 +170,7 @@ const AddressInput: React.FC<AddressInputProps> = ({data}): ReactElement => {
                                                     </SelectContent>
                                                 </Select>
                                             </FormControl>
+                                            {error && <FormMessage>{error.message}</FormMessage>}
                                             <FormMessage/>
                                         </FormItem>
                                     )}
@@ -178,7 +180,7 @@ const AddressInput: React.FC<AddressInputProps> = ({data}): ReactElement => {
                                 <Controller
                                     control={form.control}
                                     name="municipality"
-                                    render={({field}) => (
+                                    render={({field, fieldState: {error}}) => (
                                         <FormItem>
                                             <FormLabel>Municipality</FormLabel>
                                             <FormControl>
@@ -203,6 +205,7 @@ const AddressInput: React.FC<AddressInputProps> = ({data}): ReactElement => {
                                                     </SelectContent>
                                                 </Select>
                                             </FormControl>
+                                            {error && <FormMessage>{error.message}</FormMessage>}
                                             <FormMessage/>
                                         </FormItem>
                                     )}
@@ -212,7 +215,7 @@ const AddressInput: React.FC<AddressInputProps> = ({data}): ReactElement => {
                                 <Controller
                                     control={form.control}
                                     name="ward"
-                                    render={({field}) => (
+                                    render={({field, fieldState: {error}}) => (
                                         <FormItem>
                                             <FormLabel>Ward Number</FormLabel>
                                             <FormControl>
@@ -233,6 +236,7 @@ const AddressInput: React.FC<AddressInputProps> = ({data}): ReactElement => {
                                                     </SelectContent>
                                                 </Select>
                                             </FormControl>
+                                            {error && <FormMessage>{error.message}</FormMessage>}
                                             <FormMessage/>
                                         </FormItem>
                                     )}

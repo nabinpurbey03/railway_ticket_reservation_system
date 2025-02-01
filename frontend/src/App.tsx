@@ -18,7 +18,7 @@ function App(): React.ReactElement {
                     <Route path="/" element={<Home/>}/>
                     <Route
                         path="/add-user-details"
-                        element={!active || (loggedIn && !active) ? <AddUserDetails/> : <Navigate to="/" replace/>}
+                        element={loggedIn && !active ? <AddUserDetails/> : <Navigate to="/" replace/>}
                     />
                     {/*<Route path="/add-user-details" element={<AddUserDetails/>}/>*/}
                 </Routes>

@@ -56,7 +56,7 @@ export const AddressFormSchema = z.object({
     province: z.string().nonempty("Province is required"),
     district: z.string().nonempty("District is required"),
     municipality: z.string().nonempty("Municipality is required"),
-    ward: z.string().max(2).nonempty("Ward type is required"),
+    ward: z.string().max(2).nonempty("Ward number is required"),
     tole: z.string().nonempty("Tole is required"),
     houseNumber: z.string().optional()
 })

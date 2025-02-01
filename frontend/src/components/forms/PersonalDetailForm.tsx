@@ -17,7 +17,7 @@ import Cookies from "js-cookie";
 
 type FormData = z.infer<typeof PersonalDetailSchema>;
 
-interface Props{
+interface Props {
     changeTab(): void;
 }
 
@@ -131,10 +131,11 @@ const PersonalDetailsForm: React.FC<Props> = ({changeTab}): ReactElement => {
     };
 
     return (
-        <Card className="p-6 mx-auto h-[80vh]">
+        <Card className="p-6 mx-auto min-h-[80vh] my-2">
             <Toaster/>
             <CardContent>
-                <section className="font-bold text-cyan-800 bg-gray-200 rounded p-1 mb-3 text-2xl">General Details</section>
+                <section className="font-bold text-cyan-800 bg-gray-200 rounded p-1 mb-3 text-2xl">General Details
+                </section>
                 <form onSubmit={handleSubmit(onSubmit)}>
                     <div className="grid gap-6">
                         <div className="grid grid-cols-3 gap-4">
