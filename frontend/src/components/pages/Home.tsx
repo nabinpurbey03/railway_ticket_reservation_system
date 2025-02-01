@@ -1,6 +1,6 @@
 import SimpleImageSlider from "react-simple-image-slider";
-import Navbar from "@/components/Navbar.tsx";
-import RegistrationPage from "@/components/RegistrationPage.tsx";
+import Navbar from "@/components/pages/Navbar.tsx";
+import RegistrationPage from "@/components/pages/RegistrationPage.tsx";
 import {ReactElement, useState} from "react";
 import {Toaster} from "@/components/ui/toaster.tsx";
 import Cookies from "js-cookie";

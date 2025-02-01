@@ -1,10 +1,11 @@
 import './App.css'
-import Home from "./components/Home.tsx";
+import Home from "./components/pages/Home.tsx";
 import React from "react";
 import {BrowserRouter, Route, Routes} from "react-router";
-import AddUserDetails from "@/components/AddUserDetails.tsx";
+import AddUserDetails from "@/components/pages/AddUserDetails.tsx";
 import Cookies from "js-cookie";
 import {Navigate} from "react-router-dom";
+import ProfilePage from "@/components/pages/ProfilePage.tsx";
 
 function App(): React.ReactElement {
 
@@ -16,6 +17,7 @@ function App(): React.ReactElement {
             <BrowserRouter>
                 <Routes>
                     <Route path="/" element={<Home/>}/>
+                    <Route path="/profile" element={<ProfilePage/>}/>
                     <Route
                         path="/add-user-details"
                         element={loggedIn && !active ? <AddUserDetails/> : <Navigate to="/" replace/>}

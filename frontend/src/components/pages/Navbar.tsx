@@ -1,5 +1,5 @@
 import React, {ReactElement} from "react";
-import DateTime from "@/components/DateTime.tsx";
+import DateTime from "@/components/pages/DateTime.tsx";
 import {Avatar, AvatarImage} from "@/components/ui/avatar"
 import Cookies from "js-cookie";
 import {
@@ -61,7 +61,7 @@ const Navbar: React.FC<navbarProps> = ({showReg}): ReactElement => {
                                 <DropdownMenuLabel>My Account</DropdownMenuLabel>
                                 <DropdownMenuSeparator/>
                                 <DropdownMenuItem className="text-green-700">
-                                    <Link to={active ? "/" : "/add-user-details"}>Profile</Link>
+                                    <Link to={active ? "/profile" : "/add-user-details"}>Profile</Link>
                                     <span>&#10026;</span></DropdownMenuItem>
                                 <DropdownMenuSeparator/>
                                 <DropdownMenuItem

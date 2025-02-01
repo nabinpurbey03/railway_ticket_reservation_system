@@ -1,5 +1,5 @@
 import React from "react";
-import SignInPage from "@/components/SignInPage";
+import SignInPage from "@/components/pages/SignInPage";
 import {Button} from "@/components/ui/button.tsx";
 
 interface RegistrationPageProps {

@@ -5,13 +5,20 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a6a0bc47-991f-4bd0-ba42-afd9e10cba0b" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/components/pages/ProfilePage.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/src/user.py" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/src/user.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/AddUserDetails.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/AddUserDetails.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/forms/AddressInput.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/forms/AddressInput.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/forms/PersonalDetailForm.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/forms/PersonalDetailForm.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/AddUserDetails.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/pages/AddUserDetails.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/DateTime.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/pages/DateTime.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Home.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/pages/Home.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Navbar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/pages/Navbar.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/RegistrationPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/pages/RegistrationPage.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/SignInPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/pages/SignInPage.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/auth/login-form.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/auth/login-form.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/schema/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/schema/index.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -22,8 +29,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="TypeScript JSX File" />
         <option value="TypeScript File" />
+        <option value="TypeScript JSX File" />
       </list>
     </option>
   </component>
@@ -39,23 +46,23 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;E:/project_2024/railway_ticket_reservation_system/frontend/public/assets/images&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settingsdialog.IDE.editor.postfix.templates&quot;,
-    &quot;ts.external.directory.path&quot;: &quot;E:\\project_2024\\railway_ticket_reservation_system\\frontend\\node_modules\\typescript\\lib&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "main",
+    "ignore.virus.scanning.warn.message": "true",
+    "last_opened_file_path": "E:/project_2024/railway_ticket_reservation_system/frontend/public/assets/images",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "inlay.hints",
+    "ts.external.directory.path": "E:\\project_2024\\railway_ticket_reservation_system\\frontend\\node_modules\\typescript\\lib",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="E:\project_2024\railway_ticket_reservation_system\frontend\public\assets\images" />
@@ -65,11 +72,11 @@
       <recent name="E:\project_2024\railway_ticket_reservation_system\frontend\public" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="E:\project_2024\railway_ticket_reservation_system\frontend\src\components\pages" />
       <recent name="E:\project_2024\railway_ticket_reservation_system\frontend\src\components\forms" />
       <recent name="E:\project_2024\railway_ticket_reservation_system\frontend\src\components" />
       <recent name="E:\project_2024\railway_ticket_reservation_system\frontend\src" />
       <recent name="E:\project_2024\railway_ticket_reservation_system\frontend\public\assets" />
-      <recent name="E:\project_2024\railway_ticket_reservation_system\frontend\public" />
     </key>
   </component>
   <component name="SharedIndexes">
@@ -159,7 +166,8 @@
       <workItem from="1738294286202" duration="3499000" />
       <workItem from="1738299470833" duration="187000" />
       <workItem from="1738324773807" duration="21901000" />
-      <workItem from="1738377298931" duration="5428000" />
+      <workItem from="1738377298931" duration="17845000" />
+      <workItem from="1738407701590" duration="4954000" />
     </task>
     <servers />
   </component>

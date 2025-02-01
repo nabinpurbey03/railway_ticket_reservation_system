@@ -1,4 +1,4 @@
-import Navbar from "@/components/Navbar.tsx";
+import Navbar from "@/components/pages/Navbar.tsx";
 import React, {ReactElement, useState} from "react";
 import AddressInput from "@/components/forms/AddressInput.tsx";
 import nepal from "@/components/forms/local_levels_nepal_eng.json";
