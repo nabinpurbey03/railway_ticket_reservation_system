@@ -50,10 +50,9 @@ class PersonalDetail:
             self.__conn.rollback()
             return {"status": False, "message": f"Database error: {e}"}
 
-        finally:
-            # Close the connection if it's no longer needed
-            if self.__conn:
-                self.__conn.close()
+    def __del__(self):
+        self.__cur.close()
+        self.__conn.close()
 
 
 

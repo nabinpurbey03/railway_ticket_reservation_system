@@ -29,3 +29,28 @@ class Address:
         finally:
             self.__cur.close()
             self.__conn.close()
+
+    def get_address(self, _id: int):
+        try:
+            sql: str = '''SELECT province, district, municipality, ward, tole, house_number 
+            FROM address WHERE user_id = %s'''
+            self.__cur.execute(sql, (_id,))
+            result = self.__cur.fetchone()
+            if result:
+                keys = ["province", "district", "municipality", "ward", "tole", "house_number"]
+                return {"status": True, "address": dict(zip(keys, result))}
+            else:
+                return {"status": False, "data": None}
+        except psycopg2.Error as e:
+            self.__conn.rollback()
+            return {"status": False, "data": e}
+
+
+    def __del__(self):
+        self.__cur.close()
+        self.__conn.close()
+
+
+
+# addr = Address()
+# print(addr.get_address(2))

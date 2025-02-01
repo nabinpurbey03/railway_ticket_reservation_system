@@ -132,7 +132,8 @@ async def change_password(req: ChangePassword):
     return user.update_password(req.email, req.new_password)
 
 
-@app.get("/api/get-profile/{user_id}")
+@app.get("/api/get-address/{user_id}")
 async def get_user_profile(user_id: str):
-    pass
+    addr = Address()
+    return addr.get_address(int(user_id))
 

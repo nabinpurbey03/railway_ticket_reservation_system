@@ -56,9 +56,6 @@ class User:
         except psycopg2.Error as e:
             self.__conn.rollback()
             return False
-        finally:
-            self.__cur.close()
-            self.__conn.close()
 
     def update_password(self, email: str, password: str) -> dict[str, str]:
         try:
@@ -69,9 +66,10 @@ class User:
         except psycopg2.Error as e:
             self.__conn.rollback()
             return {"status": False, "message": str(e)}
-        finally:
-            self.__cur.close()
-            self.__conn.close()
+
+    def __del__(self):
+        self.__cur.close()
+        self.__conn.close()
 
 
 # u = User()
