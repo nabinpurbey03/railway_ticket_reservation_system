@@ -27,3 +27,8 @@ class AddressRequest(BaseModel):
     tole: str
     house_number: str
 
+
+class ChangePassword(BaseModel):
+    email: str
+    new_password: str
+

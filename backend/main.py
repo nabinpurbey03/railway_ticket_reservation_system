@@ -3,7 +3,7 @@ from fastapi.staticfiles import StaticFiles
 from fastapi import FastAPI, HTTPException, Form, UploadFile, File
 from fastapi.middleware.cors import CORSMiddleware
 
-from models import LoginRequest, Register, OTPVerificationRequest, AddUserRequest, AddressRequest
+from models import LoginRequest, Register, OTPVerificationRequest, AddUserRequest, AddressRequest, ChangePassword
 from src.address import Address
 from src.card import Card
 from src.emailer import Emailer, otp_store, otp_verification
@@ -124,3 +124,15 @@ async def add_address(req: AddressRequest):
         return {"status": True, "message": "The address was added successfully!", "desc": "The user has been activated"}
     else:
         return {"status": False, "message": "FAILURE"}
+
+
+@app.post("/api/change-password")
+async def change_password(req: ChangePassword):
+    user = User()
+    return user.update_password(req.email, req.new_password)
+
+
+@app.get("/api/get-profile/{user_id}")
+async def get_user_profile(user_id: str):
+    pass
+

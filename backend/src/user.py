@@ -73,5 +73,6 @@ class User:
             self.__cur.close()
             self.__conn.close()
 
+
 # u = User()
 # print(u.verify_user("jane.smith@example.com"))
