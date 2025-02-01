@@ -265,7 +265,7 @@ const AddressInput: React.FC<AddressInputProps> = ({data}): ReactElement => {
                                     name="houseNumber"
                                     render={({field}) => (
                                         <FormItem>
-                                            <FormLabel>House Number</FormLabel>
+                                            <FormLabel>Street or House Number</FormLabel>
                                             <FormControl>
                                                 <Input {...field} type="text"/>
                                             </FormControl>

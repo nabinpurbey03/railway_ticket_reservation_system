@@ -89,6 +89,7 @@ const LoginForm: React.FC<Props> = ({closeRegisterModal, nextTab}) => {
                     role: userResponse.data.role,
                     is_active: userResponse.data.is_active,
                     loggedIn: true,
+                    email: data.email,
                 };
 
                 setUserCookies(user);

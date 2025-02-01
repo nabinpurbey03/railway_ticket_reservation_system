@@ -8,10 +8,10 @@
     background-color: rgba(23, 37, 84, 0.7);
 }
 
-/*#nav-ele {*/
-/*    position: relative;*/
-/*    overflow: hidden; !* Ensures the pseudo-element doesn't overflow *!*/
-/*}*/
+#nav-ele {
+    position: relative;
+    overflow: hidden; /* Ensures the pseudo-element doesn't overflow */
+}
 
 /** Text Gradient Example */
 .text-gradient {

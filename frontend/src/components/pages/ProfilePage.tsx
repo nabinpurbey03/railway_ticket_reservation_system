@@ -11,7 +11,7 @@ import {
     DialogTitle,
     DialogTrigger,
 } from "@/components/ui/dialog"
-import React, {ReactElement, useState} from "react";
+import React, {ReactElement, useEffect, useState} from "react";
 import {Input} from "@/components/ui/input.tsx";
 import {Form, FormControl, FormField, FormItem, FormLabel, FormMessage} from "@/components/ui/form.tsx";
 import {Eye, EyeOff} from "lucide-react";
@@ -23,27 +23,51 @@ import {toast} from "@/hooks/use-toast.ts";
 import {Toaster} from "@/components/ui/toaster.tsx";
 import axios from "axios";
 import bcrypt from "bcryptjs";
+import Cookies from "js-cookie";
+
+
+const getAddress = async (id: string) => {
+    try {
+        const response = await axios.get(`${import.meta.env.VITE_API_URL}/api/get-address/${id}`);
+        return response.data; // Return only the data
+    } catch (error) {
+        console.error("Failed to fetch address:", error);
+        return null;
+    }
+};
 
 const ProfilePage = () => {
+    const [address, setAddress] = useState<any>(null);
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+        const fetchAddress = async () => {
+            const userId = Cookies.get("id") ?? "7";
+            const data = await getAddress(userId);
+            setAddress(data?.address ?? null);
+            setLoading(false);
+        };
+        fetchAddress();
+    }, []);
+
     return (
         <>
-            <Navbar showReg={function (): void {
-            }}/>
+            <Navbar showReg={() => {}} />
             <div className="flex justify-center items-center w-full">
                 <Card className="w-2/3">
-                    <Toaster/>
+                    <Toaster />
                     <CardContent>
-                        <div className="bg-gray-100 flex justify-center items-center space-x-10 rounded-lg py-2">
+                        <div className="bg-gray-100 flex justify-center items-center space-x-10 rounded-lg py-4">
                             <Avatar className="w-32 h-32">
-                                <AvatarImage src="/assets/images/emblem_of_nepal.svg"/>
+                                <AvatarImage src={Cookies.get("image_url") ?? "/assets/images/emblem_of_nepal.svg"} />
                                 <AvatarFallback>RN</AvatarFallback>
                             </Avatar>
                             <div>
-                                <h1 className="font-bold text-2xl">Nabin Purbey</h1>
-                                <h1 className="text-gray-400">example@provider.com</h1>
+                                <h1 className="font-bold text-2xl">{Cookies.get("first_name")} {Cookies.get("last_name")}</h1>
+                                <h1 className="text-gray-400">{Cookies.get("email")}</h1>
                             </div>
                         </div>
-                        {/*<div>*/}
+
                         <Card className="flex flex-col text-start bg-gray-100 mt-5">
                             <CardHeader>
                                 <CardTitle>Personal Information</CardTitle>
@@ -51,23 +75,31 @@ const ProfilePage = () => {
                             </CardHeader>
                             <CardContent>
                                 <h1 className="font-bold text-lg">Name</h1>
-                                <p>Nabin Purbey</p>
+                                <p className="text-gray-600 text-sm">{Cookies.get("first_name")} {Cookies.get("last_name")}</p>
+
                                 <h1 className="font-bold text-lg mt-5">Address</h1>
-                                <p>Mulabari-8, Dhanushadham Municipality</p>
-                                <p>Dhanusha, Madhesh Pradesh</p>
-                                <div className="flex justify-between w-full items-center">
+                                {loading ? (
+                                    <p className="text-gray-400">Loading...</p>
+                                ) : address ? (
+                                    <>
+                                        <p className="text-gray-600 text-sm">{address.tole}-{address.ward}, {address.municipality}</p>
+                                        <p className="text-gray-600 text-sm">{address.district}, {address.province}</p>
+                                    </>
+                                ) : (
+                                    <p className="text-red-500">Address not found</p>
+                                )}
+
+                                <div className="flex justify-between w-full items-center mt-5">
                                     <div>
-                                        <h1 className="font-bold text-lg mt-5">Password</h1>
-                                        <p>********</p>
+                                        <h1 className="font-bold text-lg">Password</h1>
+                                        <p className="text-gray-600 text-sm">********</p>
                                     </div>
-                                    <div>
-                                        <ChangePassword triggerButton={(<Button variant="outline">Change</Button>)}/>
-                                    </div>
+                                    <ChangePassword triggerButton={<Button variant="outline">Change</Button>} />
                                 </div>
                             </CardContent>
                         </Card>
-                        {/*</div>*/}
                     </CardContent>
+
                     <CardFooter className="flex justify-between">
                         <Button variant="outline">Cancel</Button>
                         <Button>Deploy</Button>
@@ -75,8 +107,8 @@ const ProfilePage = () => {
                 </Card>
             </div>
         </>
-    )
-}
+    );
+};
 
 export default ProfilePage;
 
@@ -161,7 +193,7 @@ const ChangePassword: React.FC<Props> = ({triggerButton}): ReactElement => {
 
                 setTimeout(() => setOpen(false), 500); // 🔹 Close dialog after success
 
-                
+
 
             } catch (error) {
                 const errorMessage = error instanceof Error ? error.message : "An unknown error occurred";

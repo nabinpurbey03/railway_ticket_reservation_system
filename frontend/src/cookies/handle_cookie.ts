@@ -7,6 +7,7 @@ interface UserCookies {
     role: string;
     is_active: boolean;
     loggedIn: boolean;
+    email: string;
 }
 
 export const setUserCookies = (user: UserCookies): void => {
@@ -15,6 +16,7 @@ export const setUserCookies = (user: UserCookies): void => {
     Cookies.set('role', user.role, { expires: expirationTime });
     Cookies.set('is_active', user.is_active.toString(), { expires: expirationTime });
     Cookies.set('loggedIn', user.loggedIn.toString(), { expires: expirationTime });
+    Cookies.set('email', user.email, { expires: expirationTime });
 };
 
 interface NameCookies {
@@ -38,6 +40,7 @@ export const destroyCookies = (): void => {
     Cookies.remove('is_active');
     Cookies.remove('image_url');
     Cookies.remove('loggedIn');
+    Cookies.remove('email');
     window.location.href = '/';
 }
 

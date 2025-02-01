@@ -8,7 +8,7 @@ interface RegistrationPageProps {
 
 const RegistrationPage: React.FC<RegistrationPageProps> = ({closeReg}) => {
     return (
-        <div className="w-screen h-screen flex items-center justify-center bg-black bg-opacity-60">
+        <div className="w-screen h-screen flex items-center justify-center bg-black bg-opacity-85">
             {/* Main Card */}
             <div className="w-2/5 bg-white rounded-lg pb-5 shadow-lg min-h-[535px]">
                 {/* Header Section */}

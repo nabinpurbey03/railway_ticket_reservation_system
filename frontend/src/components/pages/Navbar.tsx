@@ -40,7 +40,7 @@ const Navbar: React.FC<navbarProps> = ({showReg}): ReactElement => {
             </div>
 
             {/* Right Section */}
-            <div className="basis-3/5 flex flex-row justify-end">
+            <div id="nav-ele" className="basis-3/5 flex flex-row justify-end">
                 <div className="flex flex-row justify-evenly items-center mx-3 ">
                     <img
                         alt="Waving Nepal Flag"
