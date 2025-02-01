@@ -17,7 +17,9 @@ function App(): React.ReactElement {
             <BrowserRouter>
                 <Routes>
                     <Route path="/" element={<Home/>}/>
-                    <Route path="/profile" element={<ProfilePage/>}/>
+                    <Route path="/profile"
+                           element={active ? <ProfilePage/> : <Navigate to="/" replace/>}
+                    />
                     <Route
                         path="/add-user-details"
                         element={loggedIn && !active ? <AddUserDetails/> : <Navigate to="/" replace/>}
