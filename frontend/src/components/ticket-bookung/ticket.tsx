@@ -23,7 +23,7 @@ const Ticket = () => {
                         <Tooltip>
                             <TooltipTrigger>
                                 <Avatar className="h-[80px] w-[83px] border-4 border-white">
-                                    <AvatarImage src="/assets/images/train_icon.png" />
+                                    <AvatarImage src="/assets/images/TrainTicket.gif" />
                                 </Avatar>
                             </TooltipTrigger>
                             <TooltipContent>
