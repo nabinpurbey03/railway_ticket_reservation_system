@@ -5,13 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a6a0bc47-991f-4bd0-ba42-afd9e10cba0b" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/public/assets/images/train_icon.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/ticket-bookung/ticket-booking-form.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/ticket-bookung/ticket.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/pages/Home.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/pages/Home.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/ticket-bookung/ticket.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ticket-bookung/ticket.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -162,7 +157,7 @@
       <workItem from="1738407701590" duration="12028000" />
       <workItem from="1738421123545" duration="265000" />
       <workItem from="1738466290747" duration="1376000" />
-      <workItem from="1738505138976" duration="3829000" />
+      <workItem from="1738505138976" duration="5860000" />
     </task>
     <servers />
   </component>

@@ -16,13 +16,13 @@ import TicketBookingForm from "@/components/ticket-bookung/ticket-booking-form.t
 
 const Ticket = () => {
     return (
-        <main className="absolute left-10 bottom-10 bg-white rounded-full">
+        <main className="fixed left-20 bottom-16 bg-black rounded-full hover:bg-white transition-all">
             <Popover>
                 <PopoverTrigger>
                     <TooltipProvider>
                         <Tooltip>
                             <TooltipTrigger>
-                                <Avatar className="h-[100px] w-[100px] border-8 border-white">
+                                <Avatar className="h-[80px] w-[83px] border-4 border-white">
                                     <AvatarImage src="/assets/images/train_icon.png" />
                                 </Avatar>
                             </TooltipTrigger>
@@ -32,7 +32,7 @@ const Ticket = () => {
                         </Tooltip>
                     </TooltipProvider>
                 </PopoverTrigger>
-                <PopoverContent><TicketBookingForm /></PopoverContent>
+                <PopoverContent className="w-full ml-32 shadow-2xl"><TicketBookingForm /></PopoverContent>
             </Popover>
         </main>
     );
