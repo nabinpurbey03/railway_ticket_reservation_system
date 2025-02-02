@@ -4,6 +4,7 @@ import RegistrationPage from "@/components/pages/RegistrationPage.tsx";
 import {ReactElement, useState} from "react";
 import {Toaster} from "@/components/ui/toaster.tsx";
 import Cookies from "js-cookie";
+import Ticket from "@/components/ticket-bookung/ticket.tsx";
 
 export default function Home(): ReactElement {
 
@@ -37,6 +38,7 @@ export default function Home(): ReactElement {
                     reg && !loggedIn ? <RegistrationPage closeReg={regPageHandler}/> : null
                 }
             </div>
+            <Ticket />
 
         </div>
     )
