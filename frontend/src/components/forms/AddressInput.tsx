@@ -94,7 +94,7 @@ const AddressInput: React.FC<AddressInputProps> = ({data}): ReactElement => {
     };
 
     return (
-        <Card className="p-6 mx-auto h-[80vh]">
+        <Card className="p-6 mx-auto">
             <Toaster/>
             <CardContent>
                 <section className="font-bold text-cyan-800 bg-gray-200 rounded p-1 mb-3 text-2xl">

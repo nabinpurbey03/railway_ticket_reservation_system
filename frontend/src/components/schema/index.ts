@@ -14,6 +14,12 @@ export const ChangePasswordSchema = z.object({
     confirmPassword: passwordSchema
 });
 
+const NameSchema = z
+        .string()
+        .min(2, { message: "Name must be at least 2 characters long" })
+        .max(20, { message: "Name must not exceed 50 characters" })
+        .regex(/^[a-zA-Z\s]+$/, { message: "Name can only contain letters and spaces" })
+
 
 export const LoginSchema = z.object({
     email: z.string().email({
@@ -34,14 +40,18 @@ export const PasswordConfirmationSchema = z.object({
 })
 
 export const PersonalDetailSchema = z.object({
-    firstName: z.string().nonempty("First name is required"),
-    middleName: z.string().optional(),
-    lastName: z.string().nonempty("Last name is required"),
+    firstName: NameSchema,
+    middleName: NameSchema.optional(),
+    lastName: NameSchema,
     dateOfBirth: z.string().nonempty("Date of birth is required"),
     gender: z.enum(["M", "F", "O"], {required_error: "Gender is required"}),
     cardType: z.enum(["Citizenship", "Passport", "National Identity Card"], {required_error: "Card type is required"}),
     issuedDistrict: z.string().nonempty("Issued District is required"),
-    cardNumber: z.string().min(10, {message: "Card Number is required"}),
+    cardNumber: z
+        .string()
+        .regex(/^[\d\s-]+$/, { message: "Card number can only contain numbers, spaces, or hyphens" })
+        .transform((val) => val.replace(/\D/g, "")) // Remove non-numeric characters
+        .refine((val) => val.length <= 12, { message: "Card must be less than 13 digits" }),
     profileImage: z.any(),
     citizenshipFront: z.any().optional(),
     citizenshipBack: z.any().optional(),

@@ -13,7 +13,7 @@ const AddUserDetails: React.FC = (): ReactElement => {
             <Navbar showReg={function (): void {
                 throw new Error("Function not implemented.");
             }}/>
-            <div className="text-black flex bg-[#0d3b66] items-center justify-center min-h-[85vh]">
+            <div className="text-black flex bg-gray-200 items-center justify-center min-h-[85vh]">
                 <div className="w-4/5 shadow-2xl">
                     {tab ? (<PersonalDetailForm changeTab={() => setTab(false)}/>) : (<AddressInput data={nepal}/>)}
                 </div>
