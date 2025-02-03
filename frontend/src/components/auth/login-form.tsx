@@ -81,7 +81,6 @@ const LoginForm: React.FC<Props> = ({closeRegisterModal, nextTab}) => {
             }
 
             toast({title: "Login successful"});
-
             const userResponse = await fetchUserProfile(data.email);
             if (userResponse.data.status) {
                 const user = {

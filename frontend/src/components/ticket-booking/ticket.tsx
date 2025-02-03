@@ -10,7 +10,7 @@ import {
     PopoverContent,
     PopoverTrigger,
 } from "@/components/ui/popover"
-import TicketBookingForm from "@/components/ticket-bookung/ticket-booking-form.tsx";
+import TicketBookingForm from "@/components/ticket-booking/ticket-booking-form.tsx";
 
 
 

@@ -1,34 +1,50 @@
-import './App.css'
-import Home from "./components/pages/Home.tsx";
-import React from "react";
-import {BrowserRouter, Route, Routes} from "react-router";
-import AddUserDetails from "@/components/pages/AddUserDetails.tsx";
+import "./App.css"
+import React, { createContext, useEffect, useState } from "react";
+import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
 import Cookies from "js-cookie";
-import {Navigate} from "react-router-dom";
+import Home from "./components/pages/Home.tsx";
+import AddUserDetails from "@/components/pages/AddUserDetails.tsx";
 import ProfilePage from "@/components/pages/ProfilePage.tsx";
 
-function App(): React.ReactElement {
+const AuthContext = createContext<{ active: boolean; loggedIn: boolean }>({
+    active: false,
+    loggedIn: false,
+});
 
-    const active = Cookies.get("is_active") === "true";
-    const loggedIn = Cookies.get("loggedIn") === "true";
+function App(): React.ReactElement {
+    const [authState, setAuthState] = useState({
+        active: Cookies.get("is_active") === "true",
+        loggedIn: Cookies.get("loggedIn") === "true",
+    });
+
+    useEffect(() => {
+        const interval = setInterval(() => {
+            setAuthState({
+                active: Cookies.get("is_active") === "true",
+                loggedIn: Cookies.get("loggedIn") === "true",
+            });
+        }, 1000); // Check every second
+
+        return () => clearInterval(interval); // Cleanup interval on unmount
+    }, []);
 
     return (
-        <>
+        <AuthContext.Provider value={authState}>
             <BrowserRouter>
                 <Routes>
-                    <Route path="/" element={<Home/>}/>
-                    <Route path="/profile"
-                           element={active ? <ProfilePage/> : <Navigate to="/" replace/>}
+                    <Route path="/" element={<Home />} />
+                    <Route
+                        path="/profile"
+                        element={authState.active ? <ProfilePage /> : <Navigate to="/" replace />}
                     />
                     <Route
                         path="/add-user-details"
-                        element={loggedIn && !active ? <AddUserDetails/> : <Navigate to="/" replace/>}
+                        element={authState.loggedIn && !authState.active ? <AddUserDetails /> : <Navigate to="/" replace />}
                     />
-                    {/*<Route path="/add-user-details" element={<AddUserDetails/>}/>*/}
                 </Routes>
             </BrowserRouter>
-        </>
-    )
+        </AuthContext.Provider>
+    );
 }
 
-export default App
+export default App;
