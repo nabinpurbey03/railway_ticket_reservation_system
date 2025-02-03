@@ -1,10 +1,10 @@
 import {Avatar, AvatarImage} from "@/components/ui/avatar.tsx";
-import {
-    Tooltip,
-    TooltipContent,
-    TooltipProvider,
-    TooltipTrigger,
-} from "@/components/ui/tooltip"
+// import {
+//     Tooltip,
+//     TooltipContent,
+//     TooltipProvider,
+//     TooltipTrigger,
+// } from "@/components/ui/tooltip"
 import {
     Popover,
     PopoverContent,
@@ -16,21 +16,22 @@ import TicketBookingForm from "@/components/ticket-booking/ticket-booking-form.t
 
 const Ticket = () => {
     return (
-        <main className="fixed left-20 bottom-16 bg-black rounded-full hover:bg-white transition-all">
+        <main className="fixed left-20 bottom-16 rounded-full bg-white border-4">
             <Popover>
                 <PopoverTrigger>
-                    <TooltipProvider>
-                        <Tooltip>
-                            <TooltipTrigger>
-                                <Avatar className="h-[80px] w-[83px] border-4 border-white">
-                                    <AvatarImage src="/assets/images/TrainTicket.gif" />
-                                </Avatar>
-                            </TooltipTrigger>
-                            <TooltipContent>
-                                <p>Book Tickets</p>
-                            </TooltipContent>
-                        </Tooltip>
-                    </TooltipProvider>
+                    <Avatar className="h-[75px] w-[78px] p-3">
+                        <AvatarImage src="/assets/images/output-onlinegiftools.gif" />
+                    </Avatar>
+                    {/*<TooltipProvider>*/}
+                    {/*    <Tooltip>*/}
+                    {/*        <TooltipTrigger>*/}
+                    {/*            */}
+                    {/*        </TooltipTrigger>*/}
+                    {/*        <TooltipContent>*/}
+                    {/*            <p>Book Tickets</p>*/}
+                    {/*        </TooltipContent>*/}
+                    {/*    </Tooltip>*/}
+                    {/*</TooltipProvider>*/}
                 </PopoverTrigger>
                 <PopoverContent className="w-full ml-32 shadow-2xl"><TicketBookingForm /></PopoverContent>
             </Popover>
