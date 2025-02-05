@@ -1,4 +1,4 @@
-import {Card, CardContent, CardDescription, CardHeader, CardTitle} from "@/components/ui/card.tsx";
+import {Card, CardContent, CardHeader, CardTitle} from "@/components/ui/card.tsx";
 import {Form, FormControl, FormItem, FormLabel, FormMessage} from "@/components/ui/form.tsx";
 import {Controller, useForm} from "react-hook-form";
 import {zodResolver} from "@hookform/resolvers/zod";
@@ -6,6 +6,8 @@ import {TicketSchema} from "@/components/schema";
 import {z} from "zod";
 import {Select, SelectContent, SelectItem, SelectTrigger, SelectValue} from "@/components/ui/select.tsx";
 import React from "react";
+import {destinations} from "@/components/ticket-booking/destinations.ts";
+import {Button} from "@/components/ui/button.tsx";
 
 const TicketBookingForm: React.FC = () => {
 
@@ -25,7 +27,7 @@ const TicketBookingForm: React.FC = () => {
         <Card>
             <CardHeader>
                 <CardTitle>Book Your Ticket Here</CardTitle>
-                <CardDescription>Card Description</CardDescription>
+                {/*<CardDescription>Card Description</CardDescription>*/}
             </CardHeader>
             <CardContent>
                 <Form {...form}>
@@ -43,9 +45,11 @@ const TicketBookingForm: React.FC = () => {
                                                         <SelectValue placeholder="From" />
                                                     </SelectTrigger>
                                                     <SelectContent>
-                                                        <SelectItem value={"all"}>Janakpur</SelectItem>
-                                                        <SelectItem value={"mall"}>Janakpur</SelectItem>
-                                                        <SelectItem value={"call"}>Janakpur</SelectItem>
+                                                        {destinations.map((dest, index) => (<SelectItem
+                                                            value={dest.place}
+                                                            key={index}>
+                                                            {dest.place}
+                                                        </SelectItem>))}
                                                     </SelectContent>
                                                 </Select>
                                             </FormControl>
@@ -83,8 +87,65 @@ const TicketBookingForm: React.FC = () => {
                                 </Controller>
 
                             </div>
+                            <div className="grid grid-cols-2 gap-4">
+                                <Controller
+                                    name="from"
+                                    render={({field, fieldState: {error}}) => (
+                                        <FormItem>
+                                            <FormLabel>From</FormLabel>
+                                            <FormControl>
+                                                <Select value={field.value}>
+                                                    <SelectTrigger>
+                                                        <SelectValue placeholder="From" />
+                                                    </SelectTrigger>
+                                                    <SelectContent>
+                                                        {destinations.map((dest, index) => (<SelectItem
+                                                            value={dest.place}
+                                                            key={index}>
+                                                            {dest.place}
+                                                        </SelectItem>))}
+                                                    </SelectContent>
+                                                </Select>
+                                            </FormControl>
+                                            {error && <FormMessage>{error.message}</FormMessage>}
+                                            <FormMessage/>
+                                        </FormItem>
+                                    )}
+                                >
+                                </Controller>
+
+
+                            {/*    For to destination   */}
+                                <Controller
+                                    name="from"
+                                    render={({field, fieldState: {error}}) => <FormItem>
+                                        <FormLabel>To</FormLabel>
+                                        <FormControl>
+                                            <Select value={field.value}>
+                                                <SelectTrigger>
+                                                    <SelectValue placeholder="From" />
+                                                </SelectTrigger>
+                                                <SelectContent>
+                                                    {destinations.map((dest, index) => (<SelectItem
+                                                            value={dest.place}
+                                                            key={index}>
+                                                            {dest.place}
+                                                        </SelectItem>))}
+                                                </SelectContent>
+                                            </Select>
+                                        </FormControl>
+                                        {error && <FormMessage>{error.message}</FormMessage>}
+                                        <FormMessage/>
+                                    </FormItem>}
+                                >
+                                </Controller>
+
+                            </div>
                         </div>
                     </form>
+                    <Button type="submit" className="w-1/5 mt-4" variant={"constructive"}>
+                        Book
+                    </Button>
                 </Form>
             </CardContent>
         </Card>
