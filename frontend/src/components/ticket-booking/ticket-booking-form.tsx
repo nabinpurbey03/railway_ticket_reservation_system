@@ -1,155 +1,87 @@
-import {Card, CardContent, CardHeader, CardTitle} from "@/components/ui/card.tsx";
-import {Form, FormControl, FormItem, FormLabel, FormMessage} from "@/components/ui/form.tsx";
-import {Controller, useForm} from "react-hook-form";
-import {zodResolver} from "@hookform/resolvers/zod";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import { faListCheck, faTableList} from "@fortawesome/free-solid-svg-icons";
+import {toast} from "@/hooks/use-toast.ts";
 import {TicketSchema} from "@/components/schema";
+import {useForm} from "react-hook-form";
 import {z} from "zod";
-import {Select, SelectContent, SelectItem, SelectTrigger, SelectValue} from "@/components/ui/select.tsx";
-import React from "react";
-import {destinations} from "@/components/ticket-booking/destinations.ts";
-import {Button} from "@/components/ui/button.tsx";
+import { zodResolver } from "@hookform/resolvers/zod"
+import {
+    Form,
+    FormControl,
+    FormField,
+    FormItem,
+    FormLabel,
+    FormMessage,
+} from "@/components/ui/form"
+import {
+    Select,
+    SelectContent,
+    SelectItem,
+    SelectTrigger,
+    SelectValue,
+} from "@/components/ui/select"
+import {Button} from "react-day-picker";
 
-const TicketBookingForm: React.FC = () => {
+const TicketBookingForm = () => {
 
-    const form = useForm({
-        resolver: zodResolver(TicketSchema),
-        defaultValues: {
-            form: "",
-            to: "",
+    function form() {
+        const form = useForm<z.infer<typeof TicketSchema>>({
+            resolver: zodResolver(TicketSchema),
+        })
+
+        function onSubmit(data: z.infer<typeof TicketSchema>) {
+            toast({
+                title: "You submitted the following values:",
+                description: (
+                    <pre className="mt-2 w-[340px] rounded-md bg-slate-950 p-4">
+          <code className="text-white">{JSON.stringify(data, null, 2)}</code>
+        </pre>
+                ),
+            })
         }
-    })
 
-    const onSubmit = async (formData: z.infer<typeof TicketSchema>) => {
-        console.log(formData)
+        return (
+            <main>
+                <div className="grid grid-cols-2 gap-4 text-white font-bold text-lg">
+                    <div className="bg-blue-950 py-1 rounded text-center">
+                        <FontAwesomeIcon icon={faListCheck} className="mr-5"/>Ticket Status
+                    </div>
+                    <div className="bg-blue-950 py-1 rounded text-center">
+                        <FontAwesomeIcon icon={faTableList} className="mr-5"/>Charts / Vacancy
+                    </div>
+                </div>
+                <div>
+                    {/*<Form {...form}>*/}
+                    {/*    <form onSubmit={form.handleSubmit(onSubmit)} className="w-2/3 space-y-6">*/}
+                    {/*        <FormField*/}
+                    {/*            control={form.control}*/}
+                    {/*            name="from"*/}
+                    {/*            render={({field}) => (*/}
+                    {/*                <FormItem>*/}
+                    {/*                    <FormLabel>Email</FormLabel>*/}
+                    {/*                    <Select onValueChange={field.onChange} defaultValue={field.value}>*/}
+                    {/*                        <FormControl>*/}
+                    {/*                            <SelectTrigger>*/}
+                    {/*                                <SelectValue placeholder="Select a verified email to display"/>*/}
+                    {/*                            </SelectTrigger>*/}
+                    {/*                        </FormControl>*/}
+                    {/*                        <SelectContent>*/}
+                    {/*                            <SelectItem value="m@example.com">m@example.com</SelectItem>*/}
+                    {/*                            <SelectItem value="m@google.com">m@google.com</SelectItem>*/}
+                    {/*                            <SelectItem value="m@support.com">m@support.com</SelectItem>*/}
+                    {/*                        </SelectContent>*/}
+                    {/*                    </Select>*/}
+                    {/*                    <FormMessage/>*/}
+                    {/*                </FormItem>*/}
+                    {/*            )}*/}
+                    {/*        />*/}
+                    {/*        <Button type="submit">Submit</Button>*/}
+                    {/*    </form>*/}
+                    {/*</Form>*/}
+                </div>
+            </main>
+        )
     }
-
-    return(
-        <Card>
-            <CardHeader>
-                <CardTitle>Book Your Ticket Here</CardTitle>
-                {/*<CardDescription>Card Description</CardDescription>*/}
-            </CardHeader>
-            <CardContent>
-                <Form {...form}>
-                    <form onSubmit={form.handleSubmit(onSubmit)}>
-                        <div className="space-y-4">
-                            <div className="grid grid-cols-2 gap-4">
-                                <Controller
-                                    name="from"
-                                    render={({field, fieldState: {error}}) => (
-                                        <FormItem>
-                                            <FormLabel>From</FormLabel>
-                                            <FormControl>
-                                                <Select value={field.value}>
-                                                    <SelectTrigger>
-                                                        <SelectValue placeholder="From" />
-                                                    </SelectTrigger>
-                                                    <SelectContent>
-                                                        {destinations.map((dest, index) => (<SelectItem
-                                                            value={dest.place}
-                                                            key={index}>
-                                                            {dest.place}
-                                                        </SelectItem>))}
-                                                    </SelectContent>
-                                                </Select>
-                                            </FormControl>
-                                            {error && <FormMessage>{error.message}</FormMessage>}
-                                            <FormMessage/>
-                                        </FormItem>
-                                    )}
-                                >
-                                </Controller>
-
-
-                            {/*    For to destination   */}
-                                <Controller
-                                    name="from"
-                                    render={({field, fieldState: {error}}) => (
-                                        <FormItem>
-                                            <FormLabel>To</FormLabel>
-                                            <FormControl>
-                                                <Select value={field.value}>
-                                                    <SelectTrigger>
-                                                        <SelectValue placeholder="From" />
-                                                    </SelectTrigger>
-                                                    <SelectContent>
-                                                        <SelectItem value={"all"}>Janakpur</SelectItem>
-                                                        <SelectItem value={"mall"}>Janakpur</SelectItem>
-                                                        <SelectItem value={"call"}>Janakpur</SelectItem>
-                                                    </SelectContent>
-                                                </Select>
-                                            </FormControl>
-                                            {error && <FormMessage>{error.message}</FormMessage>}
-                                            <FormMessage/>
-                                        </FormItem>
-                                    )}
-                                >
-                                </Controller>
-
-                            </div>
-                            <div className="grid grid-cols-2 gap-4">
-                                <Controller
-                                    name="from"
-                                    render={({field, fieldState: {error}}) => (
-                                        <FormItem>
-                                            <FormLabel>From</FormLabel>
-                                            <FormControl>
-                                                <Select value={field.value}>
-                                                    <SelectTrigger>
-                                                        <SelectValue placeholder="From" />
-                                                    </SelectTrigger>
-                                                    <SelectContent>
-                                                        {destinations.map((dest, index) => (<SelectItem
-                                                            value={dest.place}
-                                                            key={index}>
-                                                            {dest.place}
-                                                        </SelectItem>))}
-                                                    </SelectContent>
-                                                </Select>
-                                            </FormControl>
-                                            {error && <FormMessage>{error.message}</FormMessage>}
-                                            <FormMessage/>
-                                        </FormItem>
-                                    )}
-                                >
-                                </Controller>
-
-
-                            {/*    For to destination   */}
-                                <Controller
-                                    name="from"
-                                    render={({field, fieldState: {error}}) => <FormItem>
-                                        <FormLabel>To</FormLabel>
-                                        <FormControl>
-                                            <Select value={field.value}>
-                                                <SelectTrigger>
-                                                    <SelectValue placeholder="From" />
-                                                </SelectTrigger>
-                                                <SelectContent>
-                                                    {destinations.map((dest, index) => (<SelectItem
-                                                            value={dest.place}
-                                                            key={index}>
-                                                            {dest.place}
-                                                        </SelectItem>))}
-                                                </SelectContent>
-                                            </Select>
-                                        </FormControl>
-                                        {error && <FormMessage>{error.message}</FormMessage>}
-                                        <FormMessage/>
-                                    </FormItem>}
-                                >
-                                </Controller>
-
-                            </div>
-                        </div>
-                    </form>
-                    <Button type="submit" className="w-1/5 mt-4" variant={"constructive"}>
-                        Book
-                    </Button>
-                </Form>
-            </CardContent>
-        </Card>
-    );
-};
+}
 
 export default TicketBookingForm;

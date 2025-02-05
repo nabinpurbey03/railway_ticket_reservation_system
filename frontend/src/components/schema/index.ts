@@ -68,7 +68,10 @@ export const AddressFormSchema = z.object({
 })
 
 export const TicketSchema = z.object({
-    form: z.string().optional(),
+    from: z.string().optional(),
     to: z.string().optional(),
+    travelDate: z.date({
+        required_error: "A date of birth is required.",
+    }),
 })
 

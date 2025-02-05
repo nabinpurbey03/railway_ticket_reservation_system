@@ -1,10 +1,4 @@
 import {Avatar, AvatarImage} from "@/components/ui/avatar.tsx";
-// import {
-//     Tooltip,
-//     TooltipContent,
-//     TooltipProvider,
-//     TooltipTrigger,
-// } from "@/components/ui/tooltip"
 import {
     Popover,
     PopoverContent,
@@ -16,10 +10,10 @@ import TicketBookingForm from "@/components/ticket-booking/ticket-booking-form.t
 
 const Ticket = () => {
     return (
-        <main className="fixed left-20 bottom-16 rounded-full bg-white border-4">
+        <main className="fixed left-20 bottom-16 rounded-full border-4 bg-white hover:bg-gray-200">
             <Popover>
                 <PopoverTrigger>
-                    <Avatar className="h-[75px] w-[78px] p-3">
+                    <Avatar className="h-[75px] w-[78px] p-3 tt">
                         <AvatarImage src="/assets/images/output-onlinegiftools.gif" />
                     </Avatar>
                     {/*<TooltipProvider>*/}
@@ -33,7 +27,7 @@ const Ticket = () => {
                     {/*    </Tooltip>*/}
                     {/*</TooltipProvider>*/}
                 </PopoverTrigger>
-                <PopoverContent className="w-[600px] ml-32 shadow-2xl"><TicketBookingForm /></PopoverContent>
+                <PopoverContent className="w-[600px] ml-32 shadow-2xl p-0"><TicketBookingForm /></PopoverContent>
             </Popover>
         </main>
     );

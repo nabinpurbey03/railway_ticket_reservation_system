@@ -17,6 +17,7 @@
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
+
 #nav-ele {
     position: relative;
     overflow: hidden; /* Ensures the pseudo-element doesn't overflow */
@@ -40,6 +41,10 @@
 .s-bg {
     background: rgb(255, 255, 255);
     background: linear-gradient(0deg, rgba(255, 255, 255, 1) 0%, rgba(51, 45, 253, 0.9248949579831933) 100%);
+}
+
+.tt:hover {
+    filter: invert(1) brightness(50%) sepia(0%) saturate(10000%);
 }
 
 
