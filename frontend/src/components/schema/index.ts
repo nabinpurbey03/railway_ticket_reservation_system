@@ -67,3 +67,8 @@ export const AddressFormSchema = z.object({
     houseNumber: z.string().optional()
 })
 
+export const TicketSchema = z.object({
+    form: z.string().optional(),
+    to: z.string().optional(),
+})
+

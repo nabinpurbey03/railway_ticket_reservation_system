@@ -33,7 +33,7 @@ const Ticket = () => {
                     {/*    </Tooltip>*/}
                     {/*</TooltipProvider>*/}
                 </PopoverTrigger>
-                <PopoverContent className="w-full ml-32 shadow-2xl"><TicketBookingForm /></PopoverContent>
+                <PopoverContent className="w-[600px] ml-32 shadow-2xl"><TicketBookingForm /></PopoverContent>
             </Popover>
         </main>
     );
