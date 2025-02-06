@@ -33,22 +33,25 @@ import {Button} from "../ui/button";
 import {cn} from "@/lib/utils.ts";
 import {CalendarIcon} from "lucide-react";
 import React from "react";
+import {useNavigate} from "react-router-dom";
+
 
 const TicketBookingForm: React.FC = () => {
     const [open, setOpen] = React.useState<boolean>(false)
+    const navigate = useNavigate();
 
     const form = useForm<z.infer<typeof TicketSchema>>({
         resolver: zodResolver(TicketSchema),
         defaultValues: {
-            from: "",
-            to: "",
-            travelDate: new Date(),
-            class: ""
+            sourceStation: "",
+            destinationStation: "",
+            journeyDate: addDays(new Date(), 1),
+            classType: ""
         }
     })
 
     function onSubmit(data: z.infer<typeof TicketSchema>) {
-        console.log(data)
+        navigate(`/book-ticket?sourceStation=${encodeURIComponent(data.sourceStation || "")}&destinationStation=${encodeURIComponent(data.destinationStation || "")}&classType=${encodeURIComponent(data.classType || "")}&journeyDate=${encodeURIComponent(encodeURIComponent(new Date(data.journeyDate).toISOString().split("T")[0]) || "")}`);
     }
 
     return (
@@ -69,7 +72,7 @@ const TicketBookingForm: React.FC = () => {
                             <div>
                                 <FormField
                                     control={form.control}
-                                    name="from"
+                                    name="sourceStation"
                                     render={({field, fieldState: {error}}) => (
                                         <FormItem>
                                             <FormLabel>From</FormLabel>
@@ -97,7 +100,7 @@ const TicketBookingForm: React.FC = () => {
                             <div className="w-full pr-8">
                                 <FormField
                                     control={form.control}
-                                    name="travelDate"
+                                    name="journeyDate"
                                     render={({field}) => (
                                         <FormItem>
                                             <FormLabel>Travel Date</FormLabel>
@@ -113,9 +116,7 @@ const TicketBookingForm: React.FC = () => {
                                                         <CalendarIcon/>
                                                         {field.value ? (
                                                             format(field.value, "PPP")
-                                                        ) : (
-                                                            <span>Pick a date</span>
-                                                        )}
+                                                        ) : <></>}
                                                     </Button>
                                                 </PopoverTrigger>
                                                 <PopoverContent
@@ -152,7 +153,7 @@ const TicketBookingForm: React.FC = () => {
                                 <div>
                                     <FormField
                                         control={form.control}
-                                        name="to"
+                                        name="destinationStation"
                                         render={({field, fieldState: {error}}) => (
                                             <FormItem>
                                                 <FormLabel>To</FormLabel>
@@ -180,7 +181,7 @@ const TicketBookingForm: React.FC = () => {
                                 <div className="w-full pr-8">
                                     <FormField
                                         control={form.control}
-                                        name="class"
+                                        name="classType"
                                         render={({field, fieldState: {error}}) => (
                                             <FormItem>
                                                 <FormLabel>Class</FormLabel>
@@ -192,6 +193,7 @@ const TicketBookingForm: React.FC = () => {
                                                             <SelectValue placeholder="Class"/>
                                                         </SelectTrigger>
                                                         <SelectContent>
+                                                            <SelectItem value={"all"}>All Class</SelectItem>
                                                             <SelectItem value={"general"}>General</SelectItem>
                                                             <SelectItem value={"ladies"}>Ladies</SelectItem>
                                                             <SelectItem value={"ac"}>AC Booth</SelectItem>
@@ -207,7 +209,8 @@ const TicketBookingForm: React.FC = () => {
                             </div>
                         </div>
                         <div className="flex justify-end">
-                            <Button type="submit" variant={"constructive"} className="px-10 font-bold">Check Availability</Button>
+                            <Button type="submit" variant={"constructive"} className="px-10 font-bold">Check
+                                Availability</Button>
                         </div>
                     </form>
                 </Form>

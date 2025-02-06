@@ -5,6 +5,7 @@ import Cookies from "js-cookie";
 import Home from "./components/pages/Home.tsx";
 import AddUserDetails from "@/components/pages/AddUserDetails.tsx";
 import ProfilePage from "@/components/pages/ProfilePage.tsx";
+import BookTicket from "@/components/ticket-booking/book-ticket.tsx";
 
 const AuthContext = createContext<{ active: boolean; loggedIn: boolean }>({
     active: false,
@@ -33,6 +34,7 @@ function App(): React.ReactElement {
             <BrowserRouter>
                 <Routes>
                     <Route path="/" element={<Home />} />
+                    <Route path="/book-ticket" element={<BookTicket />} />
                     <Route
                         path="/profile"
                         element={authState.active ? <ProfilePage /> : <Navigate to="/" replace />}
