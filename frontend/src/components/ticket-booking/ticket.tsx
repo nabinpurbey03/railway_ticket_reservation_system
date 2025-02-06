@@ -13,7 +13,7 @@ const Ticket = () => {
         <main className="fixed left-20 bottom-16 rounded-full border-4 bg-white hover:bg-gray-200">
             <Popover>
                 <PopoverTrigger>
-                    <Avatar className="h-[75px] w-[78px] p-3 tt">
+                    <Avatar className="h-[70px] w-[73px] p-3 tt">
                         <AvatarImage src="/assets/images/output-onlinegiftools.gif" />
                     </Avatar>
                     {/*<TooltipProvider>*/}

@@ -73,5 +73,6 @@ export const TicketSchema = z.object({
     travelDate: z.date({
         required_error: "A date of birth is required.",
     }),
+    class: z.string().optional(),
 })
 

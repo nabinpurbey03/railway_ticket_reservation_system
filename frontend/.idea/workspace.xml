@@ -6,6 +6,9 @@
   <component name="ChangeListManager">
     <list default="true" id="a6a0bc47-991f-4bd0-ba42-afd9e10cba0b" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/schema/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/schema/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/ticket-booking/destinations.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ticket-booking/destinations.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/ticket-booking/ticket-booking-form.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ticket-booking/ticket-booking-form.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/ticket-booking/ticket.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ticket-booking/ticket.tsx" afterDir="false" />
     </list>
@@ -171,7 +174,12 @@
       <workItem from="1738750559458" duration="557000" />
       <workItem from="1738758636905" duration="13718000" />
       <workItem from="1738810579124" duration="2318000" />
-      <workItem from="1738817222630" duration="934000" />
+      <workItem from="1738817222630" duration="2801000" />
+      <workItem from="1738836146146" duration="929000" />
+      <workItem from="1738841600973" duration="3440000" />
+      <workItem from="1738846079809" duration="1355000" />
+      <workItem from="1738847450802" duration="4872000" />
+      <workItem from="1738855211733" duration="255000" />
     </task>
     <servers />
   </component>
