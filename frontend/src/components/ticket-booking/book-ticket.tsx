@@ -35,13 +35,12 @@ const BookTicket: React.FC = () => {
 
     const location = useLocation();
     const params = new URLSearchParams(location.search);
-    console.log();
 
     const form = useForm<z.infer<typeof TicketSchema>>({
         resolver: zodResolver(TicketSchema),
         defaultValues: {
-            sourceStation: params.get("sourceStation") || "Kakadbhitta",
-            destinationStation: params.get("destinationStation") || "Banbasa",
+            sourceStation: params.get("sourceStation") || "Janakpur",
+            destinationStation: params.get("destinationStation") || "Kathmandu",
             journeyDate: new Date(params.get("journeyDate") || addDays(new Date(), 1)),
             classType: params.get("classType") || "all"
         }

@@ -51,7 +51,8 @@ const TicketBookingForm: React.FC = () => {
     })
 
     function onSubmit(data: z.infer<typeof TicketSchema>) {
-        navigate(`/book-ticket?sourceStation=${encodeURIComponent(data.sourceStation || "")}&destinationStation=${encodeURIComponent(data.destinationStation || "")}&classType=${encodeURIComponent(data.classType || "")}&journeyDate=${encodeURIComponent(encodeURIComponent(new Date(data.journeyDate).toISOString().split("T")[0]) || "")}`);
+        const formattedDate = new Date(data.journeyDate).toLocaleDateString("en-CA");
+        navigate(`/book-ticket?sourceStation=${encodeURIComponent(data.sourceStation || "")}&destinationStation=${encodeURIComponent(data.destinationStation || "")}&classType=${encodeURIComponent(data.classType || "")}&journeyDate=${encodeURIComponent(encodeURIComponent(formattedDate || ""))}`);
     }
 
     return (
