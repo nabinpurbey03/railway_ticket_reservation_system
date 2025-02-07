@@ -14,6 +14,7 @@ import {z} from "zod";
 import {TicketSchema} from "@/components/schema";
 import {zodResolver} from "@hookform/resolvers/zod";
 import {useLocation} from "react-router-dom";
+import ShowTicketResult from "@/components/ticket-booking/show-ticket-result.tsx";
 
 const BookTicket: React.FC = () => {
 
@@ -50,8 +51,9 @@ const BookTicket: React.FC = () => {
         const payload = {
             source_station: data.sourceStation,
             destination_station: data.destinationStation,
-            journey_date: data.journeyDate,
-            class_type: data.classType
+            journey_date: new Date(data.journeyDate).toLocaleDateString("en-CA"),
+            class_type: data.classType,
+            no_of_seats: numberOfSeats
         }
         console.log(payload)
     }
@@ -64,7 +66,7 @@ const BookTicket: React.FC = () => {
                 <div className="w-full bg-red-100">
                     <div className="px-5 pb-2 text-black mx-64">
                         <Form {...form}>
-                            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+                            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-2">
                                 <div className="grid grid-cols-[40%_40%_20%] gap-10">
                                     <div>
                                         <FormField
@@ -233,6 +235,10 @@ const BookTicket: React.FC = () => {
                             </form>
                         </Form>
                     </div>
+                </div>
+                <div className="bg-white text-black min-h-[63.4vh]">
+                    {/*Nothing to search for now because there is no backend code 😆*/}
+                    <ShowTicketResult />
                 </div>
             </main>
         </>

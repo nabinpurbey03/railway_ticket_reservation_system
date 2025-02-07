@@ -5,9 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a6a0bc47-991f-4bd0-ba42-afd9e10cba0b" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/components/ticket-booking/show-ticket-result.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/ticket-booking/book-ticket.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ticket-booking/book-ticket.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/ticket-booking/ticket-booking-form.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ticket-booking/ticket-booking-form.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -178,7 +178,7 @@
       <workItem from="1738847450802" duration="4872000" />
       <workItem from="1738855211733" duration="255000" />
       <workItem from="1738857796980" duration="9250000" />
-      <workItem from="1738894761127" duration="1034000" />
+      <workItem from="1738894761127" duration="4446000" />
     </task>
     <servers />
   </component>
