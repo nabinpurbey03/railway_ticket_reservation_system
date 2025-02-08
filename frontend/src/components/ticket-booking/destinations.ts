@@ -1,97 +1,87 @@
 export const destinations = [
     {
-        id: 1,
+        id: 0,
         place: "Kakadbhitta",
-        time: "9:00",
-        hold: "0"
+    },
+    {
+        id: 1,
+        place: "Biratnagar",
     },
     {
         id: 2,
-        place: "Biratnagar",
-        time: "10:00",
-        hold: "30"
+        place: "Lahan",
     },
     {
         id: 3,
-        place: "Lahan",
-        time: "10:30",
-        hold: "15"
+        place: "Janakpur",
+
     },
     {
         id: 4,
-        place: "Janakpur",
-        time: "30",
+        place: "Pathlaiya",
     },
     {
         id: 5,
-        place: "Pathlaiya",
-        time: "12:00",
-        hold: "15"
+        place: "Kathmandu",
     },
     {
         id: 6,
-        place: "Kathmandu",
-        time: "12:00",
-        hold: "45"
+        place: "Narayangarh",
     },
     {
         id: 7,
-        place: "Narayangarh",
-        time: "12:00",
-        hold: "15"
+        place: "Pokhara",
     },
     {
         id: 8,
-        place: "Pokhara",
-        time: "12:00",
-        hold: "30"
+        place: "Butwal",
     },
     {
         id: 9,
-        place: "Butwal",
-        time: "12:00",
-        hold: "15"
+        place: "Lumbini",
     },
     {
         id: 10,
-        place: "Lumbini",
-        time: "12:00",
-        hold: "15"
+        place: "Lamahi",
     },
     {
         id: 11,
-        place: "Lamahi",
-        time: "12:00",
-        hold: "15"
+        place: "Nepalgunj",
     },
     {
         id: 12,
-        place: "Nepalgunj",
-        time: "12:00",
-        hold: "15"
+        place: "Surkhet",
     },
     {
         id: 13,
-        place: "Surkhet",
-        time: "12:00",
-        hold: "15"
+        place: "Chisapani",
     },
     {
         id: 14,
-        place: "Chisapani",
-        time: "12:00",
-        hold: "15"
+        place: "Dhading",
     },
     {
         id: 15,
-        place: "Dhading",
-        time: "12:00",
-        hold: "15"
-    },
-    {
-        id: 16,
         place: "Banbasa",
-        time: "12:00",
-        hold: "15"
     },
 ]
+
+export const times = [
+    "07:00:00",
+    "08:00:00",
+    "08:45:00",
+    "10:00:00",
+    "11:00:00",
+    "12:45:00",
+    "14:00:00",
+    "15:30:00",
+    "16:00:00",
+    "17:00:00",
+    "18:30:00",
+    "19:30:00",
+    "21:00:00",
+    "22:00:00",
+    "23:00:00",
+    "23:30:00"
+]
+

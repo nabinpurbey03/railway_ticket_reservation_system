@@ -139,10 +139,11 @@ const BookTicket: React.FC = () => {
                                                                 <SelectValue placeholder="Class"/>
                                                             </SelectTrigger>
                                                             <SelectContent>
-                                                                <SelectItem value={"all"}>All Class</SelectItem>
-                                                                <SelectItem value={"general"}>General</SelectItem>
-                                                                <SelectItem value={"ladies"}>Ladies</SelectItem>
-                                                                <SelectItem value={"ac"}>AC Booth</SelectItem>
+                                                                <SelectItem value={"All"}>All Class</SelectItem>
+                                                                <SelectItem value={"Economy"}>Economy</SelectItem>
+                                                                <SelectItem value={"Business"}>Business</SelectItem>
+                                                                <SelectItem value={"First Class"}>First Class</SelectItem>
+                                                                <SelectItem value={"Ladies"}>Ladies</SelectItem>
                                                             </SelectContent>
                                                         </Select>
                                                     </FormControl>
@@ -236,7 +237,7 @@ const BookTicket: React.FC = () => {
                         </Form>
                     </div>
                 </div>
-                <div className="bg-white text-black min-h-[63.4vh]">
+                <div className="bg-gray-500 text-black min-h-[63.4vh]">
                     {/*Nothing to search for now because there is no backend code 😆*/}
                     <ShowTicketResult />
                 </div>
