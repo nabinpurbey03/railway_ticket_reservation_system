@@ -23,7 +23,7 @@ class User:
             self.__conn.close()
 
     def check_for_email(self, email: str) -> bool:
-        self.__cur.execute('SELECT COUNT(*) FROM "user" WHERE "email" = %s', (email,))
+        self.__cur.execute('SELECT COUNT(*) FROM users WHERE "email" = %s', (email,))
         result = self.__cur.fetchone()
         if result[0] > 0:
             return True
@@ -34,14 +34,14 @@ class User:
         if self.check_for_email(email):
             return {"status": False, "message": "Email already registered"}
 
-        self.__cur.execute('INSERT INTO "user" ("email", "password") VALUES (%s, %s)', (email, password))
+        self.__cur.execute('INSERT INTO users ("email", "password") VALUES (%s, %s)', (email, password))
         self.__conn.commit()
         self.__cur.close()
         self.__conn.close()
         return {"status": True, "message": "User Added"}
 
     def get_user_details(self, email: str) -> dict:
-        self.__cur.execute('SELECT "user_id", "role", "is_active" FROM "user" WHERE "email" = %s', (email,))
+        self.__cur.execute('SELECT "user_id", "role", "is_active" FROM users WHERE "email" = %s', (email,))
         result = self.__cur.fetchone()
         self.__cur.close()
         self.__conn.close()
@@ -49,7 +49,7 @@ class User:
 
     def activate_user(self, user_id: int) -> bool:
         try:
-            sql: str = 'UPDATE "user" SET "is_active" = TRUE WHERE "user_id" = %s'
+            sql: str = 'UPDATE users SET "is_active" = TRUE WHERE "user_id" = %s'
             self.__cur.execute(sql, (user_id,))
             self.__conn.commit()
             return True
@@ -59,7 +59,7 @@ class User:
 
     def update_password(self, email: str, password: str) -> dict[str, str]:
         try:
-            sql: str = 'UPDATE "user" SET "password" = %s WHERE "email" = %s'
+            sql: str = 'UPDATE users SET "password" = %s WHERE "email" = %s'
             self.__cur.execute(sql, (password, email))
             self.__conn.commit()
             return {"status": True, "message": "Password Updated"}

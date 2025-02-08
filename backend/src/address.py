@@ -3,7 +3,7 @@ import os
 import psycopg2
 from dotenv import load_dotenv
 
-from src.user import User
+from src.users import User
 
 
 class Address:

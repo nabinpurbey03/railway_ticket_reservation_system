@@ -8,7 +8,7 @@ from src.address import Address
 from src.card import Card
 from src.emailer import Emailer, otp_store, otp_verification
 from src.personal_detail import PersonalDetail
-from src.user import User
+from src.users import User
 from datetime import datetime
 
 app = FastAPI()

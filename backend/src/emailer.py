@@ -5,7 +5,7 @@ from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 import random as rnd
 
-from src.user import User
+from src.users import User
 
 otp_store = {'email': "", 'otp': 0}
 
