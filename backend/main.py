@@ -3,11 +3,13 @@ from fastapi.staticfiles import StaticFiles
 from fastapi import FastAPI, HTTPException, Form, UploadFile, File
 from fastapi.middleware.cors import CORSMiddleware
 
-from models import LoginRequest, Register, OTPVerificationRequest, AddUserRequest, AddressRequest, ChangePassword
+from models import LoginRequest, Register, OTPVerificationRequest, AddUserRequest, AddressRequest, ChangePassword, \
+    TicketSearch
 from src.address import Address
 from src.card import Card
 from src.emailer import Emailer, otp_store, otp_verification
 from src.personal_detail import PersonalDetail
+from src.ticket import Ticket
 from src.users import User
 from datetime import datetime
 
@@ -136,4 +138,11 @@ async def change_password(req: ChangePassword):
 async def get_user_profile(user_id: str):
     addr = Address()
     return addr.get_address(int(user_id))
+
+
+@app.get("/api/ticket-search/{journey_date}/{class_type}")
+async def ticket_search(journey_date: str, class_type: str):
+    ticket = Ticket()
+    return ticket.search_available_tickets(journey_date, class_type)
+
 

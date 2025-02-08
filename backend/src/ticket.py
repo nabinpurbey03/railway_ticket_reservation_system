@@ -1,5 +1,6 @@
 from datetime import datetime
 import os
+from unittest import case
 
 import psycopg2
 from dotenv import load_dotenv
@@ -57,25 +58,25 @@ class Ticket:
         return self.__available_tickets('Ladies', date, self.__total_ladies_tickets)
 
     def search_available_tickets(self, date: str, class_type: str) -> dict:
-        """Returns available tickets for a given date and class type."""
-
-        # Mapping class types to their respective methods
-        class_methods = {
-            'Economy': self.__available_economy_tickets,
-            'Business': self.__available_business_tickets,
-            'First Class': self.__available_first_class_tickets,
-            'Ladies': self.__available_ladies_tickets
-        }
-
-        if class_type == "All":
-            # Retrieve ticket availability for all classes
-            tickets = {key: method(date) for key, method in class_methods.items()}
-            return {"status": True, "tickets": tickets}
-
-        tickets = class_methods.get(class_type)
-
-        if tickets:
-            return {"status": True, "tickets": tickets(date)}
+        match class_type:
+            case 'Economy':
+                return {"status": True, "tickets": [{"Economy": self.__available_economy_tickets(date)}]}
+            case 'Business':
+                return {"status": True, "tickets": [{"Business": self.__available_business_tickets(date)}]}
+            case 'First Class':
+                return {"status": True, "tickets": [{"Business": self.__available_first_class_tickets(date)}]}
+            case 'Ladies':
+                return {"status": True, "tickets": [{"Business": self.__available_ladies_tickets(date)}]}
+            case "All":
+                return {
+                    "status": True,
+                    "tickets": [
+                        {"Economy": self.__available_economy_tickets(date)},
+                        {"Business": self.__available_business_tickets(date)},
+                        {"First Class": self.__available_first_class_tickets(date)},
+                        {"Ladies": self.__available_ladies_tickets(date)}
+                    ]
+                }
 
         return {"status": False, "message": "Unknown ticket type"}
 
@@ -83,5 +84,5 @@ class Ticket:
         self.__cur.close()
         self.__conn.close()
 
-t = Ticket()
-print(t.search_available_tickets('2025-02-10', 'Economy'))
+# t = Ticket()
+# print(t.search_available_tickets('2025-02-10', 'Economy'))

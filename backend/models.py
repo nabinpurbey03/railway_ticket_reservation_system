@@ -32,3 +32,8 @@ class ChangePassword(BaseModel):
     email: str
     new_password: str
 
+
+class TicketSearch(BaseModel):
+    journey_date: str
+    class_type: str
+
