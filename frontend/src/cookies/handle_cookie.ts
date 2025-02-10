@@ -30,6 +30,7 @@ export const setNameCookies = (nameCookies: NameCookies): void => {
     Cookies.set('last_name', nameCookies.last_name, { expires: expirationTime });
     Cookies.set('image_url', nameCookies.image_url, { expires: expirationTime });
     Cookies.set('is_active', true.toString(), { expires: expirationTime });
+    window.location.href = '/';
 }
 
 export const destroyCookies = (): void => {

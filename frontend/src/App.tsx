@@ -1,51 +1,33 @@
 import "./App.css"
-import React, { createContext, useEffect, useState } from "react";
 import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
 import Cookies from "js-cookie";
 import Home from "./components/pages/Home.tsx";
 import AddUserDetails from "@/components/pages/AddUserDetails.tsx";
 import ProfilePage from "@/components/pages/ProfilePage.tsx";
 import BookTicket from "@/components/ticket-booking/book-ticket.tsx";
-
-const AuthContext = createContext<{ active: boolean; loggedIn: boolean }>({
-    active: false,
-    loggedIn: false,
-});
+import React from "react";
 
 function App(): React.ReactElement {
-    const [authState, setAuthState] = useState({
-        active: Cookies.get("is_active") === "true",
-        loggedIn: Cookies.get("loggedIn") === "true",
-    });
+        const active= Cookies.get("is_active") === "true";
+        const loggedIn= Cookies.get("loggedIn") === "true";
 
-    useEffect(() => {
-        const interval = setInterval(() => {
-            setAuthState({
-                active: Cookies.get("is_active") === "true",
-                loggedIn: Cookies.get("loggedIn") === "true",
-            });
-        }, 1000); // Check every second
 
-        return () => clearInterval(interval); // Cleanup interval on unmount
-    }, []);
-
+    console.log('Check render');
     return (
-        <AuthContext.Provider value={authState}>
             <BrowserRouter>
                 <Routes>
                     <Route path="/" element={<Home />} />
                     <Route path="/book-ticket" element={<BookTicket />} />
                     <Route
                         path="/profile"
-                        element={authState.active ? <ProfilePage /> : <Navigate to="/" replace />}
+                        element={active ? <ProfilePage /> : <Navigate to="/" replace />}
                     />
                     <Route
                         path="/add-user-details"
-                        element={authState.loggedIn && !authState.active ? <AddUserDetails /> : <Navigate to="/" replace />}
+                        element={loggedIn && !active ? <AddUserDetails /> : <Navigate to="/" replace />}
                     />
                 </Routes>
             </BrowserRouter>
-        </AuthContext.Provider>
     );
 }
 

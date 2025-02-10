@@ -16,22 +16,22 @@ import {useLocation} from "react-router-dom";
 import ShowTicketResult from "@/components/ticket-booking/show-ticket-result.tsx";
 import axios from "axios";
 import {toast} from "@/hooks/use-toast.ts";
-import React from "react";
+import React, {useEffect, useState} from "react";
+import {Toaster} from "@/components/ui/toaster.tsx";
 
 const BookTicket: React.FC = () => {
     const location = useLocation();
     const params = new URLSearchParams(location.search);
+    const sourceStation = params.get("sourceStation") || "Janakpur";
+    const destinationStation = params.get("destinationStation") || "Kathmandu";
+    const journeyDate = new Date(params.get("journeyDate") || addDays(new Date(), 1));
+    const classType = params.get("classType") || "All";
 
-    const [open, setOpen] = React.useState<boolean>(false)
-    const [numberOfSeats, setNumberOfSeats] = React.useState<number>(1)
+    const [open, setOpen] = useState<boolean>(false)
+    const [numberOfSeats, setNumberOfSeats] = useState<number>(1)
+    const [loading, setLoading] = useState(true);
+    const [tickets, setTickets] = useState([]);
 
-
-
-    // if(loading){
-    //     console.log("Loading...");
-    // }else{
-    //     console.log("Not Loading");
-    // }
 
     const manageSeats = (operator: string) => {
         switch (operator) {
@@ -48,35 +48,70 @@ const BookTicket: React.FC = () => {
     const form = useForm<z.infer<typeof TicketSchema>>({
         resolver: zodResolver(TicketSchema),
         defaultValues: {
-            sourceStation: params.get("sourceStation") || "Janakpur",
-            destinationStation: params.get("destinationStation") || "Kathmandu",
-            journeyDate: new Date(params.get("journeyDate") || addDays(new Date(), 1)),
-            classType: params.get("classType") || "All"
+            sourceStation: sourceStation,
+            destinationStation: destinationStation,
+            journeyDate: journeyDate,
+            classType: classType,
         }
-    })
-
+    });
 
     const fetchTicketAvailability = async (journey_date: string, class_type: string) => {
         try {
-            return await axios.get(`${import.meta.env.VITE_API_URL}/api/ticket-search/${journey_date}/${class_type}`);
+            const response = await axios.get(`${import.meta.env.VITE_API_URL}/api/ticket-search/${journey_date}/${class_type}`);
+            return response.data; // Returning only the data object
         } catch (error) {
-            throw new Error("Failed to fetch ticket availability. " + error);
+            console.error("Failed to fetch ticket availability:", error);
+            return { status: false, tickets: [] }; // Return a default fallback
         }
     };
 
-    async function onSubmit(data: z.infer<typeof TicketSchema>) {
-        const response = await fetchTicketAvailability(new Date(data.journeyDate).toLocaleDateString("en-CA"), data.classType || "All");
+    const fetchTicketsOnLoad = async () => {
+        setLoading(true);
+        const defaultValues = form.getValues();
+
+        const response = await fetchTicketAvailability(
+            new Date(defaultValues.journeyDate).toLocaleDateString("en-CA"),
+            defaultValues.classType || "All"
+        );
+
         if (!response.status) {
-            toast({title: "Data Fetch Unsuccessful", description: "Something went wrong", variant: "destructive"});
-            return;
+            toast({ title: "Data Fetch Unsuccessful", description: "Something went wrong", variant: "destructive" });
+        } else {
+            setTickets(response.data.tickets);
+            console.log(response.data);
+            console.log(tickets)
         }
-        console.log(response.data.tickets);
+
+        setLoading(false);
+    };
+
+// Fetch data on page load
+    useEffect(() => {
+        fetchTicketsOnLoad();
+    }, []);
+
+    async function onSubmit(data: z.infer<typeof TicketSchema>) {
+        setLoading(true);
+        const response = await fetchTicketAvailability(
+            new Date(data.journeyDate).toLocaleDateString("en-CA"),
+            data.classType || "All"
+        );
+
+        if (!response.status) {
+            toast({ title: "Data Fetch Unsuccessful", description: "Something went wrong", variant: "destructive" });
+        } else {
+            setTickets(response.data.tickets);
+        }
+
+        setLoading(false);
     }
+
+    console.log('Hello world!')
 
     return (
         <>
-            <Navbar showReg={() => {
-            }}/>
+            <Toaster />
+            <Navbar showReg={() => {}}/>
             <main>
                 <div className="w-full bg-blue-400">
                     <div className="px-5 pb-2 text-black mx-64">
@@ -257,8 +292,12 @@ const BookTicket: React.FC = () => {
                     </div>
                 </div>
                 <div className="bg-gray-500 text-black min-h-[63.4vh]">
-                    {/*Nothing to search for now because there is no backend code 😆*/}
-                    <ShowTicketResult/>
+                    {loading ? (
+                        <p>Loading...</p>
+                    ) : (
+                        <ShowTicketResult/>
+                    )
+                    }
                 </div>
             </main>
         </>

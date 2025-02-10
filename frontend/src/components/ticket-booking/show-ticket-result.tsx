@@ -2,6 +2,11 @@ import {Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle} f
 import {Button} from "@/components/ui/button.tsx";
 import React from "react";
 
+interface Props {
+    tickets: never,
+    no_of_seats: number;
+}
+
 const ShowTicketResult:React.FC = () => {
 
     return (
