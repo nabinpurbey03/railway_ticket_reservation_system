@@ -8,18 +8,30 @@ import {cn} from "@/lib/utils.ts";
 import {CalendarIcon} from "lucide-react";
 import {addDays, format} from "date-fns";
 import {Calendar} from "@/components/ui/calendar.tsx";
-import React from "react";
 import {useForm} from "react-hook-form";
 import {z} from "zod";
 import {TicketSchema} from "@/components/schema";
 import {zodResolver} from "@hookform/resolvers/zod";
 import {useLocation} from "react-router-dom";
 import ShowTicketResult from "@/components/ticket-booking/show-ticket-result.tsx";
+import axios from "axios";
+import {toast} from "@/hooks/use-toast.ts";
+import React from "react";
 
 const BookTicket: React.FC = () => {
+    const location = useLocation();
+    const params = new URLSearchParams(location.search);
 
     const [open, setOpen] = React.useState<boolean>(false)
     const [numberOfSeats, setNumberOfSeats] = React.useState<number>(1)
+
+
+
+    // if(loading){
+    //     console.log("Loading...");
+    // }else{
+    //     console.log("Not Loading");
+    // }
 
     const manageSeats = (operator: string) => {
         switch (operator) {
@@ -33,29 +45,32 @@ const BookTicket: React.FC = () => {
                 break;
         }
     }
-
-    const location = useLocation();
-    const params = new URLSearchParams(location.search);
-
     const form = useForm<z.infer<typeof TicketSchema>>({
         resolver: zodResolver(TicketSchema),
         defaultValues: {
             sourceStation: params.get("sourceStation") || "Janakpur",
             destinationStation: params.get("destinationStation") || "Kathmandu",
             journeyDate: new Date(params.get("journeyDate") || addDays(new Date(), 1)),
-            classType: params.get("classType") || "all"
+            classType: params.get("classType") || "All"
         }
     })
 
-    function onSubmit(data: z.infer<typeof TicketSchema>) {
-        const payload = {
-            source_station: data.sourceStation,
-            destination_station: data.destinationStation,
-            journey_date: new Date(data.journeyDate).toLocaleDateString("en-CA"),
-            class_type: data.classType,
-            no_of_seats: numberOfSeats
+
+    const fetchTicketAvailability = async (journey_date: string, class_type: string) => {
+        try {
+            return await axios.get(`${import.meta.env.VITE_API_URL}/api/ticket-search/${journey_date}/${class_type}`);
+        } catch (error) {
+            throw new Error("Failed to fetch ticket availability. " + error);
         }
-        console.log(payload)
+    };
+
+    async function onSubmit(data: z.infer<typeof TicketSchema>) {
+        const response = await fetchTicketAvailability(new Date(data.journeyDate).toLocaleDateString("en-CA"), data.classType || "All");
+        if (!response.status) {
+            toast({title: "Data Fetch Unsuccessful", description: "Something went wrong", variant: "destructive"});
+            return;
+        }
+        console.log(response.data.tickets);
     }
 
     return (
@@ -63,10 +78,13 @@ const BookTicket: React.FC = () => {
             <Navbar showReg={() => {
             }}/>
             <main>
-                <div className="w-full bg-red-100">
+                <div className="w-full bg-blue-400">
                     <div className="px-5 pb-2 text-black mx-64">
                         <Form {...form}>
-                            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-2">
+                            <form
+                                className="space-y-2"
+                                onSubmit={form.handleSubmit(onSubmit)}
+                            >
                                 <div className="grid grid-cols-[40%_40%_20%] gap-10">
                                     <div>
                                         <FormField
@@ -142,7 +160,8 @@ const BookTicket: React.FC = () => {
                                                                 <SelectItem value={"All"}>All Class</SelectItem>
                                                                 <SelectItem value={"Economy"}>Economy</SelectItem>
                                                                 <SelectItem value={"Business"}>Business</SelectItem>
-                                                                <SelectItem value={"First Class"}>First Class</SelectItem>
+                                                                <SelectItem value={"First Class"}>First
+                                                                    Class</SelectItem>
                                                                 <SelectItem value={"Ladies"}>Ladies</SelectItem>
                                                             </SelectContent>
                                                         </Select>
@@ -239,7 +258,7 @@ const BookTicket: React.FC = () => {
                 </div>
                 <div className="bg-gray-500 text-black min-h-[63.4vh]">
                     {/*Nothing to search for now because there is no backend code 😆*/}
-                    <ShowTicketResult />
+                    <ShowTicketResult/>
                 </div>
             </main>
         </>

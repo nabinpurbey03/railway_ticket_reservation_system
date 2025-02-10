@@ -1,8 +1,8 @@
 import {Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle} from "@/components/ui/card.tsx";
 import {Button} from "@/components/ui/button.tsx";
+import React from "react";
 
-
-const ShowTicketResult = () => {
+const ShowTicketResult:React.FC = () => {
 
     return (
         <Card className="flex flex-col px-16 rounded-none min-h-[63vh]">
@@ -19,7 +19,6 @@ const ShowTicketResult = () => {
                     <CardContent className="flex justify-between text-gray-600">
                         <div className="text-left">
                             <ul>
-                                <li>Journey Date</li>
                                 <li>Total Seats</li>
                                 <li>Reserved Seats</li>
                                 <li>Available Seats</li>
@@ -51,7 +50,6 @@ const ShowTicketResult = () => {
                     <CardContent className="flex justify-between text-gray-600">
                         <div className="text-left">
                             <ul>
-                                <li>Journey Date</li>
                                 <li>Total Seats</li>
                                 <li>Reserved Seats</li>
                                 <li>Available Seats</li>
@@ -83,7 +81,6 @@ const ShowTicketResult = () => {
                     <CardContent className="flex justify-between text-gray-600">
                         <div className="text-left">
                             <ul>
-                                <li>Journey Date</li>
                                 <li>Total Seats</li>
                                 <li>Reserved Seats</li>
                                 <li>Available Seats</li>
