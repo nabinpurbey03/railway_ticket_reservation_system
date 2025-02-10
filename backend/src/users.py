@@ -12,7 +12,7 @@ class User:
 
     def verify_user(self, email: str) -> dict[str, str]:
         try:
-            self.__cur.execute('SELECT "password" FROM WHERE "email" = %s', (email,))
+            self.__cur.execute('SELECT "password" FROM users WHERE email = %s', (email,))
             result = self.__cur.fetchone()
             return {"status": True, "password": result[0]}
         except psycopg2.Error as e:

@@ -1,6 +1,5 @@
 from datetime import datetime
 import os
-from unittest import case
 
 import psycopg2
 from dotenv import load_dotenv
