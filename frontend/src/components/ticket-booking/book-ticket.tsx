@@ -28,7 +28,7 @@ const BookTicket: React.FC = () => {
     const classType = params.get("classType") || "All";
 
     const [open, setOpen] = useState<boolean>(false)
-    const [numberOfSeats, setNumberOfSeats] = useState<number>(1)
+    const [numberOfSeats, setNumberOfSeats] = useState<number>(1);
     const [loading, setLoading] = useState(true);
     const [tickets, setTickets] = useState([]);
 
@@ -44,7 +44,7 @@ const BookTicket: React.FC = () => {
                     setNumberOfSeats(numberOfSeats - 1);
                 break;
         }
-    }
+    };
     const form = useForm<z.infer<typeof TicketSchema>>({
         resolver: zodResolver(TicketSchema),
         defaultValues: {
@@ -73,15 +73,11 @@ const BookTicket: React.FC = () => {
             new Date(defaultValues.journeyDate).toLocaleDateString("en-CA"),
             defaultValues.classType || "All"
         );
-
         if (!response.status) {
             toast({ title: "Data Fetch Unsuccessful", description: "Something went wrong", variant: "destructive" });
         } else {
-            setTickets(response.data.tickets);
-            console.log(response.data);
-            console.log(tickets)
+            setTickets(response.tickets);
         }
-
         setLoading(false);
     };
 
@@ -89,6 +85,8 @@ const BookTicket: React.FC = () => {
     useEffect(() => {
         fetchTicketsOnLoad();
     }, []);
+
+    // console.log(tickets);
 
     async function onSubmit(data: z.infer<typeof TicketSchema>) {
         setLoading(true);
@@ -100,13 +98,10 @@ const BookTicket: React.FC = () => {
         if (!response.status) {
             toast({ title: "Data Fetch Unsuccessful", description: "Something went wrong", variant: "destructive" });
         } else {
-            setTickets(response.data.tickets);
+            setTickets(response.tickets);
         }
-
         setLoading(false);
     }
-
-    console.log('Hello world!')
 
     return (
         <>
@@ -295,7 +290,7 @@ const BookTicket: React.FC = () => {
                     {loading ? (
                         <p>Loading...</p>
                     ) : (
-                        <ShowTicketResult/>
+                        <ShowTicketResult numberOfSeats={numberOfSeats} tickets={tickets}/>
                     )
                     }
                 </div>
