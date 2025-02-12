@@ -1,67 +1,67 @@
 export const destinations = [
     {
-        id: 0,
+        id: 1,
         place: "Kakadbhitta",
     },
     {
-        id: 1,
+        id: 2,
         place: "Biratnagar",
     },
     {
-        id: 2,
+        id: 3,
         place: "Lahan",
     },
     {
-        id: 3,
+        id: 4,
         place: "Janakpur",
 
     },
     {
-        id: 4,
+        id: 5,
         place: "Pathlaiya",
     },
     {
-        id: 5,
+        id: 6,
         place: "Kathmandu",
     },
     {
-        id: 6,
+        id: 7,
         place: "Narayangarh",
     },
     {
-        id: 7,
+        id: 8,
         place: "Pokhara",
     },
     {
-        id: 8,
+        id: 9,
         place: "Butwal",
     },
     {
-        id: 9,
+        id: 10,
         place: "Lumbini",
     },
     {
-        id: 10,
+        id: 11,
         place: "Lamahi",
     },
     {
-        id: 11,
+        id: 12,
         place: "Nepalgunj",
     },
     {
-        id: 12,
+        id: 13,
         place: "Surkhet",
     },
     {
-        id: 13,
+        id: 14,
         place: "Chisapani",
     },
     {
-        id: 14,
+        id: 15,
         place: "Dhading",
     },
     {
-        id: 15,
+        id: 16,
         place: "Banbasa",
     },
 ]

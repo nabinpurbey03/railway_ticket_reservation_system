@@ -5,9 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a6a0bc47-991f-4bd0-ba42-afd9e10cba0b" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/../backend/src/ticket.py" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/src/ticket.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/ticket-booking/book-ticket.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ticket-booking/book-ticket.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/ticket-booking/show-ticket-result.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ticket-booking/show-ticket-result.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/ticket-booking/destinations.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ticket-booking/destinations.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -187,7 +187,10 @@
       <workItem from="1739097942542" duration="1626000" />
       <workItem from="1739149655730" duration="11426000" />
       <workItem from="1739244860202" duration="654000" />
-      <workItem from="1739291593384" duration="6428000" />
+      <workItem from="1739291593384" duration="6759000" />
+      <workItem from="1739318938525" duration="327000" />
+      <workItem from="1739319531483" duration="1084000" />
+      <workItem from="1739323526802" duration="389000" />
     </task>
     <servers />
   </component>
