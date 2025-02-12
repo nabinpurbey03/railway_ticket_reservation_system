@@ -34,6 +34,8 @@ class ChangePassword(BaseModel):
 
 
 class TicketSearch(BaseModel):
+    source_station: str
+    destination_station: str
     journey_date: str
     class_type: str
 

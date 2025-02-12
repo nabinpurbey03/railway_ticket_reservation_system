@@ -140,9 +140,9 @@ async def get_user_profile(user_id: str):
     return addr.get_address(int(user_id))
 
 
-@app.get("/api/ticket-search/{journey_date}/{class_type}")
-async def ticket_search(journey_date: str, class_type: str):
-    ticket = Ticket()
-    return ticket.search_available_tickets(journey_date, class_type)
+@app.post("/api/ticket-search")
+async def ticket_search(req: TicketSearch):
+    ticket = Ticket(req.source_station, req.destination_station, req.journey_date, req.class_type)
+    return ticket.search_available_tickets()
 
 

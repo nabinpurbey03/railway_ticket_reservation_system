@@ -25,16 +25,6 @@ destinations = {
 }
 
 
-def get_pnr_number(date: str, sid: int, did: int) -> str:
-    book_date = "".join(date.split("-"))[2:]
-    time = datetime.now().strftime("%H%M%S")
-    return f"{book_date}-{get_train_name(sid, did)}-{time}"
-
-
-def get_train_name(sid: int, did: int) -> str:
-    return "DORE-WNPL" if sid < did else "DORW-ENPL"
-
-
 class Ticket:
     # Class constants for ticket limits
     TOTAL_ECONOMY_TICKETS = 200
@@ -98,30 +88,34 @@ class Ticket:
             case 'Economy':
                 return {
                     "status": True,
-                    "tickets": [{"Economy": self.__available_economy_tickets()}],
+                    "ticket": {"Economy": self.__available_economy_tickets()},
                     "distance": self.__get_distance(),
-                    "ticket_price": self.get_price_per_ticket()
+                    "ticket_price": self.__get_price_per_ticket(),
+                    "train_name": self.__get_train_name(),
                 }
             case 'Business':
                 return {
                     "status": True,
-                    "tickets": [{"Business": self.__available_business_tickets()}],
+                    "ticket": {"Business": self.__available_business_tickets()},
                     "distance": self.__get_distance(),
-                    "ticket_price": self.get_price_per_ticket()
+                    "ticket_price": self.__get_price_per_ticket(),
+                    "train_name": self.__get_train_name(),
                 }
             case 'First Class':
                 return {
                     "status": True,
-                    "tickets": [{"First Class": self.__available_first_class_tickets()}],
+                    "ticket": {"First Class": self.__available_first_class_tickets()},
                     "distance": self.__get_distance(),
-                    "ticket_price": self.get_price_per_ticket()
+                    "ticket_price": self.__get_price_per_ticket(),
+                    "train_name": self.__get_train_name(),
                 }
             case 'Ladies':
                 return {
                     "status": True,
-                    "tickets": [{"Ladies": self.__available_ladies_tickets()}],
+                    "ticket": {"Ladies": self.__available_ladies_tickets()},
                     "distance": self.__get_distance(),
-                    "ticket_price": self.get_price_per_ticket()
+                    "ticket_price": self.__get_price_per_ticket(),
+                    "train_name": self.__get_train_name(),
                 }
             case "All":
                 return {
@@ -133,7 +127,8 @@ class Ticket:
                         {"Ladies": self.__available_ladies_tickets()}
                     ],
                     "distance": self.__get_distance(),
-                    "ticket_price": self.get_price_per_ticket()
+                    "ticket_prices": self.__get_price_per_ticket(),
+                    "train_name": self.__get_train_name(),
                 }
 
         return {"status": False, "message": "Unknown ticket type"}
@@ -152,7 +147,7 @@ class Ticket:
             total_distance = sum(station['we_distance'] for station in route_stations)
             return total_distance - destinations[self.__destination_station]['we_distance']
 
-    def get_price_per_ticket(self, all_type: str = None) -> None | float | int | list[dict]:
+    def __get_price_per_ticket(self, all_type: str = None) -> None | float | int | list[dict]:
         """Calculate the ticket price based on distance."""
         distance = self.__get_distance()
         extra_distance = distance - self.FREE_DISTANCE
@@ -182,90 +177,25 @@ class Ticket:
                 classes = ['Economy', 'Business', 'First Class', 'Ladies']
                 prices = []
                 for cls in classes:
-                    prices.append({cls: self.get_price_per_ticket(cls)})
+                    prices.append({cls: self.__get_price_per_ticket(cls)})
                 return prices
+
+    def __get_train_name(self) -> str:
+        source_id = destinations[self.__source_station]['id']
+        destination_id = destinations[self.__destination_station]['id']
+        return "DORE-WNPL" if source_id < destination_id else "DORW-ENPL"
+
+    def __get_pnr_number(self) -> str:
+        book_date = "".join(self.__journey_date.split("-"))[2:]
+        time = datetime.now().strftime("%H%M%S")
+        return f"{book_date}-{self.__get_train_name()}-{time}"
 
     def __del__(self):
         self.__cur.close()
         self.__conn.close()
-
 
 # t = Ticket("Janakpur", "Kathmandu", "2025-02-13", "All")
 
 # print(t.search_available_tickets())
 
 # print(t.get_price_per_ticket())
-
-
-
-
-
-
-
-
-# def get_distance(source: str, destination: str) -> int:
-#     """Calculate distance between two stations."""
-#     if source not in destinations or destination not in destinations:
-#         raise ValueError("Invalid station name.")
-#
-#     source_id = destinations[source]['id']
-#     destination_id = destinations[destination]['id']
-#
-#     if source_id < destination_id:
-#         route_stations = list(destinations.values())[source_id - 1:destination_id]
-#         total_distance = sum(station['ew_distance'] for station in route_stations)
-#         return total_distance - destinations[source]['ew_distance']
-#     else:
-#         route_stations = list(destinations.values())[destination_id - 1:source_id]
-#         total_distance = sum(station['we_distance'] for station in route_stations)
-#         return total_distance - destinations[destination]['we_distance']
-#
-#
-#
-#
-# # Constants for ticket pricing
-# ECONOMY_BASE_FARE = 20
-# ECONOMY_RATE_PER_KM = 0.25
-# BUSINESS_BASE_FARE = 500
-# BUSINESS_RATE_PER_KM = 5
-# FIRST_CLASS_BASE_FARE = 300
-# FIRST_CLASS_RATE_PER_KM = 3
-# LADIES_BASE_FARE = 20
-# LADIES_RATE_PER_KM = 0.20
-# FREE_DISTANCE = 100
-#
-#
-# def get_price_per_ticket(distance: int, class_type: str) -> float:
-#     """Calculate the ticket price based on distance."""
-#     extra_distance = distance - FREE_DISTANCE
-#     match class_type:
-#         case "Economy":
-#             if distance <= FREE_DISTANCE:
-#                 return ECONOMY_BASE_FARE
-#
-#             return round(ECONOMY_BASE_FARE + extra_distance * ECONOMY_RATE_PER_KM, 2)
-#
-#         case "Business":
-#             if distance <= FREE_DISTANCE:
-#                 return BUSINESS_BASE_FARE
-#
-#             return round(BUSINESS_BASE_FARE + extra_distance * BUSINESS_RATE_PER_KM, 2)
-#         case "First Class":
-#             if distance <= FREE_DISTANCE:
-#                 return FIRST_CLASS_BASE_FARE
-#
-#             return round(FIRST_CLASS_BASE_FARE + extra_distance * FIRST_CLASS_RATE_PER_KM, 2)
-#         case "Ladies":
-#             if distance <= FREE_DISTANCE:
-#                 return LADIES_BASE_FARE
-#
-#             return round(LADIES_BASE_FARE + extra_distance * LADIES_RATE_PER_KM, 2)
-#
-#
-# # Example Usage
-# distance = get_distance("Kathmandu", "Janakpur")
-# print("Distance:", distance)
-# #
-# ticket_price = get_price_per_ticket(get_distance("Kathmandu", "Janakpur"), "First Class")
-# print("Ticket Price:", ticket_price)
-
