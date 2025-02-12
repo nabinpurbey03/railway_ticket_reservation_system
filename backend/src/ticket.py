@@ -5,7 +5,6 @@ import psycopg2
 from dotenv import load_dotenv
 from psycopg2 import DatabaseError
 
-
 destinations = {
     "Kakadbhitta": {"id": 1, "ew_distance": 0, "we_distance": 110},
     "Biratnagar": {"id": 2, "ew_distance": 110, "we_distance": 118},
@@ -24,6 +23,7 @@ destinations = {
     "Dhading": {"id": 15, "ew_distance": 80, "we_distance": 62},
     "Banbasa": {"id": 16, "ew_distance": 62, "we_distance": 0},
 }
+
 
 def get_pnr_number(date: str, sid: int, did: int) -> str:
     book_date = "".join(date.split("-"))[2:]
@@ -112,14 +112,14 @@ class Ticket:
             case 'First Class':
                 return {
                     "status": True,
-                    "tickets": [{"Business": self.__available_first_class_tickets()}],
+                    "tickets": [{"First Class": self.__available_first_class_tickets()}],
                     "distance": self.__get_distance(),
                     "ticket_price": self.get_price_per_ticket()
                 }
             case 'Ladies':
                 return {
                     "status": True,
-                    "tickets": [{"Business": self.__available_ladies_tickets()}],
+                    "tickets": [{"Ladies": self.__available_ladies_tickets()}],
                     "distance": self.__get_distance(),
                     "ticket_price": self.get_price_per_ticket()
                 }
@@ -132,9 +132,8 @@ class Ticket:
                         {"First Class": self.__available_first_class_tickets()},
                         {"Ladies": self.__available_ladies_tickets()}
                     ],
-                    "distance": [
-                        {"Economy": self.__get_distance()},
-                    ],
+                    "distance": self.__get_distance(),
+                    "ticket_price": self.get_price_per_ticket()
                 }
 
         return {"status": False, "message": "Unknown ticket type"}
@@ -153,11 +152,11 @@ class Ticket:
             total_distance = sum(station['we_distance'] for station in route_stations)
             return total_distance - destinations[self.__destination_station]['we_distance']
 
-    def get_price_per_ticket(self) -> None | float | int:
+    def get_price_per_ticket(self, all_type: str = None) -> None | float | int | list[dict]:
         """Calculate the ticket price based on distance."""
         distance = self.__get_distance()
         extra_distance = distance - self.FREE_DISTANCE
-        match self.__class_type:
+        match all_type or self.__class_type:
             case "Economy":
                 if distance <= self.FREE_DISTANCE:
                     return self.ECONOMY_BASE_FARE
@@ -180,13 +179,27 @@ class Ticket:
 
                 return round(self.LADIES_BASE_FARE + extra_distance * self.LADIES_RATE_PER_KM, 2)
             case "All":
-                return [
-                    {"Economy": },
-                ]
+                classes = ['Economy', 'Business', 'First Class', 'Ladies']
+                prices = []
+                for cls in classes:
+                    prices.append({cls: self.get_price_per_ticket(cls)})
+                return prices
 
     def __del__(self):
         self.__cur.close()
         self.__conn.close()
+
+
+# t = Ticket("Janakpur", "Kathmandu", "2025-02-13", "All")
+
+# print(t.search_available_tickets())
+
+# print(t.get_price_per_ticket())
+
+
+
+
+
 
 
 
@@ -256,6 +269,3 @@ class Ticket:
 # ticket_price = get_price_per_ticket(get_distance("Kathmandu", "Janakpur"), "First Class")
 # print("Ticket Price:", ticket_price)
 
-
-
-# t = Ticket("Janakpur", "Kathmandu", "2025-02-13", "Business")
