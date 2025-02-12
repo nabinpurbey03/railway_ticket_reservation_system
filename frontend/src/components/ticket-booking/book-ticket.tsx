@@ -18,8 +18,10 @@ import axios from "axios";
 import {toast} from "@/hooks/use-toast.ts";
 import React, {useEffect, useState} from "react";
 import {Toaster} from "@/components/ui/toaster.tsx";
+import {useNavigate} from "react-router-dom";
 
 const BookTicket: React.FC = () => {
+    const navigate = useNavigate();
     const location = useLocation();
     const params = new URLSearchParams(location.search);
     const sourceStation = params.get("sourceStation") || "Janakpur";
@@ -28,20 +30,20 @@ const BookTicket: React.FC = () => {
     const classType = params.get("classType") || "All";
 
     const [open, setOpen] = useState<boolean>(false)
-    const [numberOfSeats, setNumberOfSeats] = useState<number>(1);
+    const [number0fTickets, setnumber0fTickets] = useState<number>(1);
     const [loading, setLoading] = useState(true);
-    const [tickets, setTickets] = useState([]);
+    const [data, setData] = useState();
 
 
     const manageSeats = (operator: string) => {
         switch (operator) {
             case "+":
-                if (numberOfSeats < 10)
-                    setNumberOfSeats(numberOfSeats + 1);
+                if (number0fTickets < 10)
+                    setnumber0fTickets(number0fTickets + 1);
                 break;
             case "-":
-                if (numberOfSeats > 1)
-                    setNumberOfSeats(numberOfSeats - 1);
+                if (number0fTickets > 1)
+                    setnumber0fTickets(number0fTickets - 1);
                 break;
         }
     };
@@ -55,28 +57,59 @@ const BookTicket: React.FC = () => {
         }
     });
 
-    const fetchTicketAvailability = async (journey_date: string, class_type: string) => {
+    const payload = {
+        source_station: sourceStation,
+        destination_station: destinationStation,
+        journey_date: journeyDate,
+        class_type: classType
+    }
+
+
+    const updateURL = (updatedParams: Record<string, string>) => {
+        const newParams = new URLSearchParams(location.search);
+
+        // Update each key in the URL
+        Object.entries(updatedParams).forEach(([key, value]) => {
+            if (value !== undefined) {
+                newParams.set(key, value);
+            }
+        });
+
+        navigate(`?${newParams.toString()}`, {replace: true});
+    };
+
+// Watch form values and update URL
+    useEffect(() => {
+        const subscription = form.watch((values) => {
+            updateURL({
+                sourceStation: values.sourceStation || "", // Ensure it's a string
+                destinationStation: values.destinationStation || "",
+                journeyDate: values.journeyDate
+                    ? new Date(values.journeyDate).toLocaleDateString("en-CA").split("T")[0]
+                    : "",
+                classType: values.classType || "All",
+            });
+        });
+        return () => subscription.unsubscribe();
+    }, [form.watch]);
+
+    const fetchTicketAvailability = async (payload: object) => {
         try {
-            const response = await axios.get(`${import.meta.env.VITE_API_URL}/api/ticket-search/${journey_date}/${class_type}`);
+            const response = await axios.post(`${import.meta.env.VITE_API_URL}/api/ticket-search`, payload);
             return response.data; // Returning only the data object
         } catch (error) {
             console.error("Failed to fetch ticket availability:", error);
-            return { status: false, tickets: [] }; // Return a default fallback
+            return {status: false, tickets: []}; // Return a default fallback
         }
     };
 
     const fetchTicketsOnLoad = async () => {
         setLoading(true);
-        const defaultValues = form.getValues();
-
-        const response = await fetchTicketAvailability(
-            new Date(defaultValues.journeyDate).toLocaleDateString("en-CA"),
-            defaultValues.classType || "All"
-        );
+        const response = await fetchTicketAvailability(payload);
         if (!response.status) {
-            toast({ title: "Data Fetch Unsuccessful", description: "Something went wrong", variant: "destructive" });
+            toast({title: "Data Fetch Unsuccessful", description: "Something went wrong", variant: "destructive"});
         } else {
-            setTickets(response.tickets);
+            setData(response);
         }
         setLoading(false);
     };
@@ -86,27 +119,38 @@ const BookTicket: React.FC = () => {
         fetchTicketsOnLoad();
     }, []);
 
-    // console.log(tickets);
 
     async function onSubmit(data: z.infer<typeof TicketSchema>) {
+        payload.source_station = data.sourceStation ?? "Janakpur";
+        payload.destination_station = data.destinationStation ?? "Kathmandu";
+        payload.journey_date = data.journeyDate;
+        payload.class_type = data.classType ?? "All";
+        if (payload.source_station === payload.destination_station) {
+            toast({
+                title: "Data Fetch Unsuccessful",
+                description: "Source and Destination cannot be same",
+                variant: "destructive"
+            });
+            return;
+        }
         setLoading(true);
-        const response = await fetchTicketAvailability(
-            new Date(data.journeyDate).toLocaleDateString("en-CA"),
-            data.classType || "All"
-        );
+        const response = await fetchTicketAvailability(payload);
 
         if (!response.status) {
-            toast({ title: "Data Fetch Unsuccessful", description: "Something went wrong", variant: "destructive" });
+            toast({title: "Data Fetch Unsuccessful", description: "Something went wrong", variant: "destructive"});
         } else {
-            setTickets(response.tickets);
+            setData(response);
         }
         setLoading(false);
     }
 
+    console.log(data)
+
     return (
         <>
-            <Toaster />
-            <Navbar showReg={() => {}}/>
+            <Toaster/>
+            <Navbar showReg={() => {
+            }}/>
             <main>
                 <div className="w-full bg-blue-400">
                     <div className="px-5 pb-2 text-black mx-64">
@@ -266,7 +310,7 @@ const BookTicket: React.FC = () => {
                                                         type={"button"}
                                                         onClick={() => manageSeats("-")}> - </Button>
 
-                                                <h1 className="mt-1 text-2xl text-white bg-blue-900 rounded px-5 py-1">{numberOfSeats}</h1>
+                                                <h1 className="mt-1 text-2xl text-white bg-blue-900 rounded px-5 py-1">{number0fTickets}</h1>
                                                 <Button variant={"outline"}
                                                         type={"button"}
                                                         className="font-bold text-lg"
@@ -290,7 +334,8 @@ const BookTicket: React.FC = () => {
                     {loading ? (
                         <p>Loading...</p>
                     ) : (
-                        <ShowTicketResult numberOfSeats={numberOfSeats} tickets={tickets}/>
+                        <ShowTicketResult data={data} number0fTickets={number0fTickets}/>
+                        // <div>Hello Solo</div>
                     )
                     }
                 </div>
