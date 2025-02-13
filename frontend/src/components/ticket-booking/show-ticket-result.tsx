@@ -3,16 +3,17 @@ import {Button} from "@/components/ui/button.tsx";
 import React from "react";
 import {useLocation} from "react-router-dom";
 import {addDays} from "date-fns";
+import {Separator} from "@/components/ui/separator.tsx";
 
 const classTypes = [
-    {'Economy': 400},
+    {'Economy': 200},
     {'Business': 40},
-    {'First Class': 40},
+    {'First Class': 80},
     {'Ladies': 80}
 ]
 
 interface Props {
-    data: object | undefined;
+    data?: object;
     number0fTickets: number;
 }
 
@@ -27,29 +28,44 @@ const ShowTicketResult: React.FC<Props> = ({data, number0fTickets}) => {
     console.log(data);
 
     return (
-        <Card className="flex flex-col px-16 rounded-none min-h-[63vh]">
+        <Card className="flex flex-col px-6 rounded-none min-h-[63vh]">
             <CardHeader>
                 <CardTitle>{`${sourceStation} to ${destinationStation}`}</CardTitle>
                 <CardDescription>{journeyDate.toLocaleDateString("en-CA")}</CardDescription>
             </CardHeader>
             <CardContent>
-                <div className="flex w-full justify-center items-center space-x-10">
+                <div className="flex w-full justify-center items-center space-x-4">
                     {
-                        data?.tickets ?
-                            data?.tickets.map((ticket, index) => (
-                                <TicketCard
-                                    key={index}
-                                    ticket={ticket}
-                                    classType={ticket}
-                                    numberOfTickets={number0fTickets}
-                                    availableTickets={ticket}
-                                />
-                            )) : <TicketCard
-                                key={0}
-                                ticket={"0"}
-                                classType={'economy'}
+                        "tickets" in data ?
+                            classTypes.map((classType, index) => {
+                                return (
+                                    <TicketCard
+                                        key={index}
+                                        classType={Object.keys(classType)[0]}
+                                        numberOfTickets={number0fTickets}
+                                        distance={data.distance}
+                                        trainName={data.train_name}
+                                        pricePerTicket={data.ticket_prices[index][Object.keys(classType)[0]]}
+                                        availableTickets={data.tickets[index][Object.keys(classType)[0]]}
+                                        totalTicket={classType[Object.keys(classType)[0]]}
+                                        reservedTicket={classType[Object.keys(classType)[0]] - data.tickets[index][Object.keys(classType)[0]]}
+                                        totalPrice={parseFloat((data.ticket_prices[index][Object.keys(classType)[0]] * number0fTickets).toFixed(2))}
+                                    />
+                                )
+                            })
+
+
+                            : <TicketCard
                                 numberOfTickets={number0fTickets}
-                                availableTickets={1}
+                                classType={Object.keys(data.ticket)[0]}
+                                distance={data.distance}
+                                trainName={data.train_name}
+                                pricePerTicket={data.ticket_price}
+                                totalPrice={parseFloat((data.ticket_price * number0fTickets).toFixed(2))}
+                                availableTickets={data.ticket[Object.keys(data.ticket)[0]]}
+                                totalTicket={data.ticket[Object.keys(data.ticket)[0]]}
+                                reservedTicket={data.ticket[Object.keys(data.ticket)[0]]}
+
                             />
                     }
                 </div>
@@ -61,37 +77,57 @@ export default ShowTicketResult;
 
 
 interface TicketCardProps {
-    ticket: string;
-    classType: string;
-    numberOfTickets: number;
-    availableTickets: number;
+    classType?: string;
+    trainName?: string;
+    distance?: number;
+    totalTicket?: number;
+    reservedTicket?: number;
+    availableTickets?: number;
+    numberOfTickets?: number;
+    pricePerTicket?: number;
+    totalPrice?: number;
 }
 
-const TicketCard: React.FC<TicketCardProps> = ({ticket, classType, numberOfTickets, availableTickets}) => {
+const TicketCard: React.FC<TicketCardProps> = ({
+                                                   totalTicket,
+                                                   classType,
+                                                   numberOfTickets,
+                                                   availableTickets,
+                                                   totalPrice,
+                                                   distance,
+                                                   trainName,
+                                                   pricePerTicket,
+                                                   reservedTicket
+                                               }) => {
     return (
-        <Card className="w-1/3 bg-red-50">
+        <Card className="w-1/2 bg-red-50">
             <CardHeader>
                 <CardTitle>{classType}</CardTitle>
             </CardHeader>
+            <Separator/>
             <CardContent className="flex justify-between text-gray-600">
                 <div className="text-left">
                     <ul>
-                        <li>Total Seats</li>
-                        <li>Reserved Seats</li>
-                        <li>Available Seats</li>
-                        <li>Selected Seats</li>
-                        <li>Price Per Seat</li>
+                        <li>Train Name</li>
+                        <li>Total Distance</li>
+                        <li>Total Ticket</li>
+                        <li>Reserved Ticket</li>
+                        <li>Available Ticket</li>
+                        <li>Selected Ticket</li>
+                        <li>Price Per Ticket</li>
                         <li className="font-bold text-right text-black">Total Price</li>
                     </ul>
                 </div>
                 <div className="text-right">
                     <ul>
-                        <li>{ticket}</li>
-                        <li>500</li>
-                        <li>{availableTickets}</li>
-                        <li>{numberOfTickets}</li>
-                        <li>30</li>
-                        <li className="font-bold text-black">150</li>
+                        <li>{trainName}</li>
+                        <li>{distance || "N/A"} KM</li>
+                        <li>{totalTicket || "N/A"}</li>
+                        <li>{reservedTicket || "N/A"}</li>
+                        <li>{availableTickets || "N/A"}</li>
+                        <li>{numberOfTickets || "N/A"}</li>
+                        <li>{pricePerTicket || "N/A"}</li>
+                        <li className="font-bold text-black">{totalPrice || "N/A"}</li>
                     </ul>
                 </div>
             </CardContent>

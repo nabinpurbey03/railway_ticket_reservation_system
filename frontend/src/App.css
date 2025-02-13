@@ -48,4 +48,18 @@
     filter: invert(1) brightness(50%) sepia(0%) saturate(10000%);
 }
 
+.gd-css{
+    /*background-image: radial-gradient(circle 248px at center, #16d9e3 0%, #30c7ec 47%, #46aef7 100%);*/
+    /*background-image: linear-gradient(to top, #48c6ef 0%, #6f86d6 100%);*/
+    /*background-image: linear-gradient(to top, #00c6fb 0%, #005bea 100%);*/
+    /*background-image: linear-gradient(to right, #92fe9d 0%, #00c9ff 100%);*/
+    /*background-image: linear-gradient(to bottom, #4481eb 0%, #04befe 100%);*/
+    /*background-image: linear-gradient(-225deg, #2CD8D5 0%, #C5C1FF 56%, #FFBAC3 100%);*/
+    /*background-image: linear-gradient(-225deg, #5D9FFF 0%, #B8DCFF 48%, #6BBBFF 100%);*/
+    /*background-image: linear-gradient(-225deg, #D4FFEC 0%, #57F2CC 48%, #4596FB 100%);*/
+    /*background-image: linear-gradient(-225deg, #FFFEFF 0%, #D7FFFE 100%);*/
+    background-image: linear-gradient(to bottom, #1e3c72 0%, #1e3c72 1%, #2a5298 80%);
+}
+
+
 

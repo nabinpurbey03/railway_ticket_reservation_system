@@ -143,16 +143,13 @@ const BookTicket: React.FC = () => {
         }
         setLoading(false);
     }
-
-    console.log(data)
-
     return (
         <>
             <Toaster/>
             <Navbar showReg={() => {
             }}/>
             <main>
-                <div className="w-full bg-blue-400">
+                <div className="w-full gd-css">
                     <div className="px-5 pb-2 text-black mx-64">
                         <Form {...form}>
                             <form
