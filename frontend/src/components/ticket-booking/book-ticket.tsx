@@ -331,7 +331,7 @@ const BookTicket: React.FC = () => {
                     {loading ? (
                         <p>Loading...</p>
                     ) : (
-                        <ShowTicketResult data={data} number0fTickets={number0fTickets}/>
+                        <ShowTicketResult data={data} numberOfTickets={number0fTickets}/>
                         // <div>Hello Solo</div>
                     )
                     }
