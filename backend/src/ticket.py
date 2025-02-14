@@ -92,22 +92,7 @@ class Ticket:
                     "distance": self.__get_distance(),
                     "ticket_price": self.__get_price_per_ticket(),
                     "train_name": self.__get_train_name(),
-                }
-            case 'Business':
-                return {
-                    "status": True,
-                    "ticket": {"Business": self.__available_business_tickets()},
-                    "distance": self.__get_distance(),
-                    "ticket_price": self.__get_price_per_ticket(),
-                    "train_name": self.__get_train_name(),
-                }
-            case 'First Class':
-                return {
-                    "status": True,
-                    "ticket": {"First Class": self.__available_first_class_tickets()},
-                    "distance": self.__get_distance(),
-                    "ticket_price": self.__get_price_per_ticket(),
-                    "train_name": self.__get_train_name(),
+                    "total_ticket": self.TOTAL_ECONOMY_TICKETS,
                 }
             case 'Ladies':
                 return {
@@ -116,15 +101,34 @@ class Ticket:
                     "distance": self.__get_distance(),
                     "ticket_price": self.__get_price_per_ticket(),
                     "train_name": self.__get_train_name(),
+                    "total_ticket": self.TOTAL_LADIES_TICKETS,
+                }
+            case 'First Class':
+                return {
+                    "status": True,
+                    "ticket": {"First Class": self.__available_first_class_tickets()},
+                    "distance": self.__get_distance(),
+                    "ticket_price": self.__get_price_per_ticket(),
+                    "train_name": self.__get_train_name(),
+                    "total_ticket": self.TOTAL_FIRST_CLASS_TICKETS,
+                }
+            case 'Business':
+                return {
+                    "status": True,
+                    "ticket": {"Business": self.__available_business_tickets()},
+                    "distance": self.__get_distance(),
+                    "ticket_price": self.__get_price_per_ticket(),
+                    "train_name": self.__get_train_name(),
+                    "total_ticket": self.TOTAL_BUSINESS_TICKETS,
                 }
             case "All":
                 return {
                     "status": True,
                     "tickets": [
                         {"Economy": self.__available_economy_tickets()},
-                        {"Business": self.__available_business_tickets()},
+                        {"Ladies": self.__available_ladies_tickets()},
                         {"First Class": self.__available_first_class_tickets()},
-                        {"Ladies": self.__available_ladies_tickets()}
+                        {"Business": self.__available_business_tickets()}
                     ],
                     "distance": self.__get_distance(),
                     "ticket_prices": self.__get_price_per_ticket(),
@@ -157,24 +161,24 @@ class Ticket:
                     return self.ECONOMY_BASE_FARE
 
                 return round(self.ECONOMY_BASE_FARE + extra_distance * self.ECONOMY_RATE_PER_KM, 2)
-
-            case "Business":
-                if distance <= self.FREE_DISTANCE:
-                    return self.BUSINESS_BASE_FARE
-
-                return round(self.BUSINESS_BASE_FARE + extra_distance * self.BUSINESS_RATE_PER_KM, 2)
-            case "First Class":
-                if distance <= self.FREE_DISTANCE:
-                    return self.FIRST_CLASS_BASE_FARE
-
-                return round(self.FIRST_CLASS_BASE_FARE + extra_distance * self.FIRST_CLASS_RATE_PER_KM, 2)
             case "Ladies":
                 if distance <= self.FREE_DISTANCE:
                     return self.LADIES_BASE_FARE
 
                 return round(self.LADIES_BASE_FARE + extra_distance * self.LADIES_RATE_PER_KM, 2)
+            case "First Class":
+                if distance <= self.FREE_DISTANCE:
+                    return self.FIRST_CLASS_BASE_FARE
+
+                return round(self.FIRST_CLASS_BASE_FARE + extra_distance * self.FIRST_CLASS_RATE_PER_KM, 2)
+            case "Business":
+                if distance <= self.FREE_DISTANCE:
+                    return self.BUSINESS_BASE_FARE
+
+                return round(self.BUSINESS_BASE_FARE + extra_distance * self.BUSINESS_RATE_PER_KM, 2)
+
             case "All":
-                classes = ['Economy', 'Business', 'First Class', 'Ladies']
+                classes = ['Economy', 'Ladies', 'First Class', 'Business']
                 prices = []
                 for cls in classes:
                     prices.append({cls: self.__get_price_per_ticket(cls)})
