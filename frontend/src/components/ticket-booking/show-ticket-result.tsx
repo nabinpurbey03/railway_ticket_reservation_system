@@ -1,9 +1,17 @@
 import {Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle} from "@/components/ui/card.tsx";
 import {Button} from "@/components/ui/button.tsx";
-import React from "react";
+import React, {ReactElement} from "react";
 import {useLocation} from "react-router-dom";
 import {addDays} from "date-fns";
 import {Separator} from "@/components/ui/separator.tsx";
+import {
+    Dialog,
+    DialogContent, DialogDescription,
+    DialogFooter,
+    DialogHeader,
+    DialogTitle,
+    DialogTrigger
+} from "@/components/ui/dialog.tsx";
 
 const classTypes = [
     {Economy: 200},
@@ -164,9 +172,43 @@ const TicketCard: React.FC<TicketCardProps> = ({
                 </div>
             </CardContent>
             <CardFooter className="flex justify-end">
-                <Button variant={"constructive"} onClick={handleBook} disabled={availableTickets <= 0}>Book</Button>
+                <ConfirmationDialog button={<Button variant={"constructive"} onClick={handleBook}
+                                                    disabled={availableTickets <= 0}>Book</Button>}/>
             </CardFooter>
         </Card>
     );
 };
+
+
+interface ConfirmationDialogProps {
+    button: ReactElement;
+}
+
+const ConfirmationDialog: React.FC<ConfirmationDialogProps> = ({button}) => {
+    return (
+        <Dialog>
+            <DialogTrigger asChild>
+                {button}
+            </DialogTrigger>
+            <DialogContent className="sm:max-w-[500px] sm:max-h-[425px] text-black">
+                <DialogHeader>
+                    <DialogTitle className="text-center">Ticket Confirmation</DialogTitle>
+                    <DialogDescription className="text-center">
+                        After confirming the ticket will be in WAITING, will be confirmed after the payment.
+                    </DialogDescription>
+                </DialogHeader>
+                <div className="text-black">
+                    <p>Confirmation here</p>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad, eius, laborum. Adipisci animi
+                        blanditiis consequuntur corporis earum eveniet ex hic ipsam laboriosam, maxime nostrum quidem
+                        quo quod, repudiandae voluptas voluptate.
+                    </p>
+                </div>
+                <DialogFooter>
+                    <Button type="submit"> Confirm </Button>
+                </DialogFooter>
+            </DialogContent>
+        </Dialog>
+    )
+}
 
