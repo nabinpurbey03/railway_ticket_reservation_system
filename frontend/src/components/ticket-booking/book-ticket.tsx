@@ -327,7 +327,7 @@ const BookTicket: React.FC = () => {
                         </Form>
                     </div>
                 </div>
-                <div className="bg-gray-500 text-black min-h-[63.4vh]">
+                <div className="text-black min-h-[63.4vh]">
                     {loading ? (
                         <p>Loading...</p>
                     ) : (
