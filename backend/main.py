@@ -1,6 +1,6 @@
 from fastapi.staticfiles import StaticFiles
 
-from fastapi import FastAPI, HTTPException, Form, UploadFile, File
+from fastapi import FastAPI, Form, UploadFile, File
 from fastapi.middleware.cors import CORSMiddleware
 
 from models import LoginRequest, Register, OTPVerificationRequest, AddUserRequest, AddressRequest, ChangePassword, \

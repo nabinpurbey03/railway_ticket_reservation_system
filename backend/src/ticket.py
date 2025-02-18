@@ -1,4 +1,4 @@
-from datetime import datetime
+from datetime import datetime, timedelta
 import os
 
 import psycopg2
@@ -53,8 +53,30 @@ class Ticket:
         self.__journey_date = journey_date
         self.__class_type = class_type
 
+    def __check_station_validity(self):
+        if self.__source_station not in destinations or self.__destination_station not in destinations:
+            return False
+        return True
+
+    def __is_within_next_week(self) -> bool:
+        try:
+            # Convert ISO string to datetime object
+            input_date = datetime.fromisoformat(self.__journey_date.rstrip("Z")).date()
+
+            # Get today's date
+            today = datetime.today().date()
+
+            # Define the valid range
+            start_date = today + timedelta(days=1)  # Tomorrow
+            end_date = today + timedelta(days=7)  # Next 6 days from tomorrow
+
+            return start_date <= input_date <= end_date
+        except ValueError:
+            return False
+
     def __available_tickets(self, class_type: str, date: str, total_tickets: int) -> int:
         """Returns the number of available tickets for a given class type and journey date."""
+
         try:
             sql = '''
                 SELECT COUNT(*)
@@ -84,6 +106,12 @@ class Ticket:
         return self.__available_tickets('Ladies', self.__journey_date, self.TOTAL_LADIES_TICKETS)
 
     def search_available_tickets(self) -> dict:
+        if not self.__is_within_next_week():
+            return {"status": False}
+
+        if not self.__check_station_validity():
+            return {"status": False}
+
         match self.__class_type:
             case 'Economy':
                 return {
@@ -198,8 +226,6 @@ class Ticket:
         self.__cur.close()
         self.__conn.close()
 
-# t = Ticket("Janakpur", "Kathmandu", "2025-02-13", "All")
-
-# print(t.search_available_tickets())
-
-# print(t.get_price_per_ticket())
+# t = Ticket("Janakpur", "Kathmandu", "2025-02-23", "All")
+#
+# print(t.is_within_next_week())
