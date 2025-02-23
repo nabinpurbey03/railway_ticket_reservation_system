@@ -148,8 +148,8 @@ const BookTicket: React.FC = () => {
             <Toaster/>
             <Navbar showReg={() => {
             }}/>
-            <main>
-                <div className="w-full gd-css">
+            <main className={"add-bg"}>
+                <div className="w-full">
                     <div className="px-5 pb-2 text-black mx-64">
                         <Form {...form}>
                             <form

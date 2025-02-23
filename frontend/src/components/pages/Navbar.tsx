@@ -30,6 +30,9 @@ const Navbar: React.FC<navbarProps> = ({showReg}): ReactElement => {
                     alt="Emblem_of_Nepal"
                     src="/assets/images/emblem_of_nepal.svg"
                     className="object-contain h-full cursor-pointer"
+                    onClick={() => {
+                        window.location.href = '/';
+                    }}
                 />
                 <div>
                     <p className="font-bold">Government of Nepal</p>
@@ -50,10 +53,10 @@ const Navbar: React.FC<navbarProps> = ({showReg}): ReactElement => {
                     <DateTime/>
                 </div>
                 <div className="flex items-center justify-center mx-3">
-                    {loggedIn || (loggedIn && !active)? <DropdownMenu>
+                    {loggedIn || (loggedIn && !active) ? <DropdownMenu>
                             <DropdownMenuTrigger>
                                 <Avatar className="bg-white cursor-pointer" onClick={showReg}>
-                                    <AvatarImage src={active? image_url :"/assets/images/user_avatar.png"}/>
+                                    <AvatarImage src={active ? image_url : "/assets/images/user_avatar.png"}/>
                                     {/*<AvatarFallback>Nabin Purbey</AvatarFallback>*/}
                                 </Avatar>
                             </DropdownMenuTrigger>

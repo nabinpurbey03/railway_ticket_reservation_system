@@ -12,6 +12,7 @@ import {
     DialogTitle,
     DialogTrigger
 } from "@/components/ui/dialog.tsx";
+import Cookies from "js-cookie";
 
 const classTypes = [
     {Economy: 200},
@@ -50,10 +51,10 @@ const ShowTicketResult: React.FC<Props> = ({data, numberOfTickets}) => {
     const destinationStation = params.get("destinationStation") || "Kathmandu";
 
     return (
-        <Card className="flex flex-col px-6 rounded-none min-h-[63vh]">
+        <Card className="flex flex-col px-6 rounded-none min-h-[63vh] bg-transparent border-0">
             <CardHeader>
-                <CardTitle>{`${sourceStation} to ${destinationStation}`}</CardTitle>
-                <CardDescription>{journeyDate}</CardDescription>
+                <CardTitle className="text-blue-700 text-3xl">{`${sourceStation} to ${destinationStation}`}</CardTitle>
+                <CardDescription className="text-blue-500">{journeyDate}</CardDescription>
             </CardHeader>
             <CardContent>
                 <div className="flex w-full justify-center items-center space-x-4">
@@ -140,7 +141,7 @@ const TicketCard: React.FC<TicketCardProps> = ({
     return (
         <Card className="w-1/2 bg-blue-200">
             <CardHeader>
-                <CardTitle>{classType || "N/A"}</CardTitle>
+                <CardTitle className="text-blue-700">{classType || "N/A"}</CardTitle>
             </CardHeader>
             <Separator/>
             <CardContent className="flex justify-between text-gray-600">
@@ -205,7 +206,7 @@ const ConfirmationDialog: React.FC<ConfirmationDialogProps> = ({button}) => {
                     </p>
                 </div>
                 <DialogFooter>
-                    <Button type="submit"> Confirm </Button>
+                    <Button type="submit" disabled={Cookies.get('is_active') !== 'true'}> Confirm </Button>
                 </DialogFooter>
             </DialogContent>
         </Dialog>
