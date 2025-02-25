@@ -122,26 +122,22 @@ const TicketCard: React.FC<TicketCardProps> = ({
                                                    pricePerTicket,
                                                    reservedTicket
                                                }) => {
-    const handleBook = () => {
-        const ticketData = {
-            classType,
-            trainName,
-            distance,
-            totalTicket,
-            reservedTicket,
-            availableTickets,
-            numberOfTickets,
-            pricePerTicket,
-            totalPrice,
-        };
-
-        console.log("Booking Ticket Data:", ticketData);
+    const ticketData = {
+        classType,
+        trainName,
+        distance,
+        totalTicket,
+        reservedTicket,
+        availableTickets,
+        numberOfTickets,
+        pricePerTicket,
+        totalPrice,
     };
 
     return (
         <Card className="w-1/2 bg-blue-200">
             <CardHeader>
-                <CardTitle className="text-blue-700">{classType || "N/A"}</CardTitle>
+                <CardTitle className="text-blue-600">{classType || "N/A"}</CardTitle>
             </CardHeader>
             <Separator/>
             <CardContent className="flex justify-between text-gray-600">
@@ -173,8 +169,10 @@ const TicketCard: React.FC<TicketCardProps> = ({
                 </div>
             </CardContent>
             <CardFooter className="flex justify-end">
-                <ConfirmationDialog button={<Button variant={"constructive"} onClick={handleBook}
-                                                    disabled={availableTickets <= 0}>Book</Button>}/>
+                <ConfirmationDialog
+                    button={<Button variant={"constructive"} disabled={availableTickets <= numberOfTickets}>Book</Button>}
+                    data={ticketData}
+                />
             </CardFooter>
         </Card>
     );
@@ -183,9 +181,10 @@ const TicketCard: React.FC<TicketCardProps> = ({
 
 interface ConfirmationDialogProps {
     button: ReactElement;
+    data;
 }
 
-const ConfirmationDialog: React.FC<ConfirmationDialogProps> = ({button}) => {
+const ConfirmationDialog: React.FC<ConfirmationDialogProps> = ({button, data}) => {
     return (
         <Dialog>
             <DialogTrigger asChild>
@@ -199,11 +198,9 @@ const ConfirmationDialog: React.FC<ConfirmationDialogProps> = ({button}) => {
                     </DialogDescription>
                 </DialogHeader>
                 <div className="text-black">
-                    <p>Confirmation here</p>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad, eius, laborum. Adipisci animi
-                        blanditiis consequuntur corporis earum eveniet ex hic ipsam laboriosam, maxime nostrum quidem
-                        quo quod, repudiandae voluptas voluptate.
-                    </p>
+                    <ul>
+                        <li>{data.classType}</li>
+                    </ul>
                 </div>
                 <DialogFooter>
                     <Button type="submit" disabled={Cookies.get('is_active') !== 'true'}> Confirm </Button>
