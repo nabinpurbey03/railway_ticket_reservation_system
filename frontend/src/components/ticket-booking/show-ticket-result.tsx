@@ -13,6 +13,7 @@ import {
     DialogTrigger
 } from "@/components/ui/dialog.tsx";
 import Cookies from "js-cookie";
+import {destinations} from "@/components/ticket-booking/destinations.ts";
 
 const classTypes = [
     {Economy: 200},
@@ -64,6 +65,7 @@ const ShowTicketResult: React.FC<Props> = ({data, numberOfTickets}) => {
                             return (
                                 <TicketCard
                                     key={index}
+                                    journeyDate={journeyDate}
                                     classType={className}
                                     numberOfTickets={numberOfTickets}
                                     distance={data.distance}
@@ -78,6 +80,7 @@ const ShowTicketResult: React.FC<Props> = ({data, numberOfTickets}) => {
                         })
                     ) : data?.ticket ? (
                         <TicketCard
+                            journeyDate={journeyDate}
                             numberOfTickets={numberOfTickets}
                             classType={Object.keys(data.ticket)[0]}
                             distance={data.distance}
@@ -109,6 +112,7 @@ interface TicketCardProps {
     numberOfTickets?: number;
     pricePerTicket?: number;
     totalPrice?: number;
+    journeyDate?: string;
 }
 
 const TicketCard: React.FC<TicketCardProps> = ({
@@ -120,7 +124,8 @@ const TicketCard: React.FC<TicketCardProps> = ({
                                                    distance,
                                                    trainName,
                                                    pricePerTicket,
-                                                   reservedTicket
+                                                   reservedTicket,
+                                                   journeyDate
                                                }) => {
     const ticketData = {
         classType,
@@ -132,6 +137,7 @@ const TicketCard: React.FC<TicketCardProps> = ({
         numberOfTickets,
         pricePerTicket,
         totalPrice,
+        journeyDate
     };
 
     return (
@@ -170,7 +176,8 @@ const TicketCard: React.FC<TicketCardProps> = ({
             </CardContent>
             <CardFooter className="flex justify-end">
                 <ConfirmationDialog
-                    button={<Button variant={"constructive"} disabled={availableTickets <= numberOfTickets}>Book</Button>}
+                    button={<Button variant={"constructive"}
+                                    disabled={availableTickets <= numberOfTickets}>Book</Button>}
                     data={ticketData}
                 />
             </CardFooter>
@@ -181,26 +188,48 @@ const TicketCard: React.FC<TicketCardProps> = ({
 
 interface ConfirmationDialogProps {
     button: ReactElement;
-    data;
+    data: TicketCardProps;
 }
 
 const ConfirmationDialog: React.FC<ConfirmationDialogProps> = ({button, data}) => {
+
+    const location = useLocation();
+    const params = new URLSearchParams(location.search);
+    const sourceStation = params.get("sourceStation") || "Janakpur";
+    const destinationStation = params.get("destinationStation") || "Kathmandu";
+
+    // const departureTime: string;
+    // const arrivalTime: string;
+    //
+    // if (data.trainName === )
+
+    const departure = destinations.find(s => s.place === (data.trainName === "DORE-WNP" ? sourceStation : destinationStation));
+    const arrival = destinations.find(d => d.place === (data.trainName === "DORE-WNP" ? sourceStation : destinationStation));
+
+    console.log(departure.departureTime, arrival.arrivalTime);
+
     return (
         <Dialog>
             <DialogTrigger asChild>
                 {button}
             </DialogTrigger>
-            <DialogContent className="sm:max-w-[500px] sm:max-h-[425px] text-black">
+            <DialogContent className="sm:max-w-[600px] sm:max-h-[425px] text-black">
                 <DialogHeader>
                     <DialogTitle className="text-center">Ticket Confirmation</DialogTitle>
                     <DialogDescription className="text-center">
                         After confirming the ticket will be in WAITING, will be confirmed after the payment.
                     </DialogDescription>
+                    <DialogTitle
+                        className="text-center">{data.journeyDate}</DialogTitle>
+                    <DialogTitle className="text-center">Selected Tickets {data.numberOfTickets}</DialogTitle>
                 </DialogHeader>
-                <div className="text-black">
-                    <ul>
-                        <li>{data.classType}</li>
-                    </ul>
+                <div className="text-black flex justify-evenly">
+                    <div>
+                        <p>{sourceStation} {departure?.departureTime || "Departure time not found"}</p>
+                    </div>
+                    <div>
+                        <p>{destinationStation} {arrival?.arrivalTime || "Arrival time not found"}</p>
+                    </div>
                 </div>
                 <DialogFooter>
                     <Button type="submit" disabled={Cookies.get('is_active') !== 'true'}> Confirm </Button>
