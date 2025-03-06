@@ -198,15 +198,12 @@ const ConfirmationDialog: React.FC<ConfirmationDialogProps> = ({button, data}) =
     const sourceStation = params.get("sourceStation") || "Janakpur";
     const destinationStation = params.get("destinationStation") || "Kathmandu";
 
-    // const departureTime: string;
-    // const arrivalTime: string;
-    //
-    // if (data.trainName === )
 
-    const departure = destinations.find(s => s.place === (data.trainName === "DORE-WNP" ? sourceStation : destinationStation));
-    const arrival = destinations.find(d => d.place === (data.trainName === "DORE-WNP" ? sourceStation : destinationStation));
 
-    console.log(departure.departureTime, arrival.arrivalTime);
+    const departure = destinations.find(s => s.place === sourceStation);
+    const arrival = destinations.find(d => d.place === destinationStation);
+
+    console.log(departure, arrival);
 
     return (
         <Dialog>
@@ -225,10 +222,10 @@ const ConfirmationDialog: React.FC<ConfirmationDialogProps> = ({button, data}) =
                 </DialogHeader>
                 <div className="text-black flex justify-evenly">
                     <div>
-                        <p>{sourceStation} {departure?.departureTime || "Departure time not found"}</p>
+                        <p>{sourceStation} {data.trainName === "DORE-WNPL" ? departure?.ew_time : departure?.we_time}</p>
                     </div>
                     <div>
-                        <p>{destinationStation} {arrival?.arrivalTime || "Arrival time not found"}</p>
+                        <p>{destinationStation} {data.trainName === "DORE-WNPL" ? arrival?.ew_time : arrival?.we_time}</p>
                     </div>
                 </div>
                 <DialogFooter>
