@@ -198,12 +198,10 @@ const ConfirmationDialog: React.FC<ConfirmationDialogProps> = ({button, data}) =
     const sourceStation = params.get("sourceStation") || "Janakpur";
     const destinationStation = params.get("destinationStation") || "Kathmandu";
 
-
-
     const departure = destinations.find(s => s.place === sourceStation);
     const arrival = destinations.find(d => d.place === destinationStation);
-
-    console.log(departure, arrival);
+    const departureTime = data.trainName === "DORE-WNPL" ? departure?.ew_time : departure?.we_time;
+    const arrivalTime = data.trainName === "DORE-WNPL" ? arrival?.ew_time : arrival?.we_time;
 
     return (
         <Dialog>
@@ -218,16 +216,23 @@ const ConfirmationDialog: React.FC<ConfirmationDialogProps> = ({button, data}) =
                     </DialogDescription>
                     <DialogTitle
                         className="text-center">{data.journeyDate}</DialogTitle>
-                    <DialogTitle className="text-center">Selected Tickets {data.numberOfTickets}</DialogTitle>
                 </DialogHeader>
-                <div className="text-black flex justify-evenly">
+                <Separator />
+                <div className="text-black flex justify-between">
                     <div>
-                        <p>{sourceStation} {data.trainName === "DORE-WNPL" ? departure?.ew_time : departure?.we_time}</p>
+                        <p>Source Station</p>
+                        <p className="font-bold">{sourceStation}</p>
+                        <p>Arrival Time <span className="font-bold">{departureTime}</span></p>
                     </div>
                     <div>
-                        <p>{destinationStation} {data.trainName === "DORE-WNPL" ? arrival?.ew_time : arrival?.we_time}</p>
+                        <p>Destination Station</p>
+                        <p className="font-bold">{destinationStation}</p>
+                        <p>Departure Time <span className="font-bold">{arrivalTime}</span></p>
                     </div>
                 </div>
+                <p className="text-center">Selected Tickets &nbsp; &nbsp; <span className="font-bold">{data.numberOfTickets}</span></p>
+                <p className="text-center">Total Amount &nbsp; &nbsp; <span className="font-bold">{data.totalPrice}</span></p>
+
                 <DialogFooter>
                     <Button type="submit" disabled={Cookies.get('is_active') !== 'true'}> Confirm </Button>
                 </DialogFooter>
