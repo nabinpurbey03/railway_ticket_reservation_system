@@ -218,6 +218,7 @@ const ConfirmationDialog: React.FC<ConfirmationDialogProps> = ({button, data}) =
                         className="text-center">{data.journeyDate}</DialogTitle>
                 </DialogHeader>
                 <Separator />
+                <DialogTitle className="text-center">{data.classType} Class</DialogTitle>
                 <div className="text-black flex justify-between">
                     <div>
                         <p>Source Station</p>

@@ -6,6 +6,7 @@ import AddUserDetails from "@/components/pages/AddUserDetails.tsx";
 import ProfilePage from "@/components/pages/ProfilePage.tsx";
 import BookTicket from "@/components/ticket-booking/book-ticket.tsx";
 import React from "react";
+import ConfirmTicket from "@/components/ticket-booking/confirm-ticket.tsx";
 
 function App(): React.ReactElement {
         const active= Cookies.get("is_active") === "true";
@@ -26,6 +27,7 @@ function App(): React.ReactElement {
                         path="/add-user-details"
                         element={loggedIn && !active ? <AddUserDetails /> : <Navigate to="/" replace />}
                     />
+                    <Route path="/confirm-ticket" element={<ConfirmTicket />}/>
                 </Routes>
             </BrowserRouter>
     );
