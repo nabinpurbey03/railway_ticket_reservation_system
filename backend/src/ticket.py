@@ -226,6 +226,12 @@ class Ticket:
         self.__cur.close()
         self.__conn.close()
 
+
+    def book_ticket(self, data: dict) -> None:
+        pass
+
+
+
 # t = Ticket("Janakpur", "Kathmandu", "2025-02-23", "All")
 #
 # print(t.is_within_next_week())

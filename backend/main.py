@@ -4,7 +4,7 @@ from fastapi import FastAPI, Form, UploadFile, File
 from fastapi.middleware.cors import CORSMiddleware
 
 from models import LoginRequest, Register, OTPVerificationRequest, AddUserRequest, AddressRequest, ChangePassword, \
-    TicketSearch
+    TicketSearch, BookTicket
 from src.address import Address
 from src.card import Card
 from src.emailer import Emailer, otp_store, otp_verification
@@ -144,5 +144,11 @@ async def get_user_profile(user_id: str):
 async def ticket_search(req: TicketSearch):
     ticket = Ticket(req.source_station, req.destination_station, req.journey_date, req.class_type)
     return ticket.search_available_tickets()
+
+
+@app.post("/api/book-ticket")
+async def book_ticket(req: BookTicket):
+    print(req)
+    return {"status": True}
 
 

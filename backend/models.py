@@ -39,3 +39,14 @@ class TicketSearch(BaseModel):
     journey_date: str
     class_type: str
 
+
+class BookTicket(BaseModel):
+    passenger_id: int
+    train_id: str
+    source_station: str
+    destination_station: str
+    arrival_time: str
+    departure_time: str
+    class_type: str
+    journey_date: str
+    fare: float
