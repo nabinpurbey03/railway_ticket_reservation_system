@@ -5,9 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a6a0bc47-991f-4bd0-ba42-afd9e10cba0b" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/components/ticket-booking/confirm-ticket.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/src/ticket.py" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/src/ticket.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/ticket-booking/confirm-ticket.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ticket-booking/confirm-ticket.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/ticket-booking/show-ticket-result.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ticket-booking/show-ticket-result.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -204,6 +204,10 @@
       <workItem from="1741265499782" duration="4546000" />
       <workItem from="1741272551769" duration="3864000" />
       <workItem from="1741315381648" duration="7583000" />
+      <workItem from="1741337809885" duration="41000" />
+      <workItem from="1741345120515" duration="1103000" />
+      <workItem from="1741347625442" duration="132000" />
+      <workItem from="1741347987345" duration="4578000" />
     </task>
     <servers />
   </component>

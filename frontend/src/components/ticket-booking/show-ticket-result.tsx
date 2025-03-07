@@ -14,6 +14,7 @@ import {
 } from "@/components/ui/dialog.tsx";
 import Cookies from "js-cookie";
 import {destinations} from "@/components/ticket-booking/destinations.ts";
+import axios from "axios";
 
 const classTypes = [
     {Economy: 200},
@@ -203,6 +204,40 @@ const ConfirmationDialog: React.FC<ConfirmationDialogProps> = ({button, data}) =
     const departureTime = data.trainName === "DORE-WNPL" ? departure?.ew_time : departure?.we_time;
     const arrivalTime = data.trainName === "DORE-WNPL" ? arrival?.ew_time : arrival?.we_time;
 
+    const bookTicket = async (payload) => {
+        try {
+            console.log(payload);
+            return await axios.post(`${import.meta.env.VITE_API_URL}/api/book-ticket`, payload);
+        } catch (error) {
+            throw new Error("Failed to login. Please check your credentials." + error);
+        }
+    };
+
+    async function handleBookTicket(){
+        const payload = {
+            passenger_id: Cookies.get("id") || "1",
+            train_id: data.trainName,
+            source_station: sourceStation,
+            destination_station: destinationStation,
+            arrival_time: arrivalTime,
+            departure_time: departureTime,
+            class_type: data.classType,
+            journey_date: data.journeyDate,
+            fare: data.totalPrice
+        }
+        try{
+            const bookTicketResponse = await bookTicket(payload);
+            if (!bookTicketResponse.data.status) {
+                console.log("Book Ticket not found");
+                return;
+            }else {
+                console.log("Book Ticket not found.");
+            }
+        }catch (error) {
+            console.error(error);
+        }
+    }
+
     return (
         <Dialog>
             <DialogTrigger asChild>
@@ -235,7 +270,11 @@ const ConfirmationDialog: React.FC<ConfirmationDialogProps> = ({button, data}) =
                 <p className="text-center">Total Amount &nbsp; &nbsp; <span className="font-bold">{data.totalPrice}</span></p>
 
                 <DialogFooter>
-                    <Button type="submit" disabled={Cookies.get('is_active') !== 'true'}> Confirm </Button>
+                    <Button
+                        onClick={handleBookTicket}
+                        variant="constructive"
+                        // disabled={Cookies.get('is_active') !== 'true'}
+                    > Confirm </Button>
                 </DialogFooter>
             </DialogContent>
         </Dialog>

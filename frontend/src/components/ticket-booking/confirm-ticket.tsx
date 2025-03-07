@@ -20,7 +20,7 @@ const ConfirmTicket: React.FC = () => {
                         <Separator />
                     </CardHeader>
                     <CardContent className="flex justify-center">
-                        <div className="min-w-[1000px] grid grid-cols-2 font-bold bg-pink-50">
+                        <div className="min-w-[1000px] grid grid-cols-2 font-bold bg-pink-50 py-5">
                             <div className="text-left pl-40 flex flex-col gap-y-1">
                                 <h1>Ticket Booked By</h1>
                                 <h1>Journey Date</h1>
@@ -49,7 +49,6 @@ const ConfirmTicket: React.FC = () => {
                 </Card>
             </main>
         </>
-
     )
 }
 
