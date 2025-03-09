@@ -252,36 +252,60 @@ class Ticket:
 
     def __get_pnr_number(self) -> str:
         book_date = "".join(self.__journey_date.split("-"))[2:]
-        time = datetime.now().strftime("%H%M%S")
-        return f"{book_date}-{self.__get_train_name()}-{time}"
+        current_time = datetime.now().strftime("%H%M%S")
+        return f"{book_date}-{self.__get_train_name()}-{current_time}"
 
-    def book_ticket(self, data: dict) -> None:
-        for ticket in range(data["total_tickets"]):
-            pnr_number: str = self.__get_pnr_number()
-            time.sleep(1)
+    def __get_seats(self, total_tickets: int) -> list:
+        sql: str = '''
+            SELECT count(seat_number) FROM ticket
+            WHERE  class_type = %s and journey_date = %s
+        '''
+        self.__cur.execute(sql, (self.__class_type, self.__journey_date))
+        booked_seats = self.__cur.fetchone()[0]
+        return economy_seats[booked_seats:booked_seats + total_tickets]
+
+
+
+
+    def book_ticket(self, data: dict) -> dict[str, str]:
+        pnr_number: str = self.__get_pnr_number()
+        seats = self.__get_seats(data["total_tickets"])
+        for seat in seats:
             try:
                 sql: str = '''
                             INSERT INTO ticket
                             (passenger_id, pnr_number, train_id, source_station, destination_station, departure_time, arrival_time, seat_number, ticket_status, class_type, fare, journey_date)
-                            VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
+                            VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
                         '''
                 self.__cur.execute(sql, (
                     data['passenger_id'],
                     pnr_number,
                     data['train_id'],
-                    data['source_station'],
-                    data['destination_station'],
-                    data['departure_time'],
-                    data['arrival_time'],
-
+                    self.__source_station,
+                    self.__destination_station,
+                    f"{self.__journey_date} {data['departure_time']}",
+                    f"{self.__journey_date} {data['arrival_time']}",
+                    seat,
+                    "Waiting",
+                    self.__class_type,
+                    data['fare'],
+                    self.__journey_date,
                 ))
+                self.__conn.commit()
             except Exception as e:
-                print(e)
+                self.__conn.rollback()
+                return {"status": False, "message": str(e)}
+        return {"status": True, "message": "Ticket booking successful"}
+
 
     def __del__(self):
         self.__cur.close()
         self.__conn.close()
 
-# t = Ticket("Janakpur", "Kathmandu", "2025-02-23", "All")
+
+# t = Ticket("Janakpur", "Kathmandu", "2025-03-10", "Economy")
 #
-# print(t.is_within_next_week())
+# print(t.get_seats(5))
+#
+# for seat in t.get_seats(5):
+#     print(type(seat))

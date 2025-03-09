@@ -148,7 +148,7 @@ async def ticket_search(req: TicketSearch):
 
 @app.post("/api/book-ticket")
 async def book_ticket(req: BookTicket):
-    print(dict(req))
-    return {"status": True}
+    ticket = Ticket(req.source_station, req.destination_station, req.journey_date, req.class_type)
+    return ticket.book_ticket(dict(req))
 
 
