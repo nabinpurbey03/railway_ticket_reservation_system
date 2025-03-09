@@ -215,6 +215,7 @@ const ConfirmationDialog: React.FC<ConfirmationDialogProps> = ({button, data}) =
 
     async function handleBookTicket(){
         const payload = {
+            total_tickets: data.numberOfTickets,
             passenger_id: Cookies.get("id") || "1",
             train_id: data.trainName,
             source_station: sourceStation,
@@ -222,13 +223,13 @@ const ConfirmationDialog: React.FC<ConfirmationDialogProps> = ({button, data}) =
             arrival_time: arrivalTime,
             departure_time: departureTime,
             class_type: data.classType,
-            journey_date: data.journeyDate,
+            journey_date: new Date(data.journeyDate || addDays(new Date(), 1)).toLocaleDateString("en-CA"),
             fare: data.totalPrice
         }
         try{
             const bookTicketResponse = await bookTicket(payload);
             if (!bookTicketResponse.data.status) {
-                console.log("Book Ticket not found");
+                console.log("Book Ticket found");
                 return;
             }else {
                 console.log("Book Ticket not found.");
