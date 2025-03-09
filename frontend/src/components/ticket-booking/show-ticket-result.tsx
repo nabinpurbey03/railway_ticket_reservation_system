@@ -206,7 +206,7 @@ const ConfirmationDialog: React.FC<ConfirmationDialogProps> = ({button, data}) =
 
     const bookTicket = async (payload) => {
         try {
-            console.log(payload);
+            // console.log(payload);
             return await axios.post(`${import.meta.env.VITE_API_URL}/api/book-ticket`, payload);
         } catch (error) {
             throw new Error("Failed to login. Please check your credentials." + error);
@@ -229,10 +229,9 @@ const ConfirmationDialog: React.FC<ConfirmationDialogProps> = ({button, data}) =
         try{
             const bookTicketResponse = await bookTicket(payload);
             if (!bookTicketResponse.data.status) {
-                console.log("Book Ticket found");
                 return;
             }else {
-                console.log("Book Ticket not found.");
+                console.log("Book Ticket found.");
             }
         }catch (error) {
             console.error(error);
@@ -274,7 +273,7 @@ const ConfirmationDialog: React.FC<ConfirmationDialogProps> = ({button, data}) =
                     <Button
                         onClick={handleBookTicket}
                         variant="constructive"
-                        // disabled={Cookies.get('is_active') !== 'true'}
+                        disabled={Cookies.get('is_active') !== 'true'}
                     > Confirm </Button>
                 </DialogFooter>
             </DialogContent>
