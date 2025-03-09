@@ -41,6 +41,7 @@ class TicketSearch(BaseModel):
 
 
 class BookTicket(BaseModel):
+    total_tickets: int
     passenger_id: int
     train_id: str
     source_station: str
