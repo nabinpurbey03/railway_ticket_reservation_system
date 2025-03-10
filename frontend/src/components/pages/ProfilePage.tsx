@@ -53,8 +53,8 @@ const ProfilePage = () => {
     return (
         <>
             <Navbar showReg={() => {}} />
-            <div className="flex justify-center items-center w-full">
-                <Card className="w-2/3">
+            <div className="flex justify-center items-center w-full bg-slate-100">
+                <Card className="w-2/3 min-h-[85vh]">
                     <Toaster />
                     <CardContent>
                         <div className="bg-gray-100 flex justify-center items-center space-x-10 rounded-lg py-4">
@@ -100,9 +100,13 @@ const ProfilePage = () => {
                         </Card>
                     </CardContent>
 
-                    <CardFooter className="flex justify-between">
-                        <Button variant="outline">Cancel</Button>
-                        <Button>Deploy</Button>
+                    <CardFooter className="flex justify-between flex-col gap-y-5">
+                        <CardTitle>Tickets and Status</CardTitle>
+                        <div className="grid grid-cols-3">
+                            <div>250310-DORW-ENPL-164433</div>
+                            <div>Waiting</div>
+                            <div>Waiting</div>
+                        </div>
                     </CardFooter>
                 </Card>
             </div>

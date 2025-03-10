@@ -15,6 +15,7 @@ import {
 import Cookies from "js-cookie";
 import {destinations} from "@/components/ticket-booking/destinations.ts";
 import axios from "axios";
+import GLOBALS from "@/components/globals.ts";
 
 const classTypes = [
     {Economy: 200},
@@ -178,7 +179,7 @@ const TicketCard: React.FC<TicketCardProps> = ({
             <CardFooter className="flex justify-end">
                 <ConfirmationDialog
                     button={<Button variant={"constructive"}
-                                    disabled={availableTickets <= numberOfTickets}>Book</Button>}
+                                    disabled={availableTickets < numberOfTickets}>Book</Button>}
                     data={ticketData}
                 />
             </CardFooter>
@@ -231,7 +232,7 @@ const ConfirmationDialog: React.FC<ConfirmationDialogProps> = ({button, data}) =
             if (!bookTicketResponse.data.status) {
                 return;
             }else {
-                console.log("Book Ticket found.");
+                window.location.href = '/confirm-ticket'
             }
         }catch (error) {
             console.error(error);
