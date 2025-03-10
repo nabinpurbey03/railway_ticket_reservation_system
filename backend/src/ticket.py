@@ -1,4 +1,3 @@
-import time
 from datetime import datetime, timedelta
 import os
 
@@ -288,14 +287,26 @@ class Ticket:
                     seat,
                     "Waiting",
                     self.__class_type,
-                    data['fare'],
+                    data['fare'] / len(seats),
                     self.__journey_date,
                 ))
                 self.__conn.commit()
             except Exception as e:
                 self.__conn.rollback()
                 return {"status": False, "message": str(e)}
-        return {"status": True, "message": "Ticket booking successful"}
+        return {"status": True, "message": "Ticket booking successful", "pnr": pnr_number}
+
+
+    def ticket_details(self, pnr: str):
+        try:
+            sql: str = '''
+                SELECT fare, class_type, ticket_status  FROM ticket WHERE pnr_number = %s
+            '''
+            self.__cur.execute(sql, (pnr,))
+            tickets = self.__cur.fetchone()
+            print(tickets)
+        except Exception as e:
+            print(e)
 
 
     def __del__(self):
@@ -303,9 +314,5 @@ class Ticket:
         self.__conn.close()
 
 
-# t = Ticket("Janakpur", "Kathmandu", "2025-03-10", "Economy")
-#
-# print(t.get_seats(5))
-#
-# for seat in t.get_seats(5):
-#     print(type(seat))
+t = Ticket("Janakpur", "Kathmandu", "2025-03-10", "Economy")
+# t.ticket_details('250310-DORW-ENPL-164433')
