@@ -4,7 +4,7 @@ import os
 import psycopg2
 from dotenv import load_dotenv
 from psycopg2 import DatabaseError
-from ticket_data import destinations, seat_numbers
+from src.ticket_data import destinations, seat_numbers
 
 
 class Ticket:
