@@ -213,9 +213,6 @@ class Ticket:
         booked_seats = self.__cur.fetchone()[0]
         return seat_numbers[booked_seats:booked_seats + total_tickets]
 
-
-
-
     def book_ticket(self, data: dict) -> dict[str, str]:
         pnr_number: str = self.__get_pnr_number()
         seats = self.__get_seats(data["total_tickets"])
@@ -246,33 +243,34 @@ class Ticket:
                 return {"status": False, "message": str(e)}
         return {"status": True, "message": "Ticket booking successful", "pnr": pnr_number}
 
+    '''
+        Currently working on...
+    '''
 
     def ticket_details(self, passenger_id: int):
         try:
             sql: str = '''
-                SELECT DISTINCT pnr_number, class_type, fare, journey_date
+                SELECT pnr_number, class_type, journey_date, ticket_status,
+                    COUNT(*) AS total_tickets,
+                    SUM(fare) AS toatal_fare
                 FROM ticket
-                WHERE passenger_id = %s
-                    AND journey_date BETWEEN CURRENT_DATE AND CURRENT_DATE + INTERVAL '7 days';
+                WHERE passenger_id = %s AND
+                    journey_date BETWEEN current_date AND current_date + INTERVAL '7 days'
+                GROUP BY pnr_number,
+                        class_type,
+                        ticket_status,
+                        journey_date
+                ORDER BY journey_date DESC;
             '''
             self.__cur.execute(sql, (passenger_id,))
-            distinct_pnr_numbers = self.__cur.fetchall()
-            keys = ['pnr_number', 'class_type', 'fare', 'journey_date', 'number_of_tickets']
-            final_data = []
-            for i, pnr_number in enumerate(distinct_pnr_numbers):
-                sql = '''
-                    SELECT COUNT(pnr_number) FROM ticket WHERE pnr_number = %s;
-                '''
-                self.__cur.execute(sql, (pnr_number[0],))
-                seats = self.__cur.fetchone()[0]
-                data_list = list(distinct_pnr_numbers[i])
-                data_list.append(seats)
-                data_dict = dict(zip(keys, data_list))
-                final_data.append(data_dict)
+            booked_tickets = self.__cur.fetchall()
+            keys: list[str] = ['pnr_number', 'class_type', 'journey_date', 'ticket_status', 'total_ticket', 'total_fare']
+            final_data: list = []
+            for booked_ticket in booked_tickets:
+                final_data.append(dict(zip(keys, booked_ticket)))
             return final_data
         except Exception as e:
-            print(e)
-
+            return {"status": False, "message": str(e)}
 
     def __del__(self):
         self.__cur.close()
@@ -280,4 +278,6 @@ class Ticket:
 
 
 t = Ticket("Janakpur", "Kathmandu", "2025-03-10", "Economy")
-print(t.ticket_details(13))
+for index, ticket in enumerate(t.ticket_details(13)):
+    print(f"{index}: {ticket}")
+    print()
