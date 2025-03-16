@@ -277,7 +277,7 @@ class Ticket:
         self.__conn.close()
 
 
-t = Ticket("Janakpur", "Kathmandu", "2025-03-10", "Economy")
-for index, ticket in enumerate(t.ticket_details(13)):
-    print(f"{index}: {ticket}")
-    print()
+# t = Ticket("Janakpur", "Kathmandu", "2025-03-10", "Economy")
+# for index, ticket in enumerate(t.ticket_details(13)):
+#     print(f"{index}: {ticket}")
+#     print()
