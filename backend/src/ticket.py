@@ -64,10 +64,11 @@ class Ticket:
                 SELECT COUNT(*)
                 FROM ticket
                 WHERE class_type = %s
-                AND DATE(journey_date) = %s
-                AND ticket_status IN (%s, %s)
+                    AND DATE(journey_date) = %s
+                    AND train_id = %s
+                    AND ticket_status IN (%s, %s)
             '''
-            self.__cur.execute(sql, (class_type, date, 'Confirmed', 'Waiting'))
+            self.__cur.execute(sql, (class_type, date, self.__get_train_name(), 'Confirmed', 'Waiting'))
             booked_ticket = self.__cur.fetchone()
             booked_ticket_count = booked_ticket[0] if booked_ticket else 0
             return max(total_tickets - booked_ticket_count, 0)
@@ -206,10 +207,13 @@ class Ticket:
 
     def __get_seats(self, total_tickets: int) -> list:
         sql: str = '''
-            SELECT count(seat_number) FROM ticket
-            WHERE  class_type = %s and journey_date = %s
+            SELECT COUNT(seat_number)
+            FROM ticket
+            WHERE  class_type = %s
+                AND journey_date = %s
+                AND train_id = %s
         '''
-        self.__cur.execute(sql, (self.__class_type, self.__journey_date))
+        self.__cur.execute(sql, (self.__class_type, self.__journey_date, self.__get_train_name()))
         booked_seats = self.__cur.fetchone()[0]
         return seat_numbers[booked_seats:booked_seats + total_tickets]
 
