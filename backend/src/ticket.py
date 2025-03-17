@@ -263,8 +263,7 @@ class Ticket:
                 GROUP BY pnr_number,
                         class_type,
                         ticket_status,
-                        journey_date
-                ORDER BY journey_date DESC;
+                        journey_date;
             '''
             self.__cur.execute(sql, (passenger_id,))
             booked_tickets = self.__cur.fetchall()

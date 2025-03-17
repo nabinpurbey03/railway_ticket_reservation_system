@@ -151,4 +151,9 @@ async def book_ticket(req: BookTicket):
     ticket = Ticket(req.source_station, req.destination_station, req.journey_date, req.class_type)
     return ticket.book_ticket(dict(req))
 
+@app.get("/api/get-booked-ticket/{user_id}")
+async def get_booked_ticket(user_id: str):
+    ticket = Ticket("","","","")
+    return ticket.ticket_details(int(user_id))
+
 
