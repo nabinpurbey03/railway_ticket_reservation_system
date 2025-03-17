@@ -26,6 +26,19 @@ import bcrypt from "bcryptjs";
 import Cookies from "js-cookie";
 
 
+// For Booked Ticket Data
+import {
+    Table,
+    TableBody,
+    TableCaption,
+    TableCell,
+    TableHead,
+    TableHeader,
+    TableRow,
+} from "@/components/ui/table"
+import { Badge } from "@/components/ui/badge"
+
+
 const getAddress = async (id: string) => {
     try {
         const response = await axios.get(`${import.meta.env.VITE_API_URL}/api/get-address/${id}`);
@@ -36,9 +49,21 @@ const getAddress = async (id: string) => {
     }
 };
 
+const getBookedTicket = async (id: string) => {
+    try {
+        const response = await axios.get(`${import.meta.env.VITE_API_URL}/api/get-booked-ticket/${id}`);
+        return response.data; // Return only the data
+    } catch (error) {
+        console.error("Failed to fetch address:", error);
+        return null;
+    }
+};
+
 const ProfilePage = () => {
     const [address, setAddress] = useState<any>(null);
+    const [bookedTicket, setBookedTicket] = useState<any>(null);
     const [loading, setLoading] = useState(true);
+    const [ticketDataloading, setTicketDataLoading] = useState(true);
 
     useEffect(() => {
         const fetchAddress = async () => {
@@ -47,14 +72,21 @@ const ProfilePage = () => {
             setAddress(data?.address ?? null);
             setLoading(false);
         };
+        const fetchBookedTicket = async () => {
+            const userId = Cookies.get("id") ?? "7";
+            const data = await getBookedTicket(userId);
+            setBookedTicket(data);
+            setTicketDataLoading(false);
+        }
         fetchAddress();
+        fetchBookedTicket();
     }, []);
 
     return (
         <>
             <Navbar showReg={() => {}} />
             <div className="flex justify-center items-center w-full bg-slate-100">
-                <Card className="w-2/3 min-h-[85vh]">
+                <Card className="w-2/3 mb-2 min-h-[85vh]">
                     <Toaster />
                     <CardContent>
                         <div className="bg-gray-100 flex justify-center items-center space-x-10 rounded-lg py-4">
@@ -99,28 +131,86 @@ const ProfilePage = () => {
                             </CardContent>
                         </Card>
                     </CardContent>
-
                     <CardFooter className="flex justify-between flex-col gap-y-5">
                         <CardTitle>Tickets and Status</CardTitle>
-                        <div className="grid grid-cols-3">
-                            <div>250310-DORW-ENPL-164433</div>
-                            <div>Waiting</div>
-                            <div>Waiting</div>
-                        </div>
+                        {
+                            ticketDataloading ?(
+                                <p>Loading..</p>
+                            ): bookedTicket.length > 0 ? (
+                                <BookedTicket data={bookedTicket} />
+                            ):(
+                                <h1>No Ticket Records</h1>
+                            )
+                        }
                     </CardFooter>
                 </Card>
             </div>
         </>
     );
 };
-
 export default ProfilePage;
+
+interface BookedTicketProps{
+    data: [object];
+}
+
+const BookedTicket: React.FC<BookedTicketProps> = ({data}) => {
+    return (
+        <>
+            <Table>
+                {/*<TableCaption>A list of your recent tickets and their status.</TableCaption>*/}
+                <TableHeader>
+                    <TableRow>
+                        <TableHead className="text-center">PNR Number</TableHead>
+                        <TableHead>Class Type</TableHead>
+                        <TableHead>Journey Date</TableHead>
+                        <TableHead>Status</TableHead>
+                        <TableHead>Total Tickets</TableHead>
+                        <TableHead>Total Fare</TableHead>
+                        <TableHead className="text-center">Action</TableHead>
+                    </TableRow>
+                </TableHeader>
+                <TableBody>
+                    {
+                        data?.map((item, index) => (
+                            <TableRow key={index}>
+                                <TableCell className="font-bold text-slate-800">{item.pnr_number}</TableCell>
+                                <TableCell>{item.class_type}</TableCell>
+                                <TableCell>{item.journey_date}</TableCell>
+                                <TableCell><Badge variant={
+                                    item.ticket_status === 'Waiting' ? 'secondary'
+                                        : item.ticket_status === 'Canceled' ? 'destructive' : 'outline'
+                                }>{item.ticket_status}</Badge>
+                                </TableCell>
+                                <TableCell>{item.total_ticket}</TableCell>
+                                <TableCell className="font-bold">रु. {item.total_fare}</TableCell>
+                                <TableCell className="text-right">
+                                    {
+                                        item.ticket_status === 'Waiting' ? (
+                                            <div className="flex flex-col gap-y-2">
+                                                <Button variant="constructive">Make Payment</Button>
+                                                <Button variant="destructive">Cancel</Button>
+                                            </div>
+                                        ): item.ticket_status === 'Canceled' ?
+                                            (<></>):(
+                                            <Button variant="outline">Print Ticket</Button>
+                                        )
+                                    }
+                                </TableCell>
+                            </TableRow>
+                        ))
+                    }
+                </TableBody>
+            </Table>
+        </>
+    )
+}
+
 
 
 interface Props {
     triggerButton: ReactElement;
 }
-
 const ChangePassword: React.FC<Props> = ({triggerButton}): ReactElement => {
     const [showPasswords, setShowPasswords] = useState({
         currentPassword: false,
