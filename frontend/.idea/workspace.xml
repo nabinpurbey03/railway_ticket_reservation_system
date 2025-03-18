@@ -5,7 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a6a0bc47-991f-4bd0-ba42-afd9e10cba0b" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/../backend/src/ticket.py" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/src/ticket.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/pages/BookedTicket.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
@@ -218,6 +218,7 @@
       <workItem from="1742213822963" duration="374000" />
       <workItem from="1742214573728" duration="1423000" />
       <workItem from="1742227194967" duration="7611000" />
+      <workItem from="1742306453229" duration="3626000" />
     </task>
     <servers />
   </component>

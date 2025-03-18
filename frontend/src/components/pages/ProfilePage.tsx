@@ -24,19 +24,8 @@ import {Toaster} from "@/components/ui/toaster.tsx";
 import axios from "axios";
 import bcrypt from "bcryptjs";
 import Cookies from "js-cookie";
+import BookedTicket from "@/components/pages/BookedTicket.tsx";
 
-
-// For Booked Ticket Data
-import {
-    Table,
-    TableBody,
-    TableCaption,
-    TableCell,
-    TableHead,
-    TableHeader,
-    TableRow,
-} from "@/components/ui/table"
-import { Badge } from "@/components/ui/badge"
 
 
 const getAddress = async (id: string) => {
@@ -63,7 +52,7 @@ const ProfilePage = () => {
     const [address, setAddress] = useState<any>(null);
     const [bookedTicket, setBookedTicket] = useState<any>(null);
     const [loading, setLoading] = useState(true);
-    const [ticketDataloading, setTicketDataLoading] = useState(true);
+    const [ticketDataLoading, setTicketDataLoading] = useState(true);
 
     useEffect(() => {
         const fetchAddress = async () => {
@@ -85,11 +74,11 @@ const ProfilePage = () => {
     return (
         <>
             <Navbar showReg={() => {}} />
-            <div className="flex justify-center items-center w-full bg-slate-100">
+            <div className="flex justify-center items-center w-full bg-slate-100 bg-gray-600">
                 <Card className="w-2/3 mb-2 min-h-[85vh]">
                     <Toaster />
                     <CardContent>
-                        <div className="bg-gray-100 flex justify-center items-center space-x-10 rounded-lg py-4">
+                        <div className="bg-gray-200 flex justify-center items-center space-x-10 rounded-lg py-4 mt-2">
                             <Avatar className="w-32 h-32">
                                 <AvatarImage src={Cookies.get("image_url") ?? "/assets/images/emblem_of_nepal.svg"} />
                                 <AvatarFallback>RN</AvatarFallback>
@@ -100,7 +89,7 @@ const ProfilePage = () => {
                             </div>
                         </div>
 
-                        <Card className="flex flex-col text-start bg-gray-100 mt-5">
+                        <Card className="flex flex-col text-start bg-gray-200 mt-5">
                             <CardHeader>
                                 <CardTitle>Personal Information</CardTitle>
                                 <CardDescription>Logged in with email.</CardDescription>
@@ -132,9 +121,9 @@ const ProfilePage = () => {
                         </Card>
                     </CardContent>
                     <CardFooter className="flex justify-between flex-col gap-y-5">
-                        <CardTitle>Tickets and Status</CardTitle>
+                        <CardTitle className="bg-gray-200 w-full py-3 rounded">Tickets and Status</CardTitle>
                         {
-                            ticketDataloading ?(
+                            ticketDataLoading ?(
                                 <p>Loading..</p>
                             ): bookedTicket.length > 0 ? (
                                 <BookedTicket data={bookedTicket} />
@@ -149,62 +138,6 @@ const ProfilePage = () => {
     );
 };
 export default ProfilePage;
-
-interface BookedTicketProps{
-    data: [object];
-}
-
-const BookedTicket: React.FC<BookedTicketProps> = ({data}) => {
-    return (
-        <>
-            <Table>
-                {/*<TableCaption>A list of your recent tickets and their status.</TableCaption>*/}
-                <TableHeader>
-                    <TableRow>
-                        <TableHead className="text-center">PNR Number</TableHead>
-                        <TableHead>Class Type</TableHead>
-                        <TableHead>Journey Date</TableHead>
-                        <TableHead>Status</TableHead>
-                        <TableHead>Total Tickets</TableHead>
-                        <TableHead>Total Fare</TableHead>
-                        <TableHead className="text-center">Action</TableHead>
-                    </TableRow>
-                </TableHeader>
-                <TableBody>
-                    {
-                        data?.map((item, index) => (
-                            <TableRow key={index}>
-                                <TableCell className="font-bold text-slate-800">{item.pnr_number}</TableCell>
-                                <TableCell>{item.class_type}</TableCell>
-                                <TableCell>{item.journey_date}</TableCell>
-                                <TableCell><Badge variant={
-                                    item.ticket_status === 'Waiting' ? 'secondary'
-                                        : item.ticket_status === 'Canceled' ? 'destructive' : 'outline'
-                                }>{item.ticket_status}</Badge>
-                                </TableCell>
-                                <TableCell>{item.total_ticket}</TableCell>
-                                <TableCell className="font-bold">रु. {item.total_fare}</TableCell>
-                                <TableCell className="text-right">
-                                    {
-                                        item.ticket_status === 'Waiting' ? (
-                                            <div className="flex flex-col gap-y-2">
-                                                <Button variant="constructive">Make Payment</Button>
-                                                <Button variant="destructive">Cancel</Button>
-                                            </div>
-                                        ): item.ticket_status === 'Canceled' ?
-                                            (<></>):(
-                                            <Button variant="outline">Print Ticket</Button>
-                                        )
-                                    }
-                                </TableCell>
-                            </TableRow>
-                        ))
-                    }
-                </TableBody>
-            </Table>
-        </>
-    )
-}
 
 
 
