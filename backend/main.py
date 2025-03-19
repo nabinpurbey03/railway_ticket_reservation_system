@@ -157,8 +157,8 @@ async def get_booked_ticket(user_id: str):
     return ticket.ticket_details(int(user_id))
 
 @app.get("/api/cancel-ticket/{pnr_number}")
-async def cancel_ticket(pnr: int):
+async def cancel_ticket(pnr_number: str):
     ticket = Ticket("","","","")
-    return ticket.cancel_ticket(pnr)
+    return ticket.cancel_ticket(pnr_number)
 
 

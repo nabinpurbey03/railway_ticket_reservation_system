@@ -286,6 +286,7 @@ class Ticket:
                     UPDATE ticket SET ticket_status = %s WHERE pnr_number = %s
                 '''
                 self.__cur.execute(sql, ('Canceled',pnr_number))
+                self.__conn.commit()
                 return {"status": True, "message": "Ticket canceled"}
             else:
                 return {"status": False, "message": "Invalid PNR number"}
