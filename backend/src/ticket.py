@@ -247,10 +247,6 @@ class Ticket:
                 return {"status": False, "message": str(e)}
         return {"status": True, "message": "Ticket booking successful", "pnr": pnr_number}
 
-    '''
-        Currently working on...
-    '''
-
     def ticket_details(self, passenger_id: int):
         try:
             sql: str = '''
@@ -275,6 +271,28 @@ class Ticket:
         except Exception as e:
             return {"status": False, "message": str(e)}
 
+    def cancel_ticket(self, pnr_number) -> dict[str, str]:
+        try:
+            sql: str = '''
+                SELECT EXISTS(
+                SELECT 1 
+                FROM ticket
+                WHERE pnr_number = %s
+                );
+            '''
+            self.__cur.execute(sql, (pnr_number,))
+            if self.__cur.fetchone()[0]:
+                sql: str = '''
+                    UPDATE ticket SET ticket_status = %s WHERE pnr_number = %s
+                '''
+                self.__cur.execute(sql, ('Canceled',pnr_number))
+                return {"status": True, "message": "Ticket canceled"}
+            else:
+                return {"status": False, "message": "Invalid PNR number"}
+        except Exception as e:
+            return {"status": False, "message": str(e)}
+
+
     def __del__(self):
         self.__cur.close()
         self.__conn.close()
@@ -284,3 +302,4 @@ class Ticket:
 # for index, ticket in enumerate(t.ticket_details(13)):
 #     print(f"{index}: {ticket}")
 #     print()
+# print(t.cancel_ticket('250320-DORW-ENPL-183403'))
