@@ -22,7 +22,7 @@ import {
 import axios from "axios";
 import {Toaster} from "@/components/ui/toaster";
 import {toast} from "@/hooks/use-toast";
-
+import TicketDocument from "@/components/ticket-booking/ticket-document.tsx";
 
 interface BookedTicketProps {
     data: [object];
@@ -40,10 +40,6 @@ const BookedTicket: React.FC<BookedTicketProps> = ({data}) => {
         } catch (error) {
             toast({title: "Server Error", description: error.message, variant: 'destructive'});
         }
-    }
-
-    const printTicket = async () => {
-        window.print();
     }
 
     return (
@@ -109,11 +105,15 @@ const BookedTicket: React.FC<BookedTicketProps> = ({data}) => {
                                         ) : item.ticket_status === 'Canceled' ?
                                             (<></>) : (
                                                 <Dialog>
-                                                    <DialogTrigger>Print Ticket</DialogTrigger>
-                                                    <DialogContent>
+                                                    <DialogTrigger
+                                                        className="border-gray-500 border rounded py-2 px-2 shadow-2xl"
+                                                    >Show Ticket</DialogTrigger>
+                                                    <DialogContent className="min-w-[1280px] min-h-[90vh]">
                                                         <DialogHeader>
-                                                            <DialogTitle className="text-black">Are you absolutely sure?</DialogTitle>
-                                                            <DialogDescription>The document will go here</DialogDescription>
+                                                            <DialogTitle className="text-black text-center rounded-none">Ticket Preview</DialogTitle>
+                                                            <DialogDescription>
+                                                                    <TicketDocument />
+                                                            </DialogDescription>
                                                         </DialogHeader>
                                                     </DialogContent>
                                                 </Dialog>

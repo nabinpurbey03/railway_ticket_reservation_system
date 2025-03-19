@@ -24,7 +24,7 @@ import {Toaster} from "@/components/ui/toaster.tsx";
 import axios from "axios";
 import bcrypt from "bcryptjs";
 import Cookies from "js-cookie";
-import BookedTicket from "@/components/pages/BookedTicket.tsx";
+import BookedTicket from "@/components/ticket-booking/booked-ticket.tsx";
 
 
 
@@ -74,7 +74,7 @@ const ProfilePage = () => {
     return (
         <>
             <Navbar showReg={() => {}} />
-            <div className="flex justify-center items-center w-full bg-slate-100 bg-gray-600">
+            <div className="flex justify-center items-center w-full bg-slate-100">
                 <Card className="w-2/3 mb-2 min-h-[85vh]">
                     <Toaster />
                     <CardContent>
