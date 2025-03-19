@@ -9,6 +9,16 @@ import {
     AlertDialogTitle,
     AlertDialogTrigger
 } from "@/components/ui/alert-dialog.tsx";
+
+import {
+    Dialog,
+    DialogContent,
+    DialogDescription,
+    DialogHeader,
+    DialogTitle,
+    DialogTrigger,
+} from "@/components/ui/dialog"
+
 import axios from "axios";
 import {Toaster} from "@/components/ui/toaster";
 import {toast} from "@/hooks/use-toast";
@@ -20,16 +30,20 @@ interface BookedTicketProps {
 
 const BookedTicket: React.FC<BookedTicketProps> = ({data}) => {
     const cancelTicket = async (pnr: string) => {
-        try{
+        try {
             const response = await axios.get(`${import.meta.env.VITE_API_URL}/api/cancel-ticket/${pnr}`);
-            if (!response.data.status){
+            if (!response.data.status) {
                 toast({title: response.data.message, description: response.data.message, variant: 'destructive'});
             }
             toast({title: response.data.message});
             window.location.reload();
-        }catch(error){
+        } catch (error) {
             toast({title: "Server Error", description: error.message, variant: 'destructive'});
         }
+    }
+
+    const printTicket = async () => {
+        window.print();
     }
 
     return (
@@ -94,7 +108,15 @@ const BookedTicket: React.FC<BookedTicketProps> = ({data}) => {
                                             </div>
                                         ) : item.ticket_status === 'Canceled' ?
                                             (<></>) : (
-                                                <Button variant="outline">Print Ticket</Button>
+                                                <Dialog>
+                                                    <DialogTrigger>Print Ticket</DialogTrigger>
+                                                    <DialogContent>
+                                                        <DialogHeader>
+                                                            <DialogTitle className="text-black">Are you absolutely sure?</DialogTitle>
+                                                            <DialogDescription>The document will go here</DialogDescription>
+                                                        </DialogHeader>
+                                                    </DialogContent>
+                                                </Dialog>
                                             )
                                     }
                                 </TableCell>
