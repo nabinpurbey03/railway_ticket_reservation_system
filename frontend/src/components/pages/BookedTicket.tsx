@@ -9,18 +9,32 @@ import {
     AlertDialogTitle,
     AlertDialogTrigger
 } from "@/components/ui/alert-dialog.tsx";
-interface BookedTicketProps{
+import axios from "axios";
+import {Toaster} from "@/components/ui/toaster";
+import {toast} from "@/hooks/use-toast";
+
+
+interface BookedTicketProps {
     data: [object];
 }
 
 const BookedTicket: React.FC<BookedTicketProps> = ({data}) => {
-
-    const cancelTicket = (ticketData: string): void => {
-        console.log(ticketData);
+    const cancelTicket = async (pnr: string) => {
+        try{
+            const response = await axios.get(`${import.meta.env.VITE_API_URL}/api/cancel-ticket/${pnr}`);
+            if (!response.data.status){
+                toast({title: response.data.message, description: response.data.message, variant: 'destructive'});
+            }
+            toast({title: response.data.message});
+            window.location.reload();
+        }catch(error){
+            toast({title: "Server Error", description: error.message, variant: 'destructive'});
+        }
     }
 
     return (
         <>
+            <Toaster/>
             <Table>
                 {/*<TableCaption>A list of your recent tickets and their status.</TableCaption>*/}
                 <TableHeader>
@@ -59,14 +73,18 @@ const BookedTicket: React.FC<BookedTicketProps> = ({data}) => {
                                                     >Cancel</AlertDialogTrigger>
                                                     <AlertDialogContent>
                                                         <AlertDialogHeader>
-                                                            <AlertDialogTitle className="text-black">Are you absolutely sure?</AlertDialogTitle>
+                                                            <AlertDialogTitle className="text-black">Are you absolutely
+                                                                sure?</AlertDialogTitle>
                                                             <AlertDialogDescription>
-                                                                This action cannot be undone. This will permanently cancel your ticket
-                                                                and remove data from our servers. The seats wil be allocated to other passengers.
+                                                                This action cannot be undone. This will permanently
+                                                                cancel your ticket
+                                                                and remove data from our servers. The seats wil be
+                                                                allocated to other passengers.
                                                             </AlertDialogDescription>
                                                         </AlertDialogHeader>
                                                         <AlertDialogFooter>
-                                                            <AlertDialogCancel className="bg-blue-700">Hide</AlertDialogCancel>
+                                                            <AlertDialogCancel
+                                                                className="bg-blue-700">Hide</AlertDialogCancel>
                                                             <AlertDialogAction className="bg-red-700"
                                                                                onClick={() => cancelTicket(item.pnr_number)}
                                                             >Cancel Ticket</AlertDialogAction>
@@ -74,9 +92,9 @@ const BookedTicket: React.FC<BookedTicketProps> = ({data}) => {
                                                     </AlertDialogContent>
                                                 </AlertDialog>
                                             </div>
-                                        ): item.ticket_status === 'Canceled' ?
-                                            (<></>):(
-                                                <Button variant="outline" >Print Ticket</Button>
+                                        ) : item.ticket_status === 'Canceled' ?
+                                            (<></>) : (
+                                                <Button variant="outline">Print Ticket</Button>
                                             )
                                     }
                                 </TableCell>
