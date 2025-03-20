@@ -45,37 +45,69 @@ export default function Home(): ReactElement {
                 {/*authority image and info section*/}
                 <div className="flex min-h-[70vh]">
                     {/*for minister*/}
-                    <div className="bg-white text-black font-bold w-full flex flex-col justify-center items-center">
-                        <div className="p-5 m-2 bg-gray-100 rounded">
+                    <div className="bg-gray-700 text-black font-bold w-full flex flex-col items-center">
+                        <div className="m-2 bg-gray-100 rounded border w-[400px] h-[300px]">
+                            <img
+                                src="/assets/images/dogesh_sharma.png"
+                                alt="Minister"
+                                className="object-fill h-full w-full"/>
+                        </div>
+                        <section>
+                            <p>Shree Dogesh Sharma</p>
+                            <p>Minister of Physical Infrastructure and Transport</p>
+                            <p>Contact No: <span className="text-green-600 font-normal hover:underline hover:cursor-pointer"> +977 01-420-420</span></p>
+                            <p>Email: <span className="text-green-600 font-normal hover:underline hover:cursor-pointer"> minister.420@mopit.com</span></p>
+                        </section>
+                        <article className="font-normal mt-5 px-10">
+                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Culpa enim in temporibus ullam? A ad autem dicta eligendi fugit ipsum laboriosam odit officia quia repellat? Aliquid aperiam exercitationem fugit velit!
+                        </article>
+                        <p className="w-full text-right italic">- Minister: Dogesh Sharma</p>
+                    </div>
+                    {/*for secretary*/}
+                    <div className="bg-gray-700 text-black font-bold w-full flex flex-col items-center">
+                        <article className="font-normal mt-5 px-10">
+                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Culpa enim in temporibus ullam? A ad autem dicta eligendi fugit ipsum laboriosam odit officia quia repellat? Aliquid aperiam exercitationem fugit velit!
+                        </article>
+                        <p className="w-full text-right italic">- Minister: Dogesh Sharma</p>
+                        <div className="m-2 bg-gray-100 rounded border border-b-8">
                             <img src="/assets/images/qr-code.jpg" alt="Minister"/>
                         </div>
                         <section>
+                            <p>Shree Dogesh Sharma</p>
                             <p>Minister of Physical Infrastructure and Transport</p>
                             <p>Contact No: <span className="text-green-600 font-normal hover:underline hover:cursor-pointer"> +977 01-420-420</span></p>
                             <p>Email: <span className="text-green-600 font-normal hover:underline hover:cursor-pointer"> minister.420@mopit.com</span></p>
                         </section>
                     </div>
-                    {/*for secretary*/}
-                    <div className="bg-gray-600 text-black font-bold w-full flex flex-col justify-center items-center">
-                        <div>
-                            <img src="/assets/images/qr-code.jpg" alt="Minister"/>
-                        </div>
-                        <section>
-                            <p>Secretary of Physical Infrastructure and Transport</p>
-                            <p>Contact No: <span className="text-green-600 font-normal hover:underline hover:cursor-pointer"> +977 01-420-420</span></p>
-                            <p>Email: <span className="text-green-600 font-normal hover:underline hover:cursor-pointer"> secretary.420@mopit.com</span></p>
-                        </section>
-                    </div>
                 </div>
-                <div className="w-full min-h-[30vh] bg-gray-950">
+                <div className="min-h-[25vh] bg-blue-400">
                     <footer>
-                        <ul>
-                            <li>Name</li>
-                            <li>Name</li>
-                            <li>Name</li>
-                            <li>Name</li>
-                        </ul>
+                        <div className="w-full flex h-[25vh]">
+                            <div className="w-full text-right pr-40">
+                                <ul>
+                                    <li>Halo</li>
+                                    <li>Halo</li>
+                                    <li>Halo</li>
+                                    <li>Halo</li>
+                                </ul>
+                            </div>
+                            <div className="w-full text-left pl-40">
+                                <ul>
+                                    <li>Halo</li>
+                                    <li>Halo</li>
+                                    <li>Halo</li>
+                                    <li>Halo</li>
+                                </ul>
+                            </div>
+                        </div>
                     </footer>
+                </div>
+                <div className="min-h-[5vh] bg-slate-200 text-slate-700">
+                    <section className="text-sm pt-2">&copy; <a
+                        href="https://nabinpurbey03.github.io/nabinpurbey.com.np/"
+                        target="_blank"
+                        className="text-blue-700"
+                    >Nabin Purbey</a> 2025 Tribhuvan University Final Year Project</section>
                 </div>
             </div>
             <Ticket/>
