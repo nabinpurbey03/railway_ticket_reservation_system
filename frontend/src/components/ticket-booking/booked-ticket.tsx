@@ -112,7 +112,7 @@ const BookedTicket: React.FC<BookedTicketProps> = ({data}) => {
                                                         <DialogHeader>
                                                             <DialogTitle className="text-black text-center rounded-none">Ticket Preview</DialogTitle>
                                                             <DialogDescription>
-                                                                    <TicketDocument />
+                                                                    <TicketDocument data={item} />
                                                             </DialogDescription>
                                                         </DialogHeader>
                                                     </DialogContent>

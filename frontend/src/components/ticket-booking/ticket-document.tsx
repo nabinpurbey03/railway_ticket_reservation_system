@@ -1,9 +1,49 @@
 import {Button} from "@/components/ui/button.tsx";
 import html2canvas from "html2canvas";
 import jsPDF from "jspdf";
-import React from "react";
+import React, {useEffect, useState} from "react";
+import Cookies from "js-cookie";
+import axios from "axios";
 
-const TicketDocument = () => {
+interface Props {
+    data: {
+        pnr_number: string;
+        journey_date: string;
+        total_fare: number;
+        ticket_status: string;
+        class_type: string;
+        source_station: string;
+        destination_station: string;
+        departure_time: string;
+        arrival_time: string;
+    };
+}
+
+
+const TicketDocument: React.FC<Props> = ({data}) => {
+    const [seatsLoading, setSeatsLoading] = useState(true);
+    const [seats, setSeats] = useState("");
+
+    const getSeats = async () => {
+        try{
+            const response = await axios.get(`${import.meta.env.VITE_API_URL}/api/get-booked-seats/${data.pnr_number}`);
+            if (!response.data.status) {
+                return [];
+            }
+            return response.data.seats;
+        }catch(error){
+            return [error];
+        }
+    }
+    
+    useEffect(() => {
+        const fetchSeats = async () => {
+            const seatData = await getSeats();
+            setSeats(seatData);
+        }
+        fetchSeats();
+        setSeatsLoading(false);
+    }, [])
 
     const printRef = React.useRef(null);
 
@@ -30,7 +70,7 @@ const TicketDocument = () => {
         const pdfHeight = (imgProperties.height * pdfWidth) / imgProperties.width;
 
         pdf.addImage(data, "PNG", 0, 0, pdfWidth, pdfHeight);
-        pdf.save("examplepdf.pdf");
+        pdf.save(`Ticket_${Cookies.get("first_name")}_${Cookies.get("last_name")}.pdf`);
     };
 
     return (
@@ -65,7 +105,6 @@ const TicketDocument = () => {
                     <div className="flex flex-col space-y-1">
                         <p>Booked By</p>
                         <p>PNR Number</p>
-                        <p>Booked Date</p>
                         <p>Journey Date</p>
                         <p>Class Type</p>
                         <p>Seats</p>
@@ -75,16 +114,17 @@ const TicketDocument = () => {
                         <p>Total Amount Paid</p>
                     </div>
                     <div className="flex flex-col space-y-1">
-                        <p>Nabin Purbey</p>
-                        <p>123456-GDRT-HAHS-587896</p>
-                        <p>2025-02-25</p>
-                        <p>2365-98-65</p>
-                        <p className="font-bold">Economy</p>
-                        <p className="font-bold">A1, A2, A2, A2, AS, AS, SD, ED, SE, DF, DG</p>
-                        <p className="font-bold">Janakpur | 07:00</p>
-                        <p className="font-bold">Kathmandu | 02:00</p>
-                        <p className="font-bold">Confirmed</p>
-                        <p>Rs. 2000</p>
+                        <p>{Cookies.get("first_name")} {Cookies.get("last_name")}</p>
+                        <p  className="font-bold">{data.pnr_number}</p>
+                        <p>{data.journey_date}</p>
+                        <p>{data.class_type}</p>
+                        <p>{
+                            seatsLoading ? "Seats Loading" : seats
+                        }</p>
+                        <p>{data.source_station} | {data.departure_time}</p>
+                        <p>{data.destination_station} | {data.arrival_time}</p>
+                        <p>{data.ticket_status}</p>
+                        <p  className="font-bold">रु. {data.total_fare}</p>
                     </div>
                 </div>
                 <div className="flex justify-center">
@@ -92,7 +132,7 @@ const TicketDocument = () => {
                 </div>
             </div>
             <div className="flex justify-end mt-24">
-                <Button variant="constructive" onClick={handleDownloadPdf}>Print Ticket</Button>
+                <Button variant="constructive" onClick={handleDownloadPdf}>Download Ticket</Button>
             </div>
         </>
     );
