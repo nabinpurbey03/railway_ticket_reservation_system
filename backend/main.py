@@ -161,6 +161,10 @@ async def cancel_ticket(pnr_number: str):
     ticket = Ticket("","","","")
     return ticket.cancel_ticket(pnr_number)
 
+@app.get("/api/get-booked-seats/{pnr_number}")
+async def get_booked_seats(pnr_number: str):
+    ticket = Ticket("","","","")
+    return ticket.get_booked_seats(pnr_number)
 
 '''
 

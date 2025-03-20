@@ -1,5 +1,6 @@
 from datetime import datetime, timedelta
 import os
+from typing import Any
 
 import psycopg2
 from dotenv import load_dotenv
@@ -292,14 +293,29 @@ class Ticket:
         except Exception as e:
             return {"status": False, "message": str(e)}
 
+    def get_booked_seats(self, pnr_number: str) -> dict:
+        try:
+            sql: str = '''
+                SELECT seat_number FROM ticket
+                WHERE pnr_number = %s
+            '''
+            self.__cur.execute(sql, (pnr_number,))
+            seats = self.__cur.fetchall()
+            booked_seats = []
+            for seat in seats:
+                booked_seats.append(seat[0])
+            return {'status': True, 'seats': ", ".join(booked_seats)}
+        except Exception as e:
+            return {"status": False, "message": str(e)}
+
 
     def __del__(self):
         self.__cur.close()
         self.__conn.close()
 
 
-# t = Ticket("Janakpur", "Kathmandu", "2025-03-10", "Economy")
+t = Ticket("Janakpur", "Kathmandu", "2025-03-10", "Economy")
 # for index, ticket in enumerate(t.ticket_details(13)):
 #     print(f"{index}: {ticket}")
 #     print()
-# print(t.cancel_ticket('250320-DORW-ENPL-183403'))
+print(t.get_booked_seats('250320-DORW-ENPL-183403'))
