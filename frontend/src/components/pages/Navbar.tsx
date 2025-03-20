@@ -41,7 +41,6 @@ const Navbar: React.FC<navbarProps> = ({showReg}): ReactElement => {
                     <p className="font-bold">Singha Durbar, Kathmandu</p>
                 </div>
             </div>
-
             {/* Right Section */}
             <div id="nav-ele" className="basis-3/5 flex flex-row justify-end">
                 <div className="flex flex-row justify-evenly items-center mx-3 ">
@@ -81,7 +80,6 @@ const Navbar: React.FC<navbarProps> = ({showReg}): ReactElement => {
                         </Avatar>
                     }
                 </div>
-
             </div>
         </main>
     );
