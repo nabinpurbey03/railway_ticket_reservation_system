@@ -250,20 +250,19 @@ class Ticket:
     def ticket_details(self, passenger_id: int):
         try:
             sql: str = '''
-                SELECT pnr_number, class_type, journey_date, ticket_status,
-                    COUNT(*) AS total_tickets,
-                    SUM(fare) AS toatal_fare
+                SELECT pnr_number, class_type, journey_date, ticket_status, source_station, destination_station,
+                    TO_CHAR(departure_time, 'HH24:MI'),
+                    TO_CHAR(arrival_time, 'HH24:MI'),
+                    COUNT(*),
+                    SUM(fare)
                 FROM ticket
                 WHERE passenger_id = %s AND
                     journey_date BETWEEN current_date AND current_date + INTERVAL '7 days'
-                GROUP BY pnr_number,
-                        class_type,
-                        ticket_status,
-                        journey_date;
+                GROUP BY pnr_number, source_station, destination_station, departure_time, arrival_time, class_type, ticket_status, journey_date;
             '''
             self.__cur.execute(sql, (passenger_id,))
             booked_tickets = self.__cur.fetchall()
-            keys: list[str] = ['pnr_number', 'class_type', 'journey_date', 'ticket_status', 'total_ticket', 'total_fare']
+            keys: list[str] = ['pnr_number', 'class_type', 'journey_date', 'ticket_status', 'source_station', 'destination_station', 'departure_time', 'arrival_time', 'total_ticket', 'total_fare']
             final_data: list = []
             for booked_ticket in booked_tickets:
                 final_data.append(dict(zip(keys, booked_ticket)))
