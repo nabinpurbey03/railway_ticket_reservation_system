@@ -7,6 +7,7 @@ import ProfilePage from "@/components/pages/ProfilePage.tsx";
 import BookTicket from "@/components/ticket-booking/book-ticket.tsx";
 import React from "react";
 import ConfirmTicket from "@/components/ticket-booking/confirm-ticket.tsx";
+import Dashboard from "@/components/admin-panel/dashboard.tsx";
 
 function App(): React.ReactElement {
         const active= Cookies.get("is_active") === "true";
@@ -17,6 +18,7 @@ function App(): React.ReactElement {
     return (
             <BrowserRouter>
                 <Routes>
+                    <Route path="*" element={<Navigate to="/" replace />} />
                     <Route path="/" element={<Home />} />
                     <Route path="/book-ticket" element={<BookTicket />} />
                     <Route
@@ -28,6 +30,7 @@ function App(): React.ReactElement {
                         element={loggedIn && !active ? <AddUserDetails /> : <Navigate to="/" replace />}
                     />
                     <Route path="/confirm-ticket" element={<ConfirmTicket />}/>
+                    <Route path="/admin/dashboard" element={<Dashboard />} />
                 </Routes>
             </BrowserRouter>
     );
