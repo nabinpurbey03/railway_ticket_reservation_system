@@ -30,10 +30,10 @@ const Footer: React.FC = () => {
                         <div className="w-full text-left items-center flex justify-center">
                             <ul>
                                 <li className="font-bold text-xl"><FontAwesomeIcon icon={faClock} /> Office Hours</li>
-                                <li className="font-bold text-red-500"><FontAwesomeIcon icon={faSun}/> Summer </li>
+                                <li className="font-bold"><FontAwesomeIcon icon={faSun} className="text-red-500"/> Summer </li>
                                 <li>Sunday to Thursday: 10 AM to 5 PM</li>
                                 <li>Friday: 10 AM to 3 PM</li>
-                                <li className="font-bold text-red-500"><FontAwesomeIcon icon={faSnowflake} /> Winter </li>
+                                <li className="font-bold"><FontAwesomeIcon icon={faSnowflake} className="text-red-500"/> Winter </li>
                                 <li>Sunday to Thursday: 11 AM to 4 PM</li>
                                 <li>Friday: 11 AM to 3 PM</li>
                             </ul>
