@@ -5,14 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a6a0bc47-991f-4bd0-ba42-afd9e10cba0b" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/components/admin-panel/app-sidebar.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/admin-panel/dashboard.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/admin-panel/admin-info.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/admin-panel/org-info.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tailwind.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/tailwind.config.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/admin-panel/app-sidebar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/admin-panel/app-sidebar.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/admin-panel/dashboard.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/admin-panel/dashboard.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -65,11 +62,11 @@
       <recent name="E:\project_2024\railway_ticket_reservation_system\frontend\public" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="E:\project_2024\railway_ticket_reservation_system\frontend\src\components\admin-panel" />
       <recent name="E:\project_2024\railway_ticket_reservation_system\frontend\src\components\ticket-booking" />
       <recent name="E:\project_2024\railway_ticket_reservation_system\frontend\src\components" />
       <recent name="E:\project_2024\railway_ticket_reservation_system\frontend\src\components\pages" />
       <recent name="E:\project_2024\railway_ticket_reservation_system\frontend\src\components\forms" />
-      <recent name="E:\project_2024\railway_ticket_reservation_system\frontend\src" />
     </key>
   </component>
   <component name="SharedIndexes">
@@ -228,7 +225,9 @@
       <workItem from="1742478512482" duration="11518000" />
       <workItem from="1742524646883" duration="9481000" />
       <workItem from="1742546925605" duration="302000" />
-      <workItem from="1742573927790" duration="5714000" />
+      <workItem from="1742573927790" duration="5923000" />
+      <workItem from="1742641703341" duration="5480000" />
+      <workItem from="1742653549792" duration="3633000" />
     </task>
     <servers />
   </component>

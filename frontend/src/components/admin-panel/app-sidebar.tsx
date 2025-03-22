@@ -1,21 +1,23 @@
-import { Calendar, Home, Inbox, Search, Settings } from "lucide-react"
+import {Calendar, Download, Home, Inbox, Search, Settings} from "lucide-react"
 
 import {
     Sidebar,
-    SidebarContent,
+    SidebarContent, SidebarFooter,
     SidebarGroup,
     SidebarGroupContent,
-    SidebarGroupLabel,
+    SidebarGroupLabel, SidebarHeader,
     SidebarMenu,
     SidebarMenuButton,
     SidebarMenuItem,
 } from "@/components/ui/sidebar"
+import AdminInfo from "@/components/admin-panel/admin-info.tsx";
+import OrgInfo from "@/components/admin-panel/org-info.tsx";
 
 // Menu items.
 const items = [
     {
         title: "Home",
-        url: "#",
+        url: "/admin/dashboard",
         icon: Home,
     },
     {
@@ -38,11 +40,19 @@ const items = [
         url: "#",
         icon: Settings,
     },
+    {
+        title: "Download",
+        url: "#",
+        icon: Download,
+    },
 ]
 
 export default function AppSidebar() {
     return (
         <Sidebar>
+            <SidebarHeader>
+                <OrgInfo />
+            </SidebarHeader>
             <SidebarContent>
                 <SidebarGroup>
                     <SidebarGroupLabel>Application</SidebarGroupLabel>
@@ -62,6 +72,9 @@ export default function AppSidebar() {
                     </SidebarGroupContent>
                 </SidebarGroup>
             </SidebarContent>
+            <SidebarFooter>
+                <AdminInfo />
+            </SidebarFooter>
         </Sidebar>
     )
 }

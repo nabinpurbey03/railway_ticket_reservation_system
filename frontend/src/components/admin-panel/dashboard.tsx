@@ -9,7 +9,6 @@ const Dashboard: React.FC = () => {
                 <AppSidebar />
                 <main>
                     <SidebarTrigger />
-
                 </main>
             </SidebarProvider>
         </>
