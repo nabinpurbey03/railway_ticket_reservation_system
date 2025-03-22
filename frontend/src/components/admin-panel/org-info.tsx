@@ -1,4 +1,4 @@
-import {Building2, ChevronsUpDown, MessageCircleCode, SquarePlus, Users} from "lucide-react";
+import {ChevronsUpDown, MessageCircleCode, SquarePlus, Users} from "lucide-react";
 import {Popover, PopoverContent, PopoverTrigger} from "@/components/ui/popover.tsx";
 import {Button} from "@/components/ui/button.tsx";
 import {Card, CardDescription} from "@/components/ui/card.tsx";
