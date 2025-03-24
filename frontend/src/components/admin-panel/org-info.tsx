@@ -9,7 +9,7 @@ const OrgInfo = () => {
         <Popover>
             <PopoverTrigger>
                 <div className="flex justify-center text-white items-center bg-blue-700 px-1 border-2 border-black rounded py-2">
-                    <div className="w-full h-[50px] basis-1/3">
+                    <div className="w-full h-[43px] basis-1/3">
                         <img src="/assets/images/emblem_of_nepal.svg" alt="Emblem Of Nepal" className="w-full h-full object-fill"/>
                     </div>
                     <div>
