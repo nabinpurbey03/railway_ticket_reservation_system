@@ -8,6 +8,7 @@ import BookTicket from "@/components/ticket-booking/book-ticket.tsx";
 import React from "react";
 import ConfirmTicket from "@/components/ticket-booking/confirm-ticket.tsx";
 import Dashboard from "@/components/admin-panel/dashboard.tsx";
+import Inbox from "@/components/admin-panel/inbox.tsx";
 
 function App(): React.ReactElement {
         const active= Cookies.get("is_active") === "true";
@@ -31,6 +32,7 @@ function App(): React.ReactElement {
                     />
                     <Route path="/confirm-ticket" element={<ConfirmTicket />}/>
                     <Route path="/admin/dashboard" element={<Dashboard />} />
+                    <Route path="/admin/dashboard/inbox" element={<Inbox />} />
                 </Routes>
             </BrowserRouter>
     );
