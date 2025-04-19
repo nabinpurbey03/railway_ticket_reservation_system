@@ -314,8 +314,8 @@ class Ticket:
         self.__conn.close()
 
 
-t = Ticket("Janakpur", "Kathmandu", "2025-03-10", "Economy")
+# t = Ticket("Janakpur", "Kathmandu", "2025-03-10", "Economy")
 # for index, ticket in enumerate(t.ticket_details(13)):
 #     print(f"{index}: {ticket}")
 #     print()
-print(t.get_booked_seats('250320-DORW-ENPL-183403'))
+# print(t.get_booked_seats('250320-DORW-ENPL-183403'))

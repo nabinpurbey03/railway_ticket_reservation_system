@@ -16,7 +16,7 @@ from datetime import datetime
 app = FastAPI()
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost"],
+    allow_origins=["*"],
     allow_credentials=True,
     allow_methods=["GET", "POST", "PUT", "DELETE"],
     allow_headers=["*"]
@@ -78,7 +78,6 @@ async def get_user(email: str):
 
 @app.get("/api/get-profile/{user_id}")
 async def get_user_profile(user_id: str):
-    print(user_id)
     p = PersonalDetail()
     return p.get_personal_detail(user_id)
 
@@ -165,6 +164,9 @@ async def cancel_ticket(pnr_number: str):
 async def get_booked_seats(pnr_number: str):
     ticket = Ticket("","","","")
     return ticket.get_booked_seats(pnr_number)
+
+
+
 
 '''
 
