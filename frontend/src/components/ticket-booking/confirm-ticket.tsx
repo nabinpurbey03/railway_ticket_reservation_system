@@ -5,13 +5,15 @@ import {Separator} from "@/components/ui/separator.tsx";
 import {Button} from "@/components/ui/button.tsx";
 import Cookies from "js-cookie";
 import CryptoJS from "crypto-js";
-import { v4 as uuidv4 } from 'uuid';
+import {v4 as uuidv4} from 'uuid';
+
 const ConfirmTicket: React.FC = () => {
 
     const uid = uuidv4();
     const message = `total_amount=${Cookies.get('fare')},transaction_uuid=${uid},product_code=EPAYTEST`;
     const hash = CryptoJS.HmacSHA256(message, "8gBm/:&EnhH.1/q");
     const signature = CryptoJS.enc.Base64.stringify(hash);
+    console.log(signature);
 
     return (
         <>
@@ -32,31 +34,43 @@ const ConfirmTicket: React.FC = () => {
                             className="font-bold text-green-600">{Cookies.get('pnr_number')}</span></p>
                         <p>Total Paying Amount <span
                             className="font-bold text-green-600">रु. {Cookies.get('fare')}</span></p>
-                        <form action="https://rc-epay.esewa.com.np/api/epay/main/v2/form" method="POST">
-                            <input type="hidden" id="amount" name="amount" value={Cookies.get('fare')} required/>
-                            <input type="hidden" id="tax_amount" name="tax_amount" value="0" required/>
-                            <input type="hidden" id="total_amount" name="total_amount" value={Cookies.get('fare')}
-                                   required/>
-                            <input type="hidden" id="transaction_uuid" name="transaction_uuid"
-                                   value={uid} required/>
-                            <input type="hidden" id="product_code" name="product_code" value="EPAYTEST" required/>
-                            <input type="hidden" id="product_service_charge" name="product_service_charge" value="0"
-                                   required/>
-                            <input type="hidden" id="product_delivery_charge" name="product_delivery_charge" value="0"
-                                   required/>
-                            <input type="hidden" id="success_url" name="success_url"
-                                   value="http://localhost:5173/profile" required/>
-                            <input type="hidden" id="failure_url" name="failure_url"
-                                   value="http://localhost:5173/profile" required/>
-                            <input type="hidden" id="signed_field_names" name="signed_field_names"
-                                   value="total_amount,transaction_uuid,product_code" required/>
-                            <input type="hidden" id="signature" name="signature"
-                                   value={signature} required/>
-                            <input value="Make Payment Via E-sewa" type="submit" className="bg-[#60bb46] text-white px-4 py-2 my-4 font-bold rounded cursor-pointer hover:bg-[#50a636]"/>
-                        </form>
+                        <div>
+                            <form action="https://rc-epay.esewa.com.np/api/epay/main/v2/form" method="POST">
+                                <input type="hidden" id="amount" name="amount" value={Cookies.get('fare')} required/>
+                                <input type="hidden" id="tax_amount" name="tax_amount" value="0" required/>
+                                <input type="hidden" id="total_amount" name="total_amount" value={Cookies.get('fare')}
+                                       required/>
+                                <input type="hidden" id="transaction_uuid" name="transaction_uuid"
+                                       value={uid} required/>
+                                <input type="hidden" id="product_code" name="product_code" value="EPAYTEST" required/>
+                                <input type="hidden" id="product_service_charge" name="product_service_charge" value="0"
+                                       required/>
+                                <input type="hidden" id="product_delivery_charge" name="product_delivery_charge"
+                                       value="0"
+                                       required/>
+                                <input type="hidden" id="success_url" name="success_url"
+                                       value="http://localhost:8000" required/>
+                                <input type="hidden" id="failure_url" name="failure_url"
+                                       value="http://localhost:5173/profile" required/>
+                                <input type="hidden" id="signed_field_names" name="signed_field_names"
+                                       value="total_amount,transaction_uuid,product_code" required/>
+                                <input type="hidden" id="signature" name="signature"
+                                       value={signature} required/>
+                                <div className="flex justify-center items-center space-x-5 bg-pink-200">
+                                    <div>
+                                        <input value="Make Payment With E-sewa" type="submit"
+                                               className="bg-[#60bb46] text-white px-4 py-2 my-4 font-bold rounded cursor-pointer hover:bg-[#50a636]"/>
+                                    </div>
+                                    <div className="h-[50px] w-[100px]"><img src="/assets/images/esewa.png" alt="Esewa"
+                                                                             className="w-full"/></div>
+                                </div>
+                            </form>
+                        </div>
                     </CardContent>
                     <CardFooter className="flex justify-center flex-col space-y-5">
-                        <Button variant="outline" onClick={() => {window.location.href = '/profile';}}>Pay Later</Button>
+                        <Button variant="outline" onClick={() => {
+                            window.location.href = '/profile';
+                        }}>Pay Later</Button>
                     </CardFooter>
                 </Card>
             </main>
