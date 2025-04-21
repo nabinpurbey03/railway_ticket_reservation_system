@@ -12,11 +12,11 @@ interface UserCookies {
 
 export const setUserCookies = (user: UserCookies): void => {
 
-    Cookies.set('id', user.id, { expires: expirationTime });
-    Cookies.set('role', user.role, { expires: expirationTime });
-    Cookies.set('is_active', user.is_active.toString(), { expires: expirationTime });
-    Cookies.set('loggedIn', user.loggedIn.toString(), { expires: expirationTime });
-    Cookies.set('email', user.email, { expires: expirationTime });
+    Cookies.set('id', user.id, {expires: expirationTime});
+    Cookies.set('role', user.role, {expires: expirationTime});
+    Cookies.set('is_active', user.is_active.toString(), {expires: expirationTime});
+    Cookies.set('loggedIn', user.loggedIn.toString(), {expires: expirationTime});
+    Cookies.set('email', user.email, {expires: expirationTime});
 };
 
 interface NameCookies {
@@ -26,10 +26,10 @@ interface NameCookies {
 }
 
 export const setNameCookies = (nameCookies: NameCookies): void => {
-    Cookies.set('first_name', nameCookies.first_name, { expires: expirationTime });
-    Cookies.set('last_name', nameCookies.last_name, { expires: expirationTime });
-    Cookies.set('image_url', nameCookies.image_url, { expires: expirationTime });
-    Cookies.set('is_active', true.toString(), { expires: expirationTime });
+    Cookies.set('first_name', nameCookies.first_name, {expires: expirationTime});
+    Cookies.set('last_name', nameCookies.last_name, {expires: expirationTime});
+    Cookies.set('image_url', nameCookies.image_url, {expires: expirationTime});
+    Cookies.set('is_active', true.toString(), {expires: expirationTime});
     window.location.href = '/';
 }
 
@@ -43,5 +43,9 @@ export const destroyCookies = (): void => {
     Cookies.remove('loggedIn');
     Cookies.remove('email');
     window.location.href = '/';
+}
+
+export const setPnrNumberCookies = (pnr_number: string): void => {
+    Cookies.set('pnr_number', pnr_number, {expires: expirationTime});
 }
 

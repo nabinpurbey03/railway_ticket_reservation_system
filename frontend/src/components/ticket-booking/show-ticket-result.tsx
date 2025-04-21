@@ -15,7 +15,7 @@ import {
 import Cookies from "js-cookie";
 import {destinations} from "@/components/ticket-booking/destinations.ts";
 import axios from "axios";
-import GLOBALS from "@/components/globals.ts";
+import {setPnrNumberCookies} from "@/cookies/handle_cookie.ts";
 
 const classTypes = [
     {Economy: 200},
@@ -232,7 +232,8 @@ const ConfirmationDialog: React.FC<ConfirmationDialogProps> = ({button, data}) =
             if (!bookTicketResponse.data.status) {
                 return;
             }else {
-                window.location.href = '/confirm-ticket'
+                setPnrNumberCookies(bookTicketResponse.data.pnr);
+                window.location.href = '/confirm-ticket';
             }
         }catch (error) {
             console.error(error);

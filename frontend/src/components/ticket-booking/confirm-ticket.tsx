@@ -3,8 +3,12 @@ import React from "react";
 import {Card, CardContent, CardFooter, CardHeader, CardTitle} from "@/components/ui/card.tsx";
 import {Separator} from "@/components/ui/separator.tsx";
 import {Button} from "@/components/ui/button.tsx";
+import Cookies from "js-cookie";
 
 const ConfirmTicket: React.FC = () => {
+
+    console.log(Cookies.get('pnr_number'));
+
     return(
         <>
             <Navbar showReg={() => {
