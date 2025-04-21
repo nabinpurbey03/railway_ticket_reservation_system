@@ -165,7 +165,9 @@ async def get_booked_seats(pnr_number: str):
     ticket = Ticket("","","","")
     return ticket.get_booked_seats(pnr_number)
 
-
+@app.get("/api/payment-details/{transaction_code}")
+async def payment_details(transaction_code: str):
+    print(transaction_code)
 
 
 '''
