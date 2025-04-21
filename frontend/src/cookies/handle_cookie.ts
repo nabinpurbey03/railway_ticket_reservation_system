@@ -1,4 +1,5 @@
 import Cookies from 'js-cookie';
+import {number} from "zod";
 
 const expirationTime = new Date(new Date().getTime() + 300 * 60 * 1000); // 30 minutes from now
 
@@ -45,7 +46,8 @@ export const destroyCookies = (): void => {
     window.location.href = '/';
 }
 
-export const setPnrNumberCookies = (pnr_number: string): void => {
+export const setPaymentCookies = (pnr_number: string, fare: string): void => {
     Cookies.set('pnr_number', pnr_number, {expires: expirationTime});
+    Cookies.set('fare', fare, {expires: expirationTime});
 }
 

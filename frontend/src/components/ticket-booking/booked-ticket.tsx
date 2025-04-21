@@ -23,6 +23,7 @@ import axios from "axios";
 import {Toaster} from "@/components/ui/toaster";
 import {toast} from "@/hooks/use-toast";
 import TicketDocument from "@/components/ticket-booking/ticket-document.tsx";
+import {setPaymentCookies} from "@/cookies/handle_cookie.ts";
 
 interface BookedTicketProps {
     data: [object];
@@ -40,6 +41,11 @@ const BookedTicket: React.FC<BookedTicketProps> = ({data}) => {
         } catch (error) {
             toast({title: "Server Error", description: error.message, variant: 'destructive'});
         }
+    }
+
+    const makePayment = async (pnr: string, fare: string) => {
+        setPaymentCookies(pnr, fare);
+        window.location.href = '/confirm-ticket';
     }
 
     return (
@@ -76,7 +82,9 @@ const BookedTicket: React.FC<BookedTicketProps> = ({data}) => {
                                     {
                                         item.ticket_status === 'Waiting' ? (
                                             <div className="flex flex-col gap-y-5">
-                                                <Button variant="constructive">Make Payment</Button>
+                                                <Button variant="constructive"
+                                                        onClick={() => makePayment(item.pnr_number, item.total_fare)}>Make
+                                                    Payment</Button>
                                                 <AlertDialog>
                                                     <AlertDialogTrigger
                                                         className="border-gray-500 border rounded bg-red-500 py-2"
@@ -110,9 +118,11 @@ const BookedTicket: React.FC<BookedTicketProps> = ({data}) => {
                                                     >Show Ticket</DialogTrigger>
                                                     <DialogContent className="min-w-[1280px] min-h-[90vh]">
                                                         <DialogHeader>
-                                                            <DialogTitle className="text-black text-center rounded-none">Ticket Preview</DialogTitle>
+                                                            <DialogTitle
+                                                                className="text-black text-center rounded-none">Ticket
+                                                                Preview</DialogTitle>
                                                             <DialogDescription>
-                                                                    <TicketDocument data={item} />
+                                                                <TicketDocument data={item}/>
                                                             </DialogDescription>
                                                         </DialogHeader>
                                                     </DialogContent>

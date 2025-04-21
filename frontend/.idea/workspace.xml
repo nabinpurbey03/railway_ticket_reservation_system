@@ -6,9 +6,13 @@
   <component name="ChangeListManager">
     <list default="true" id="a6a0bc47-991f-4bd0-ba42-afd9e10cba0b" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/ticket-booking/booked-ticket.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ticket-booking/booked-ticket.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/ticket-booking/confirm-ticket.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ticket-booking/confirm-ticket.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/ticket-booking/show-ticket-result.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ticket-booking/show-ticket-result.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/cookies/handle_cookie.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/cookies/handle_cookie.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tsconfig.app.json" beforeDir="false" afterPath="$PROJECT_DIR$/tsconfig.app.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -237,7 +241,7 @@
       <workItem from="1745054795044" duration="5977000" />
       <workItem from="1745076505157" duration="12000" />
       <workItem from="1745076641814" duration="4455000" />
-      <workItem from="1745215882038" duration="76000" />
+      <workItem from="1745215882038" duration="9118000" />
     </task>
     <servers />
   </component>

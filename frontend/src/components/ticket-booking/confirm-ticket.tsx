@@ -4,61 +4,59 @@ import {Card, CardContent, CardFooter, CardHeader, CardTitle} from "@/components
 import {Separator} from "@/components/ui/separator.tsx";
 import {Button} from "@/components/ui/button.tsx";
 import Cookies from "js-cookie";
-
+import CryptoJS from "crypto-js";
+import { v4 as uuidv4 } from 'uuid';
 const ConfirmTicket: React.FC = () => {
 
-    console.log(Cookies.get('pnr_number'));
+    const uid = uuidv4();
+    const message = `total_amount=${Cookies.get('fare')},transaction_uuid=${uid},product_code=EPAYTEST`;
+    const hash = CryptoJS.HmacSHA256(message, "8gBm/:&EnhH.1/q");
+    const signature = CryptoJS.enc.Base64.stringify(hash);
 
-    return(
+    return (
         <>
             <Navbar showReg={() => {
             }}/>
             <main>
-                <Card className="rounded-none min-h-[85vh]">
+                <Card className="rounded-none min-h-[85vh] bg-pink-100">
                     <CardHeader>
                         <CardTitle>Your Ticket(s) is in
                             <span className="text-yellow-400"> WAITING </span>
                             Status Make Payment To
                             <span className="text-green-600"> CONFIRM</span>
                         </CardTitle>
-                        <Separator />
+                        <Separator/>
                     </CardHeader>
-                    <CardContent className="flex justify-center">
-                        {/*<div className="min-w-[1000px] grid grid-cols-2 font-bold bg-pink-50 py-5">*/}
-                        {/*    <div className="text-left pl-40 flex flex-col gap-y-1">*/}
-                        {/*        <h1>Ticket Booked By</h1>*/}
-                        {/*        <h1>Journey Date</h1>*/}
-                        {/*        <h1>Source Destination</h1>*/}
-                        {/*        <h1>Destination Station</h1>*/}
-                        {/*        <h1>Class Type</h1>*/}
-                        {/*        <h1>Total Seats</h1>*/}
-                        {/*        <h1>Seat Number(s)</h1>*/}
-                        {/*        <h1>Total Fair</h1>*/}
-                        {/*    </div>*/}
-                        {/*    <div className="text-left pl-40 flex flex-col gap-y-1">*/}
-                        {/*        <h1>Nabin Purbey</h1>*/}
-                        {/*        <h1>2025/03/15</h1>*/}
-                        {/*        <h1>Janakpur | <span className="text-green-600">07:00</span></h1>*/}
-                        {/*        <h1>Kathmandu | <span className="text-green-600">11:00</span></h1>*/}
-                        {/*        <h1>Ladies</h1>*/}
-                        {/*        <h1>5</h1>*/}
-                        {/*        <h1>10, 11, 12, 13, 14, 15</h1>*/}
-                        {/*        <h1>200</h1>*/}
-                        {/*    </div>*/}
-                        {/*</div>*/}
-
-                        <table>
-                            <tbody className="w-full">
-                            <tr>
-                                <td>Name</td>
-                                <td>Nabin Purbey</td>
-                            </tr>
-                            </tbody>
-                        </table>
-
+                    <CardContent>
+                        <p>Ticket's PNR Number <span
+                            className="font-bold text-green-600">{Cookies.get('pnr_number')}</span></p>
+                        <p>Total Paying Amount <span
+                            className="font-bold text-green-600">रु. {Cookies.get('fare')}</span></p>
+                        <form action="https://rc-epay.esewa.com.np/api/epay/main/v2/form" method="POST">
+                            <input type="hidden" id="amount" name="amount" value={Cookies.get('fare')} required/>
+                            <input type="hidden" id="tax_amount" name="tax_amount" value="0" required/>
+                            <input type="hidden" id="total_amount" name="total_amount" value={Cookies.get('fare')}
+                                   required/>
+                            <input type="hidden" id="transaction_uuid" name="transaction_uuid"
+                                   value={uid} required/>
+                            <input type="hidden" id="product_code" name="product_code" value="EPAYTEST" required/>
+                            <input type="hidden" id="product_service_charge" name="product_service_charge" value="0"
+                                   required/>
+                            <input type="hidden" id="product_delivery_charge" name="product_delivery_charge" value="0"
+                                   required/>
+                            <input type="hidden" id="success_url" name="success_url"
+                                   value="http://localhost:5173/profile" required/>
+                            <input type="hidden" id="failure_url" name="failure_url"
+                                   value="http://localhost:5173/profile" required/>
+                            <input type="hidden" id="signed_field_names" name="signed_field_names"
+                                   value="total_amount,transaction_uuid,product_code" required/>
+                            <input type="hidden" id="signature" name="signature"
+                                   value={signature} required/>
+                            <input value="Make Payment Via E-sewa" type="submit" className="bg-[#60bb46] text-white px-4 py-2 my-4 font-bold rounded cursor-pointer hover:bg-[#50a636]"/>
+                        </form>
                     </CardContent>
-                    <CardFooter className="flex justify-end mr-64">
-                        <Button variant="constructive">Make Payment</Button>
+                    <CardFooter className="flex justify-center flex-col space-y-5">
+                        <Button variant="outline" onClick={() => {window.location.href = '/profile';}}>Pay Later</Button>
                     </CardFooter>
                 </Card>
             </main>
