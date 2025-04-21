@@ -195,6 +195,7 @@ class Ticket:
                 for cls in classes:
                     prices.append({cls: self.__get_price_per_ticket(cls)})
                 return prices
+        return None
 
     def __get_train_name(self) -> str:
         source_id = destinations[self.__source_station]['id']
