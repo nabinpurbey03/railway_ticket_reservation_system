@@ -9,9 +9,11 @@ import {v4 as uuidv4} from 'uuid';
 
 const ConfirmTicket: React.FC = () => {
 
+    const fare = Cookies.get('fare') || "0";
+    const pnrNumber = Cookies.get('pnr_number') || "N/A";
     const uid = uuidv4();
-    const message = `total_amount=${Cookies.get('fare')},transaction_uuid=${uid},product_code=EPAYTEST`;
-    const hash = CryptoJS.HmacSHA256(message, "8gBm/:&EnhH.1/q");
+    const message = `total_amount=${fare},transaction_uuid=${uid},product_code=EPAYTEST`;
+    const hash = CryptoJS.HmacSHA256(message, import.meta.env.VITE_ESEWA_SECRET_KEY);
     const signature = CryptoJS.enc.Base64.stringify(hash);
     console.log(signature);
 
@@ -31,14 +33,14 @@ const ConfirmTicket: React.FC = () => {
                     </CardHeader>
                     <CardContent>
                         <p>Ticket's PNR Number <span
-                            className="font-bold text-green-600">{Cookies.get('pnr_number')}</span></p>
+                            className="font-bold text-green-600">{pnrNumber}</span></p>
                         <p>Total Paying Amount <span
-                            className="font-bold text-green-600">रु. {Cookies.get('fare')}</span></p>
+                            className="font-bold text-green-600">रु. {fare}</span></p>
                         <div>
                             <form action="https://rc-epay.esewa.com.np/api/epay/main/v2/form" method="POST">
-                                <input type="hidden" id="amount" name="amount" value={Cookies.get('fare')} required/>
+                                <input type="hidden" id="amount" name="amount" value={fare} required/>
                                 <input type="hidden" id="tax_amount" name="tax_amount" value="0" required/>
-                                <input type="hidden" id="total_amount" name="total_amount" value={Cookies.get('fare')}
+                                <input type="hidden" id="total_amount" name="total_amount" value={fare}
                                        required/>
                                 <input type="hidden" id="transaction_uuid" name="transaction_uuid"
                                        value={uid} required/>
@@ -49,9 +51,9 @@ const ConfirmTicket: React.FC = () => {
                                        value="0"
                                        required/>
                                 <input type="hidden" id="success_url" name="success_url"
-                                       value="http://localhost:8000" required/>
+                                       value={import.meta.env.VITE_ESEWA_SUCCESS_URL} required/>
                                 <input type="hidden" id="failure_url" name="failure_url"
-                                       value="http://localhost:5173/profile" required/>
+                                       value={import.meta.env.VITE_ESEWA_FAILURE_URL} required/>
                                 <input type="hidden" id="signed_field_names" name="signed_field_names"
                                        value="total_amount,transaction_uuid,product_code" required/>
                                 <input type="hidden" id="signature" name="signature"
