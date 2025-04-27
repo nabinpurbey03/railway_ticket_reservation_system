@@ -1,5 +1,5 @@
 import AppSidebar from "@/components/admin-panel/app-sidebar.tsx";
-import {SidebarProvider, SidebarTrigger} from "@/components/ui/sidebar.tsx";
+import {SidebarProvider} from "@/components/ui/sidebar.tsx";
 
 const Inbox = () => {
     return (
@@ -7,7 +7,7 @@ const Inbox = () => {
             <SidebarProvider>
                 <AppSidebar />
                 <main>
-                    <SidebarTrigger />
+                    {/*<SidebarTrigger />*/}
                     <h1>Nabin Inbox</h1>
                 </main>
             </SidebarProvider>
