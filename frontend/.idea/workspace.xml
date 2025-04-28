@@ -6,12 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="a6a0bc47-991f-4bd0-ba42-afd9e10cba0b" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/admin-panel/dashboard.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/admin-panel/dashboard.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/admin-panel/home.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/admin-panel/home.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/admin-panel/inbox.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/admin-panel/inbox.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/ticket-booking/confirm-ticket.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ticket-booking/confirm-ticket.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -248,6 +243,7 @@
       <workItem from="1745648101462" duration="3421000" />
       <workItem from="1745742719489" duration="2387000" />
       <workItem from="1745760714346" duration="4770000" />
+      <workItem from="1745839407208" duration="2671000" />
     </task>
     <servers />
   </component>
