@@ -4,10 +4,11 @@ from fastapi import FastAPI, Form, UploadFile, File
 from fastapi.middleware.cors import CORSMiddleware
 
 from models import LoginRequest, Register, OTPVerificationRequest, AddUserRequest, AddressRequest, ChangePassword, \
-    TicketSearch, BookTicket
+    TicketSearch, BookTicket, PaymentDetails
 from src.address import Address
 from src.card import Card
 from src.emailer import Emailer, otp_store, otp_verification
+from src.payment import Payment
 from src.personal_detail import PersonalDetail
 from src.ticket import Ticket
 from src.users import User
@@ -169,9 +170,15 @@ async def get_booked_seats(pnr_number: str):
     return ticket.get_booked_seats(pnr_number)
 
 
-@app.get("/api/payment-details/{bookingId}")
-async def payment_details(bookingId: str):
-    print(bookingId)
+@app.post("/api/make-payment-with-stripe")
+async def payment_details(req: PaymentDetails):
+    pay = Payment(req.total_amount, req.pnr_number)
+    return pay.make_payment()
+
+@app.get("/api/confirm-payment")
+async def confirm_payment():
+    return {"status": True, "message": "The payment was successful!"}
+
 
 
 '''

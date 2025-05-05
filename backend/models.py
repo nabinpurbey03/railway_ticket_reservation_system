@@ -50,3 +50,8 @@ class BookTicket(BaseModel):
     class_type: str
     journey_date: str
     fare: float
+
+
+class PaymentDetails(BaseModel):
+    total_amount: float
+    pnr_number: str
