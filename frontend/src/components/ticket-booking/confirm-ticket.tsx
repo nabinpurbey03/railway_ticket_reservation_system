@@ -6,6 +6,7 @@ import {Button} from "@/components/ui/button.tsx";
 import Cookies from "js-cookie";
 import CryptoJS from "crypto-js";
 import {v4 as uuidv4} from 'uuid';
+import axios from "axios";
 
 const ConfirmTicket: React.FC = () => {
 
@@ -16,6 +17,23 @@ const ConfirmTicket: React.FC = () => {
     const hash = CryptoJS.HmacSHA256(message, import.meta.env.VITE_ESEWA_SECRET_KEY);
     const signature = CryptoJS.enc.Base64.stringify(hash);
     // console.log(signature);
+
+    async function makePaymentWithStripe() {
+        const payload = {
+            total_amount: fare,
+            pnr_number: pnrNumber,
+        }
+        try {
+            const response = await axios.post(`${import.meta.env.VITE_API_URL}/api/make-payment-with-stripe`, payload);
+            if (response.data.status) {
+                window.location.href = response.data.payment_url || '/profile';
+            }else {
+                return;
+            }
+        }catch (error) {
+            console.error(error);
+        }
+    }
 
     return (
         <>
@@ -67,6 +85,15 @@ const ConfirmTicket: React.FC = () => {
                                                                              className="w-full"/></div>
                                 </div>
                             </form>
+                            <div className="flex justify-center items-center space-x-5 bg-pink-200">
+                                <Button
+                                    className="bg-[#635bff] text-white px-4 mb-2 font-extrabold rounded tracking-wider cursor-pointer hover:bg-[#453fb2]"
+                                    onClick={makePaymentWithStripe}
+                                >Make Payment With Stripe</Button>
+                                <div className="h-[50px] w-[100px]"><img src="/assets/images/stripe_wordmark.png" alt="Esewa"
+                                                                         className="w-full"/></div>
+                            </div>
+
                         </div>
                     </CardContent>
                     <CardFooter className="flex justify-center flex-col space-y-5">
