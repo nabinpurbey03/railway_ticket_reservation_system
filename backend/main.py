@@ -150,24 +150,28 @@ async def book_ticket(req: BookTicket):
     ticket = Ticket(req.source_station, req.destination_station, req.journey_date, req.class_type)
     return ticket.book_ticket(dict(req))
 
+
 @app.get("/api/get-booked-ticket/{user_id}")
 async def get_booked_ticket(user_id: str):
-    ticket = Ticket("","","","")
+    ticket = Ticket("", "", "", "")
     return ticket.ticket_details(int(user_id))
+
 
 @app.get("/api/cancel-ticket/{pnr_number}")
 async def cancel_ticket(pnr_number: str):
-    ticket = Ticket("","","","")
+    ticket = Ticket("", "", "", "")
     return ticket.cancel_ticket(pnr_number)
+
 
 @app.get("/api/get-booked-seats/{pnr_number}")
 async def get_booked_seats(pnr_number: str):
-    ticket = Ticket("","","","")
+    ticket = Ticket("", "", "", "")
     return ticket.get_booked_seats(pnr_number)
 
-@app.get("/api/payment-details/{data}")
-async def payment_details(data: str):
-    print(data)
+
+@app.get("/api/payment-details/{bookingId}")
+async def payment_details(bookingId: str):
+    print(bookingId)
 
 
 '''
@@ -175,7 +179,3 @@ async def payment_details(data: str):
 FOR ADMINISTRATOR
 
 '''
-
-
-
-
