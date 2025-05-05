@@ -15,7 +15,6 @@ class Payment:
         self.__cur = self.__conn.cursor()
 
     def make_payment(self):
-        print(os.getenv("STRIPE_PAYMENT_SECRET_KEY"))
         stripe.api_key = os.getenv("STRIPE_PAYMENT_SECRET_KEY")
         session = stripe.checkout.Session.create(
             success_url="http://localhost:5173/profile",
@@ -35,3 +34,26 @@ class Payment:
             cancel_url="http://localhost:5173/profile",
         )
         return {"status": True, "payment_id": session.id, "payment_url": session.url}
+
+
+    def confirm_payment(self, user_id: int, payment_id: str):
+        sql = '''
+            INSERT INTO payment (user_id, pnr_number, amount, payment_status, transaction_id) VALUES (%s, %s, %s, %s, %s)
+        '''
+        try:
+            self.__cur.execute(sql, (user_id, self.__pnr_number, self.__total_amount, "completed", payment_id))
+            self.__conn.commit()
+            sql2 = '''
+            UPDATE ticket SET ticket_status = 'Confirmed' WHERE pnr_number = %s
+            '''
+            self.__cur.execute(sql2, (self.__pnr_number,))
+            self.__conn.commit()
+            return {"status": True, "message": "Payment confirmed successfully."}
+        except Exception as e:
+            self.__conn.rollback()
+            return {"status": False, "message": f"An error occurred: {str(e)}"}
+
+
+    def __del__(self):
+        self.__cur.close()
+        self.__conn.close()

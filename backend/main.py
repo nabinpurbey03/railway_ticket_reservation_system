@@ -4,7 +4,7 @@ from fastapi import FastAPI, Form, UploadFile, File
 from fastapi.middleware.cors import CORSMiddleware
 
 from models import LoginRequest, Register, OTPVerificationRequest, AddUserRequest, AddressRequest, ChangePassword, \
-    TicketSearch, BookTicket, PaymentDetails
+    TicketSearch, BookTicket, PaymentDetails, ConfirmPayment
 from src.address import Address
 from src.card import Card
 from src.emailer import Emailer, otp_store, otp_verification
@@ -175,9 +175,10 @@ async def payment_details(req: PaymentDetails):
     pay = Payment(req.total_amount, req.pnr_number)
     return pay.make_payment()
 
-@app.get("/api/confirm-payment")
-async def confirm_payment():
-    return {"status": True, "message": "The payment was successful!"}
+@app.post("/api/confirm-payment")
+async def confirm_payment(req: ConfirmPayment):
+    pay = Payment(req.total_amount, req.pnr_number)
+    return pay.confirm_payment(req.user_id, req.payment_id)
 
 
 

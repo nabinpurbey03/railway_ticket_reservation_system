@@ -55,3 +55,10 @@ class BookTicket(BaseModel):
 class PaymentDetails(BaseModel):
     total_amount: float
     pnr_number: str
+
+
+class ConfirmPayment(BaseModel):
+    user_id: int
+    total_amount: float
+    pnr_number: str
+    payment_id: str
