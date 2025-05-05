@@ -9,6 +9,7 @@ import React from "react";
 import ConfirmTicket from "@/components/ticket-booking/confirm-ticket.tsx";
 import Dashboard from "@/components/admin-panel/dashboard.tsx";
 import Inbox from "@/components/admin-panel/inbox.tsx";
+import PaymentProcessingAnimation from "@/components/ticket-booking/process-payment.tsx";
 
 function App(): React.ReactElement {
         const active= Cookies.get("is_active") === "true";
@@ -22,6 +23,7 @@ function App(): React.ReactElement {
                     <Route path="*" element={<Navigate to="/" replace />} />
                     <Route path="/" element={<Home />} />
                     <Route path="/book-ticket" element={<BookTicket />} />
+                    <Route path="/process-payment" element={<PaymentProcessingAnimation />} />
                     <Route
                         path="/profile"
                         element={active ? <ProfilePage /> : <Navigate to="/" replace />}

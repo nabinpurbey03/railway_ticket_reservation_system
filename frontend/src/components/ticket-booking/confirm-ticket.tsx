@@ -16,7 +16,6 @@ const ConfirmTicket: React.FC = () => {
     const message = `total_amount=${fare},transaction_uuid=${uid},product_code=EPAYTEST`;
     const hash = CryptoJS.HmacSHA256(message, import.meta.env.VITE_ESEWA_SECRET_KEY);
     const signature = CryptoJS.enc.Base64.stringify(hash);
-    // console.log(signature);
 
     async function makePaymentWithStripe() {
         const payload = {

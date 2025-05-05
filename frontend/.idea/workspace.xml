@@ -5,10 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a6a0bc47-991f-4bd0-ba42-afd9e10cba0b" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/public/assets/images/stripe_wordmark.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backend/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/requirements.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/ticket-booking/process-payment.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/models.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../backend/src/payment.py" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/src/payment.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/ticket-booking/confirm-ticket.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ticket-booking/confirm-ticket.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -249,7 +251,7 @@
       <workItem from="1745839407208" duration="3150000" />
       <workItem from="1745843720600" duration="471000" />
       <workItem from="1746431756614" duration="805000" />
-      <workItem from="1746441216389" duration="5412000" />
+      <workItem from="1746441216389" duration="10017000" />
     </task>
     <servers />
   </component>
