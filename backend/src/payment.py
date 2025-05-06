@@ -17,7 +17,7 @@ class Payment:
     def make_payment(self):
         stripe.api_key = os.getenv("STRIPE_PAYMENT_SECRET_KEY")
         session = stripe.checkout.Session.create(
-            success_url="http://localhost:5173/profile",
+            success_url="http://localhost:5173/process-payment",
             line_items=[
                 {
                     "price_data": {
