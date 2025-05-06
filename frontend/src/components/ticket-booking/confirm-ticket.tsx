@@ -10,6 +10,7 @@ import axios from "axios";
 
 const ConfirmTicket: React.FC = () => {
 
+    const expirationTime = new Date(new Date().getTime() + 300 * 60 * 1000); // 30 minutes from now
     const fare = Cookies.get('fare') || "0";
     const pnrNumber = Cookies.get('pnr_number') || "N/A";
     const uid = uuidv4();
@@ -25,7 +26,9 @@ const ConfirmTicket: React.FC = () => {
         try {
             const response = await axios.post(`${import.meta.env.VITE_API_URL}/api/make-payment-with-stripe`, payload);
             if (response.data.status) {
+                Cookies.set('payment_id', response.data.payment_id || 'N/A', {expires: expirationTime});
                 window.location.href = response.data.payment_url || '/profile';
+
             }else {
                 return;
             }

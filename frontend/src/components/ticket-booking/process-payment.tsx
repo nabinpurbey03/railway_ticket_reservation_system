@@ -1,11 +1,24 @@
-import { useState, useEffect } from 'react';
-import { CircleCheck, CircleX, CreditCard, User } from 'lucide-react';
+import {useState, useEffect} from 'react';
+import {CircleCheck, CreditCard, User} from 'lucide-react';
+import Cookies from "js-cookie";
+import axios from "axios";
 
 export default function PaymentProcessingAnimation() {
+
+    const payment_id = Cookies.get('payment_id');
     const [stage, setStage] = useState('processing');
     const [progress, setProgress] = useState(0);
     const [showProfileButton, setShowProfileButton] = useState(false);
     const [outcome, setOutcome] = useState(null);
+
+
+    const confirmPayment = async (payload: { user_id: string | undefined; total_amount: string | undefined; pnr_number: string | undefined; payment_id: string | undefined; }) => {
+        try {
+            return await axios.post(`${import.meta.env.VITE_API_URL}/api/confirm-payment`, payload);
+        } catch (e) {
+            console.log(e);
+        }
+    }
 
     const startProcessing = () => {
         setStage('processing');
@@ -66,8 +79,35 @@ export default function PaymentProcessingAnimation() {
         }
     }, [stage]);
 
+    useEffect(() => {
+
+        const fetchConfirmedPayment = async ()  => {
+            const payload = {
+                user_id: Cookies.get('id'),
+                total_amount: Cookies.get('fare'),
+                pnr_number: Cookies.get('pnr_number'),
+                payment_id: payment_id
+
+            }
+            try {
+                const res = await confirmPayment(payload)
+                if (res.data.status) {
+                    setInterval(() => {
+                        window.location.href = '/profile';
+                    }, 3000)
+                } else {
+                    setStage('idle');
+                }
+            } catch (e) {
+                console.log(e);
+            }
+        }
+        fetchConfirmedPayment();
+    }, []);
+
     return (
-        <div className="flex flex-col items-center justify-center w-full h-[100vh] p-6 bg-gray-100 rounded-lg shadow-lg">
+        <div
+            className="flex flex-col items-center justify-center w-full h-[100vh] p-6 bg-gray-100 rounded-lg shadow-lg">
             <div className="w-full max-w-md">
                 {/* Main animation container */}
                 <div className="bg-white p-8 rounded-xl shadow-md">
@@ -79,7 +119,7 @@ export default function PaymentProcessingAnimation() {
                     <div className="relative h-24 mb-8">
                         {stage === 'idle' && (
                             <div className="flex justify-center items-center h-full">
-                                <CreditCard size={64} className="text-blue-500" />
+                                <CreditCard size={64} className="text-blue-500"/>
                             </div>
                         )}
 
@@ -89,7 +129,7 @@ export default function PaymentProcessingAnimation() {
                                 <div className="absolute w-full h-2 bg-gray-200 rounded-full"></div>
                                 <div
                                     className="absolute h-2 bg-blue-500 rounded-full transition-all duration-300 ease-out"
-                                    style={{ width: `${progress}%`, left: 0 }}
+                                    style={{width: `${progress}%`, left: 0}}
                                 ></div>
 
                                 {/* Card animation */}
@@ -100,18 +140,18 @@ export default function PaymentProcessingAnimation() {
                                         transform: `translateX(-50%) rotate(${Math.sin(cardPosition / 3) * 15}deg)`
                                     }}
                                 >
-                                    <CreditCard size={48} className="text-blue-600" />
+                                    <CreditCard size={48} className="text-blue-600"/>
                                 </div>
 
                                 {/* Particle effects */}
-                                {Array.from({ length: 5 }).map((_, i) => (
+                                {Array.from({length: 5}).map((_, i) => (
                                     <div
                                         key={i}
                                         className="absolute bg-blue-400 rounded-full opacity-80"
                                         style={{
                                             width: `${6 + Math.random() * 8}px`,
                                             height: `${6 + Math.random() * 8}px`,
-                                            top: `${30 + Math.sin(cardPosition/2 + i) * 20}%`,
+                                            top: `${30 + Math.sin(cardPosition / 2 + i) * 20}%`,
                                             left: `${cardPosition * 5 + (Math.random() * 20 - 10)}%`,
                                             opacity: Math.random() * 0.7 + 0.3,
                                             transform: 'translateX(-50%)',
@@ -122,14 +162,14 @@ export default function PaymentProcessingAnimation() {
                                 {/* Digital pulse effect */}
                                 {progress > 10 && (
                                     <div className="absolute w-full flex justify-around">
-                                        {Array.from({ length: 8 }).map((_, i) => (
+                                        {Array.from({length: 8}).map((_, i) => (
                                             <div
                                                 key={i}
                                                 className="h-12 bg-blue-500 opacity-30 rounded-full"
                                                 style={{
                                                     width: '2px',
-                                                    opacity: Math.sin((progress/10) + i) > 0.7 ? 0.6 : 0.1,
-                                                    height: `${10 + Math.sin((progress/10) + i) * 20}px`,
+                                                    opacity: Math.sin((progress / 10) + i) > 0.7 ? 0.6 : 0.1,
+                                                    height: `${10 + Math.sin((progress / 10) + i) * 20}px`,
                                                     transform: 'translateY(-50%)'
                                                 }}
                                             />
@@ -142,7 +182,7 @@ export default function PaymentProcessingAnimation() {
                         {stage === 'completed' && (
                             <div className="flex justify-center items-center h-full">
                                 <div className="text-green-500 flex flex-col items-center">
-                                    <CircleCheck size={64} className="animate-bounce" />
+                                    <CircleCheck size={64} className="animate-bounce"/>
                                 </div>
                             </div>
                         )}
@@ -169,10 +209,12 @@ export default function PaymentProcessingAnimation() {
 
                         {showProfileButton && (
                             <button
-                                onClick={() => {window.location.href = '/profile';}}
+                                onClick={() => {
+                                    window.location.href = '/profile';
+                                }}
                                 className="px-6 py-3 bg-blue-600 text-white rounded-lg shadow hover:bg-blue-700 transition-colors flex items-center"
                             >
-                                Go to Profile <User className="ml-2" size={18} />
+                                Go to Profile <User className="ml-2" size={18}/>
                             </button>
                         )}
                     </div>
@@ -182,7 +224,7 @@ export default function PaymentProcessingAnimation() {
                 {stage === 'completed' && (
                     <div className="mt-6 p-4 bg-gray-100 rounded-lg">
                         <div className="flex items-center mb-4">
-                            <CreditCard className="text-gray-500 mr-2" size={20} />
+                            <CreditCard className="text-gray-500 mr-2" size={20}/>
                             <span className="text-gray-700">Payment successful with card ending in **** 4242</span>
                         </div>
                         <div className="text-sm text-gray-500">

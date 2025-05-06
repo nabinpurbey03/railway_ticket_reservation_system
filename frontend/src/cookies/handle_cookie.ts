@@ -1,5 +1,4 @@
 import Cookies from 'js-cookie';
-import {number} from "zod";
 
 const expirationTime = new Date(new Date().getTime() + 300 * 60 * 1000); // 30 minutes from now
 
