@@ -3,6 +3,7 @@ import os
 import psycopg2
 import stripe
 from dotenv import load_dotenv
+
 load_dotenv()
 
 
@@ -35,25 +36,34 @@ class Payment:
         )
         return {"status": True, "payment_id": session.id, "payment_url": session.url}
 
+    def confirm_payment(self, user_id: int, transaction_id: str):
+        insert_sql = '''
+                     INSERT INTO payment (user_id, pnr_number, amount, payment_status, transaction_id)
+                     VALUES (%s, %s, %s, %s, %s)
+                     '''
 
-    def confirm_payment(self, user_id: int, payment_id: str):
-        sql = '''
-            INSERT INTO payment (user_id, pnr_number, amount, payment_status, transaction_id) VALUES (%s, %s, %s, %s, %s)
-        '''
+        update_sql = '''
+                     UPDATE ticket
+                     SET ticket_status = 'Confirmed'
+                     WHERE pnr_number = %s
+                     '''
+
         try:
-            self.__cur.execute(sql, (user_id, self.__pnr_number, self.__total_amount, "completed", payment_id))
-            self.__conn.commit()
-            sql2 = '''
-            UPDATE ticket SET ticket_status = 'Confirmed' WHERE pnr_number = %s
-            '''
-            self.__cur.execute(sql2, (self.__pnr_number,))
+            # Execute both operations inside a single transaction block
+            self.__cur.execute(insert_sql,
+                               (user_id, self.__pnr_number, self.__total_amount, "completed", transaction_id))
+            self.__cur.execute(update_sql, (self.__pnr_number,))
             self.__conn.commit()
             return {"status": True, "message": "Payment confirmed successfully."}
+
         except Exception as e:
             self.__conn.rollback()
             return {"status": False, "message": f"An error occurred: {str(e)}"}
 
-
     def __del__(self):
         self.__cur.close()
         self.__conn.close()
+
+
+# pay = Payment(100, "250513-DORE-WNPL-173059")
+# print(pay.confirm_payment(13, "txn_123456789"))
