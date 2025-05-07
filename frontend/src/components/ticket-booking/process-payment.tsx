@@ -94,7 +94,7 @@ export default function PaymentProcessingAnimation() {
                 if (res.data.status) {
                     setInterval(() => {
                         window.location.href = '/profile';
-                    }, 3000)
+                    }, 10000)
                 } else {
                     setStage('idle');
                 }
