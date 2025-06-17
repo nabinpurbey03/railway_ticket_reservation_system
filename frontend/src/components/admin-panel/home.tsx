@@ -31,7 +31,7 @@ const debtToEquityData = [
 
 export default function Home() {
     return (
-        <div className="bg-gray-100 p-6 rounded-lg w-full">
+        <div className="bg-gray-100 p-6 w-[163vh]">
             <h1 className="text-2xl font-bold text-gray-800 mb-4">Data Dashboard</h1>
 
             <div className="flex items-center gap-4 mb-6">
