@@ -76,3 +76,8 @@ export const TicketSchema = z.object({
     classType: z.string().optional(),
 })
 
+export const AdminTicketSearchSchema = z.object({
+    journeyDate: z.string().optional(),
+    classType: z.string().optional(),
+})
+

@@ -33,7 +33,7 @@ export default function Home(): ReactElement {
                 images={images}
                 showBullets={false}
                 showNavs={false}
-                autoPlay={false}
+                autoPlay={true}
                 autoPlayDelay={5}
             />
             <div className="absolute w-full top-0 z-0">

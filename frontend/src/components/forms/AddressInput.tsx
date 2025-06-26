@@ -78,6 +78,9 @@ const AddressInput: React.FC<AddressInputProps> = ({data}): ReactElement => {
                     title: response.data.message,
                 })
                 await set_name_cookies({res: response});
+                setInterval(() => {
+                    window.location.href = '/profile';
+                }, 1000)
             } else {
                 toast({
                     title: response.data.message,
