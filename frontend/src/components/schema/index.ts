@@ -41,7 +41,7 @@ export const PasswordConfirmationSchema = z.object({
 
 export const PersonalDetailSchema = z.object({
     firstName: NameSchema,
-    middleName: NameSchema.optional(),
+    middleName: z.string().optional(),
     lastName: NameSchema,
     dateOfBirth: z.string().nonempty("Date of birth is required"),
     gender: z.enum(["M", "F", "O"], {required_error: "Gender is required"}),
