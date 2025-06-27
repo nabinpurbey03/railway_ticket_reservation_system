@@ -12,7 +12,7 @@ class Admin:
 
     def show_all_tickets(self):
         sql = '''
-        SELECT journey_date FROM ticket where journey_date between CURRENT_DATE AND CURRENT_DATE + 8;
+        SELECT * FROM ticket where journey_date between CURRENT_DATE AND CURRENT_DATE + 8;
         '''
         self.__cur.execute(sql)
         tickets = self.__cur.fetchall()
