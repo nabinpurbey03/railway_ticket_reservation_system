@@ -37,7 +37,7 @@ const Inbox = () => {
         <SidebarProvider>
             <AppSidebar/>
             <main className="w-full my-5 text-black">
-                <div>
+                <div className="flex justify-around w-full bg-blue-200">
                     <Form {...form}>
                         <form onSubmit={form.handleSubmit(onSubmit)}>
                             <div>
