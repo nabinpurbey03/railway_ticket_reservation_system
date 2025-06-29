@@ -52,6 +52,7 @@ Friends & Family for unwavering support.
 
 - Python 3.9+, Node.js 16+, PostgreSQL
 - Payment gateway API keys (eSewa/Stripe)
+- Google mail secret key
 
 ### Installation
 
@@ -83,6 +84,8 @@ Friends & Family for unwavering support.
    STRIPE_PAYMENT_SECRET_KEY=STRIPE_PAYMENT_SECRET_KEY
    ```
 
+---
+
 ## 📂 Project Structure
 
 ```bash
@@ -97,6 +100,8 @@ Friends & Family for unwavering support.
     │   ├── pages/       # Next.js-like routing
     │   ├── hooks/       # Custom hooks
 ```
+
+---
 
 ## 📬 Contact
 Nabin Purbey ....
