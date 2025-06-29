@@ -61,6 +61,21 @@ A modern, scalable, and user-friendly web application for booking railway ticket
    DATABASE_URL=postgresql://user:password@localhost/dbname
    JWT_SECRET=your_secret_key
    EMAIL_ADDRESS=project.railwaynepal@gmail.com
-   EMAIL_PASSWORD=SECRET_FROM_GOOGLE_MAIL
+   EMAIL_PASSWORD=SECRET_FROM_GOOGLE_MAIL # For the OTP Verification
    STRIPE_PAYMENT_SECRET_KEY=STRIPE_PAYMENT_SECRET_KEY
    ```
+
+## 📂 Project Structure
+
+```bash
+    backend/
+    ├── main.py          # FastAPI entry point
+    ├── models/          # Database models
+    ├── routers/         # API routes
+
+    frontend/
+    ├── src/
+    │   ├── components/  # React components
+    │   ├── pages/       # Next.js-like routing
+    │   ├── hooks/       # Custom hooks
+```
