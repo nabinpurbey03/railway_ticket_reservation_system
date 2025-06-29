@@ -18,6 +18,24 @@ A modern, scalable, and user-friendly web application for booking railway ticket
 
 ---
 
+## 🌟 Why This Project?
+**Solves Real Problems**: Reduces queues, fraud, and manual errors in Nepal’s railway system.
+
+**Modern Stack**: Combines React’s speed with FastAPI’s scalability.
+
+**Future-Ready**: Designed for AI recommendations and mobile integration.
+
+---
+
+## 🙏 Acknowledgments
+**Supervisor**: Er. Dhiraj Kumar Jha
+
+Orchid International College, Tribhuvan University
+
+Friends & Family for unwavering support.
+
+---
+
 ## 🛠️ Technologies Used
 
 | Frontend     | Backend   | Database   | DevOps         |
