@@ -8,6 +8,7 @@ A modern, scalable, and user-friendly web application for booking railway ticket
 ---
 
 ## ✨ Features
+
 - **User Authentication**: Secure JWT-based login/signup.
 - **Real-Time Booking**: Search trains, check seat availability, and book instantly.
 - **Digital Payments**: Integrated with eSewa/Khalti/Stripe.
@@ -18,22 +19,34 @@ A modern, scalable, and user-friendly web application for booking railway ticket
 ---
 
 ## 🛠️ Technologies Used
-| Frontend          | Backend       | Database       | DevOps         |
-|-------------------|---------------|----------------|----------------|
-| ReactJS           | FastAPI       | PostgreSQL     | Docker         |
-| Tailwind CSS      | JWT Auth      | SQLAlchemy     | GitHub Actions |
-| Vite              | REST APIs     | Indexing       | AWS (EC2/RDS)  |
+
+| Frontend     | Backend   | Database   | DevOps         |
+| ------------ | --------- | ---------- | -------------- |
+| ReactJS      | FastAPI   | PostgreSQL | Docker         |
+| Tailwind CSS | JWT Auth  | SQLAlchemy | GitHub Actions |
+| Vite         | REST APIs | Indexing   | AWS (EC2/RDS)  |
 
 ---
 
 ## 🚀 Quick Start
 
 ### Prerequisites
+
 - Python 3.9+, Node.js 16+, PostgreSQL
 - Payment gateway API keys (eSewa/Stripe)
 
 ### Installation
+
 1. **Clone the repo**:
+
    ```bash
    git clone https://github.com/nabinpurbey03/railway_ticket_reservation_system.git
    cd railway_ticket_reservation_system
+   ```
+
+2. **Backend Setup**
+   ```bash
+       cd backend
+       pip install -r requirements.txt
+       uvicorn main:app --reload
+   ```
