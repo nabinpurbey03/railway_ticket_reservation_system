@@ -65,15 +65,15 @@ Friends & Family for unwavering support.
 
 2. **Backend Setup**:
    ```bash
-       cd backend
-       pip install -r requirements.txt
-       uvicorn main:app --reload
+    cd backend
+    pip install -r requirements.txt
+    uvicorn main:app --reload
    ```
 3. **Frontend Setup**:
    ```bash
-       cd frontend
-       npm install
-       npm run dev
+    cd frontend
+    npm install
+    npm run dev
    ```
 4. **Environment Variables**:
    ```bash
