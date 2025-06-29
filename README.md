@@ -30,7 +30,7 @@ A modern, scalable, and user-friendly web application for booking railway ticket
 ## 🙏 Acknowledgments
 **Supervisor**: Er. Dhiraj Kumar Jha
 
-Orchid International College, Tribhuvan University
+Orchid International College, **Tribhuvan University**
 
 Friends & Family for unwavering support.
 
