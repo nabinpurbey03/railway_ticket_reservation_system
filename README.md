@@ -44,9 +44,23 @@ A modern, scalable, and user-friendly web application for booking railway ticket
    cd railway_ticket_reservation_system
    ```
 
-2. **Backend Setup**
+2. **Backend Setup**:
    ```bash
        cd backend
        pip install -r requirements.txt
        uvicorn main:app --reload
+   ```
+3. **Frontend Setup**:
+   ```bash
+       cd frontend
+       npm install
+       npm run dev
+   ```
+4. **Environment Variables**:
+   ```bash
+   DATABASE_URL=postgresql://user:password@localhost/dbname
+   JWT_SECRET=your_secret_key
+   EMAIL_ADDRESS=project.railwaynepal@gmail.com
+   EMAIL_PASSWORD=SECRET_FROM_GOOGLE_MAIL
+   STRIPE_PAYMENT_SECRET_KEY=STRIPE_PAYMENT_SECRET_KEY
    ```
