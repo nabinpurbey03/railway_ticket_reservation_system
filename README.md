@@ -10,6 +10,7 @@ A modern, scalable, and user-friendly web application for booking railway ticket
 ## ✨ Features
 
 - **User Authentication**: Secure JWT-based login/signup.
+- **OTP Verification**: For email verification user gets email
 - **Real-Time Booking**: Search trains, check seat availability, and book instantly.
 - **Digital Payments**: Integrated with eSewa/Khalti/Stripe.
 - **Admin Dashboard**: Manage trains, schedules, and bookings.
@@ -19,6 +20,7 @@ A modern, scalable, and user-friendly web application for booking railway ticket
 ---
 
 ## 🙏 Acknowledgments
+
 **Supervisor**: Er. Dhiraj Kumar Jha
 
 Orchid International College, **Tribhuvan University**
@@ -28,6 +30,7 @@ Friends & Family for unwavering support.
 ---
 
 ## 🌟 Why This Project?
+
 **Solves Real Problems**: Reduces queues, fraud, and manual errors in Nepal’s railway system.
 
 **Modern Stack**: Combines React’s speed with FastAPI’s scalability.
@@ -104,7 +107,9 @@ Friends & Family for unwavering support.
 ---
 
 ## 📬 Contact
+
 Nabin Purbey ....
+
 <!-- 📧 [Your Email]
 🔗 GitHub
 💼 LinkedIn (optional link)
